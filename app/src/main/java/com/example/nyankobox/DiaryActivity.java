@@ -58,6 +58,7 @@ public class DiaryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        
 
     }
 }
