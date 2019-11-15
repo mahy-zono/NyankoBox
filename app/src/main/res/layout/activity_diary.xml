@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".DiaryActivity">
 
     <TextView
         android:id="@+id/dateText"
@@ -26,21 +26,6 @@
         app:layout_constraintVertical_bias="0.012" />
 
     <ImageButton
-        android:id="@+id/homeBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home_cat" />
-
-    <ImageButton
         android:id="@+id/diaryBtn"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -53,13 +38,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeBtn"
-        app:srcCompat="@drawable/diary" />
+        app:srcCompat="@drawable/diary_cat" />
 
     <ImageButton
-        android:id="@+id/logBtn"
+        android:id="@+id/homeBtn"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
@@ -67,8 +52,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diaryBtn"
-        app:srcCompat="@drawable/log" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home" />
 
     <ImageButton
         android:id="@+id/dressBtn"
@@ -84,6 +69,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logBtn"
         app:srcCompat="@drawable/dress" />
+
+    <ImageButton
+        android:id="@+id/logBtn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diaryBtn"
+        app:srcCompat="@drawable/log" />
 
     <ImageButton
         android:id="@+id/lineBtn"
@@ -102,5 +101,4 @@
         app:layout_constraintTop_toBottomOf="@+id/dressBtn"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/line" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
