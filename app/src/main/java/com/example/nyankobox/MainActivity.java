@@ -40,6 +40,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //ログ画面に遷移
+        ImageButton logsend = findViewById(R.id.logBtn);
+        logsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), LogActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //着せ替え画面に遷移
+        ImageButton dresssend = findViewById(R.id.dressBtn);
+        dresssend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), DressActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 /*        Calendar cal = Calendar.getInstance();       //カレンダーを取得
 
