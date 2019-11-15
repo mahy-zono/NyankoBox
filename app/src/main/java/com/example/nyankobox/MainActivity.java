@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MM月 dd日 (E) ");
 
         //指定書式に変換して表示
-        TextView dt = (TextView)findViewById(R.id.dateText);
+        TextView dt = (TextView) findViewById(R.id.dateText);
 
         dt.setText(sdf.format(d));
 
