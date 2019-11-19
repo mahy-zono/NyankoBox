@@ -15,6 +15,14 @@ import java.util.Date;
 
 public class DiaryActivity extends AppCompatActivity {
 
+    // MemoOpenHelperクラスを定義
+    dbData helper = null;
+    // 新規フラグ
+    //boolean newFlag = false;
+    // date
+    String date = "";
+    String emo = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,25 +69,99 @@ public class DiaryActivity extends AppCompatActivity {
             }
         });
 
+        //日付の取得
+        SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
+        date = dDate.format(d);
+
+        // データベースから値を取得する
+        /*if(helper == null){
+            helper = new dbData(DiaryActivity.this);
+        }*/
+
         /**
          * 送信ボタン処理
          */
-        ImageButton registerButton = findViewById(R.id.sendBtn);
-        // MemoOpenHelperクラスを定義
-        final dbData helper = null;
-        //初期値
-        String diaryStr = null;
-        final String emo = null;
+        ImageButton sendButton = findViewById(R.id.sendBtn);
+        ImageButton wkwkButton = findViewById(R.id.sendBtn);
+        ImageButton irirButton = findViewById(R.id.sendBtn);
+        ImageButton skskButton = findViewById(R.id.sendBtn);
 
+        // わくわくclick
+        wkwkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 入力内容を取得する
+                emo = "わくわく";
 
-        // clickイベント追加
-        registerButton.setOnClickListener(new View.OnClickListener() {
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+                try {
+                    // 新規作成の場合
+
+                    // INSERT
+                    db.execSQL("insert into NYANKO_TABLE(emo) VALUES('"+ emo +"')");
+
+                } finally {
+                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                    // dbを開いたら確実にclose
+                    db.close();
+                }
+
+            }
+        });
+
+        // いらいらclick
+        irirButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 入力内容を取得する
+                emo = "いらいら";
+
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+                try {
+                    // 新規作成の場合
+
+                    // INSERT
+                    db.execSQL("insert into NYANKO_TABLE(emo) VALUES('"+ emo +"')");
+
+                } finally {
+                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                    // dbを開いたら確実にclose
+                    db.close();
+                }
+
+            }
+        });
+
+        // しくしくclick
+        skskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 入力内容を取得する
+                emo = "しくしく";
+
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+                try {
+                    // 新規作成の場合
+
+                    // INSERT
+                    db.execSQL("insert into NYANKO_TABLE(emo) VALUES('"+ emo +"')");
+
+                } finally {
+                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                    // dbを開いたら確実にclose
+                    db.close();
+                }
+
+            }
+        });
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //日付の取得
-                SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
-
                 // 入力内容を取得する
                 EditText diary = findViewById(R.id.editText);
                 String diaryStr = diary.getText().toString();
@@ -90,7 +172,7 @@ public class DiaryActivity extends AppCompatActivity {
                         // 新規作成の場合
 
                         // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo) VALUES('"+ dDate +"','"+ diaryStr +"','"+ emo +"')");
+                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo) VALUES('"+ date +"','"+ diaryStr +"','"+ emo +"')");
 
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
