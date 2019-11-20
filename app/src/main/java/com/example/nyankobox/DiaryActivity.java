@@ -3,6 +3,7 @@ package com.example.nyankobox;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -18,9 +19,9 @@ public class DiaryActivity extends AppCompatActivity {
     // MemoOpenHelperクラスを定義
     dbData helper = null;
     // 新規フラグ
-    //boolean newFlag = false;
-    // date
-    String date = "";
+    boolean newFlag = true;
+    // データ
+    String nowdate = "";
     String emo = "";
 
     @Override
@@ -71,16 +72,44 @@ public class DiaryActivity extends AppCompatActivity {
 
         //日付の取得
         SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
-        date = dDate.format(d);
+        nowdate = dDate.format(d);
 
         // データベースから値を取得する
-        /*if(helper == null){
+        if(helper == null){
             helper = new dbData(DiaryActivity.this);
-        }*/
+
+        }
+        // データベースを取得する
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        try {
+            // rawQueryというSELECT専用メソッドを使用してデータを取得する
+            Cursor c = db.rawQuery("select diary from NYANKO_TABLE where date = nowdate", null);
+            // Cursorの先頭行があるかどうか確認
+            boolean next = c.moveToFirst();
+
+            // 最終的に表示する文字列
+            String dispDiary = "";
+            // 取得した全ての行を取得
+            while (next) {
+                // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                dispDiary = String.valueOf(c.getInt(1)) + " , ";// 日記を取得
+            }
+            if(dispDiary!="") {
+                // 記入欄に取得したデータを表示
+                ((EditText) findViewById(R.id.editDiary)).setText(dispDiary);
+                newFlag=false;
+            }
+        } finally {
+            // finallyは、tryの中で例外が発生した時でも必ず実行される
+            // dbを開いたら確実にclose
+            db.close();
+        }
 
         /**
          * 送信ボタン処理
          */
+        /*
         ImageButton sendButton = findViewById(R.id.sendBtn);
         ImageButton wkwkButton = findViewById(R.id.sendBtn);
         ImageButton irirButton = findViewById(R.id.sendBtn);
@@ -96,10 +125,16 @@ public class DiaryActivity extends AppCompatActivity {
                 // DBに保存
                 SQLiteDatabase db = helper.getWritableDatabase();
                 try {
-                    // 新規作成の場合
+                    if(newFlag==false){
+                        //編集の場合
+                        // UPDATE
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                    }else {
+                        // 新規作成の場合
 
-                    // INSERT
-                    db.execSQL("insert into NYANKO_TABLE(emo) VALUES('"+ emo +"')");
+                        // INSERT
+                        db.execSQL("insert into NYANKO_TABLE(emo) VALUES('" + emo + "')");
+                    }
 
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
@@ -120,11 +155,16 @@ public class DiaryActivity extends AppCompatActivity {
                 // DBに保存
                 SQLiteDatabase db = helper.getWritableDatabase();
                 try {
-                    // 新規作成の場合
+                    if(newFlag==false){
+                        //編集の場合
+                        // UPDATE
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                    }else {
+                        // 新規作成の場合
 
-                    // INSERT
-                    db.execSQL("insert into NYANKO_TABLE(emo) VALUES('"+ emo +"')");
-
+                        // INSERT
+                        db.execSQL("insert into NYANKO_TABLE(emo) VALUES('" + emo + "')");
+                    }
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
                     // dbを開いたら確実にclose
@@ -144,11 +184,16 @@ public class DiaryActivity extends AppCompatActivity {
                 // DBに保存
                 SQLiteDatabase db = helper.getWritableDatabase();
                 try {
-                    // 新規作成の場合
+                    if(newFlag==false){
+                        //編集の場合
+                        // UPDATE
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                    }else {
+                        // 新規作成の場合
 
-                    // INSERT
-                    db.execSQL("insert into NYANKO_TABLE(emo) VALUES('"+ emo +"')");
-
+                        // INSERT
+                        db.execSQL("insert into NYANKO_TABLE(emo) VALUES('" + emo + "')");
+                    }
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
                     // dbを開いたら確実にclose
@@ -163,17 +208,22 @@ public class DiaryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 入力内容を取得する
-                EditText diary = findViewById(R.id.editText);
+                EditText diary = findViewById(R.id.editDiary);
                 String diaryStr = diary.getText().toString();
 
                 // DBに保存
                 SQLiteDatabase db = helper.getWritableDatabase();
                 try {
+                    if(newFlag==false){
+                        //編集の場合
+                        // UPDATE
+                        db.execSQL("update NYANKO_TABLE set diary = '"+ diaryStr +"' where date = '"+nowdate+"'");
+                    }else {
                         // 新規作成の場合
 
                         // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo) VALUES('"+ date +"','"+ diaryStr +"','"+ emo +"')");
-
+                        db.execSQL("insert into NYANKO_TABLE(date,diary) VALUES('" + nowdate + "','" + diaryStr + "')");
+                    }
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
                     // dbを開いたら確実にclose
@@ -182,6 +232,7 @@ public class DiaryActivity extends AppCompatActivity {
 
             }
         });
+        */
 
     }
 }

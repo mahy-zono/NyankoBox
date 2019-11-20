@@ -123,7 +123,7 @@
         app:srcCompat="@drawable/sendbtn" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editDiary"
         android:layout_width="254dp"
         android:layout_height="271dp"
         android:layout_marginStart="8dp"
@@ -154,7 +154,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="一言日記"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editDiary"
         app:layout_constraintEnd_toStartOf="@+id/文字数"
         app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
@@ -169,7 +169,7 @@
         android:layout_marginRight="28dp"
         android:layout_marginBottom="8dp"
         android:text="140文字"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editDiary"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
@@ -192,7 +192,7 @@
         android:layout_marginBottom="88dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editDiary"
         app:layout_constraintStart_toEndOf="@+id/wkwkBtn"
         app:srcCompat="@drawable/irir" />
 
@@ -252,7 +252,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="いらいら"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editDiary"
         app:layout_constraintTop_toBottomOf="@+id/irirBtn"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="226dp" />
