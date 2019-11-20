@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -73,18 +74,18 @@ public class DiaryActivity extends AppCompatActivity {
         //日付の取得
         SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
         nowdate = dDate.format(d);
-
         // データベースから値を取得する
         if(helper == null){
             helper = new dbData(DiaryActivity.this);
-
         }
+
         // データベースを取得する
         SQLiteDatabase db = helper.getWritableDatabase();
 
         try {
             // rawQueryというSELECT専用メソッドを使用してデータを取得する
-            Cursor c = db.rawQuery("select diary from NYANKO_TABLE where date = nowdate", null);
+            Cursor c = db.rawQuery("select diary from NYANKO_TABLE where date = '"+nowdate+"'", null);
+
             // Cursorの先頭行があるかどうか確認
             boolean next = c.moveToFirst();
 
@@ -93,7 +94,7 @@ public class DiaryActivity extends AppCompatActivity {
             // 取得した全ての行を取得
             while (next) {
                 // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
-                dispDiary = String.valueOf(c.getInt(1)) + " , ";// 日記を取得
+                dispDiary = c.getString(1); // 日記の内容を取得
             }
             if(dispDiary!="") {
                 // 記入欄に取得したデータを表示
@@ -109,7 +110,7 @@ public class DiaryActivity extends AppCompatActivity {
         /**
          * 送信ボタン処理
          */
-        /*
+
         ImageButton sendButton = findViewById(R.id.sendBtn);
         ImageButton wkwkButton = findViewById(R.id.sendBtn);
         ImageButton irirButton = findViewById(R.id.sendBtn);
@@ -232,7 +233,7 @@ public class DiaryActivity extends AppCompatActivity {
 
             }
         });
-        */
+
 
     }
 }

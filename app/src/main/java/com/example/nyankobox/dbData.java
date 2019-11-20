@@ -28,7 +28,7 @@ public class dbData extends SQLiteOpenHelper {
          * 引数3 ・・・ price：列名 , INTEGER：数値型
          */
         db.execSQL("CREATE TABLE NYANKO_TABLE (" +
-                "date TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "date TEXT , " +
                 "diary TEXT, " +
                 "emo TEXT," +
                 "goal TEXT," +
@@ -38,12 +38,19 @@ public class dbData extends SQLiteOpenHelper {
     // データベースをバージョンアップした時に実行される処理
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // 処理を記述
+        /**
+         * テーブルを削除する
+         */
+        db.execSQL("DROP TABLE IF EXISTS NYANKO_TABLE");
+
+        // 新しくテーブルを作成する
+        onCreate(db);
     }
 
-    // データベースが開かれた時に実行される処理
+/*   // データベースが開かれた時に実行される処理
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
     }
+    */
 }
