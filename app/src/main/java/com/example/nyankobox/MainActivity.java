@@ -2,16 +2,25 @@ package com.example.nyankobox;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    EditText goalText;
+    androidx.constraintlayout.widget.ConstraintLayout mainLayout;
+    InputMethodManager inoutMethodManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,46 +68,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //目標記入欄
+        goalText = (EditText)findViewById(R.id.goalText);
+        mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
+        inoutMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            //Enterキーが押されたら
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                // goalTextViewに目標を表示
+                String text = goalText.getText().toString();  //目標取得
+                if(!text.equals("")){
+                    goalText.setText(text); //目標をセット
+                }
+                return false;
+            }
+        });
 
 
-/*        Calendar cal = Calendar.getInstance();       //カレンダーを取得
-
-        int iMonth = cal.get(Calendar.MONTH) + 1;       //月を取得
-        int iDate = cal.get(Calendar.DATE);         //日を取得
-        int week = cal.get(Calendar.DAY_OF_WEEK);      //曜日を取得
-
-        String weekString = "";
-        switch(week) {
-            case Calendar.MONDAY:
-                weekString = "月";
-                break;
-            case Calendar.TUESDAY:
-                weekString = "火";
-                break;
-            case Calendar.WEDNESDAY:
-                weekString = "水";
-                break;
-            case Calendar.THURSDAY:
-                weekString = "木";
-                break;
-            case Calendar.FRIDAY:
-                weekString = "金";
-                break;
-            case Calendar.SATURDAY:
-                weekString = "土";
-                break;
-            case Calendar.SUNDAY:
-                weekString = "日";
-                break;
-        }
 
 
-        String strDay = iMonth + "月" + iDate + "日" + "(" + weekString + ")";  //日付を表示形式で設定
+    }
 
-        TextView dt = (TextView)findViewById(R.id.dateText);
+    /**
+     * EditText編集時に背景をタップしたらキーボードを閉じるようにするタッチイベントの処理
+    */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        inoutMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+        mainLayout.requestFocus();
 
-        dt.setText(strDay);
-*/
+        return false;
     }
 
 }
