@@ -27,12 +27,17 @@ public class dbData extends SQLiteOpenHelper {
          * 引数2 ・・・ name：列名 , TEXT：文字列型
          * 引数3 ・・・ price：列名 , INTEGER：数値型
          */
+        //日記テーブル
         db.execSQL("CREATE TABLE NYANKO_TABLE (" +
                 "date TEXT , " +
                 "diary TEXT, " +
                 "emo TEXT," +
                 "goal TEXT," +
                 "clear INTEGER)");
+        //洋服テーブル
+        db.execSQL("CREATE TABLE DRESS_TABLE (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "dress TEXT )");
     }
 
     // データベースをバージョンアップした時に実行される処理
