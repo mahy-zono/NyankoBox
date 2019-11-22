@@ -20,7 +20,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     EditText goalText;
     androidx.constraintlayout.widget.ConstraintLayout mainLayout;
-    InputMethodManager inoutMethodManager;
+    InputMethodManager inputMethodManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //目標記入欄
         goalText = (EditText)findViewById(R.id.goalText);
         mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
-        inoutMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             //Enterキーが押されたら
             @Override
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        inoutMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+        inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
         mainLayout.requestFocus();
 
         return false;
