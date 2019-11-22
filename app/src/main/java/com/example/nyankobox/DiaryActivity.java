@@ -296,14 +296,13 @@ public class DiaryActivity extends AppCompatActivity {
                     db.close();
                 }
 
-               /* AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
                         builder.setTitle( "にゃんこぼっくすより" )
                                 .setIcon(R.drawable.sample)
-                        .setMessage("日記を受け取ったにゃ！")
-                        .setMessage("今日も日記を書いてくれてありがとにゃ～")
+                        .setMessage("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～")
                         .setPositiveButton("OK",null)
                         .show();
-                        */
+
             }
         });
 
