@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DiaryActivity">
 
+
     <TextView
         android:id="@+id/dateText"
         android:layout_width="292dp"
@@ -123,9 +124,9 @@
         app:srcCompat="@drawable/sendbtn" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="254dp"
-        android:layout_height="271dp"
+        android:id="@+id/editDiary"
+        android:layout_width="280dp"
+        android:layout_height="250dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -138,39 +139,35 @@
         android:maxLength="140"
         app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/一言日記"
         android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginBottom="270dp"
         android:text="一言日記"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/文字数"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toEndOf="@+id/diaryBtn"
-        app:layout_constraintTop_toBottomOf="@+id/wkwkBtn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/文字数"
         android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
         android:text="140文字"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintStart_toEndOf="@+id/一言日記"
+        app:layout_constraintTop_toTopOf="@+id/一言日記" />
 
     <ImageButton
         android:id="@+id/wkwkBtn"
@@ -178,10 +175,9 @@
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
         android:background="#00FFFFFF"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toEndOf="@+id/homeBtn"
+        app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="@+id/irirBtn"
         app:srcCompat="@drawable/wkwk" />
 
@@ -189,28 +185,24 @@
         android:id="@+id/irirBtn"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="60dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/editDiary"
         app:layout_constraintStart_toEndOf="@+id/wkwkBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117"
         app:srcCompat="@drawable/irir" />
 
     <ImageButton
         android:id="@+id/skskBtn"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/文字数"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/irirBtn"
         app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:layout_constraintVertical_bias="0.384"
         app:srcCompat="@drawable/sksk" />
 
     <TextView
@@ -219,7 +211,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -228,47 +220,44 @@
         app:layout_constraintBottom_toTopOf="@+id/irirBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/homeBtn"
-        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="72dp"
         android:layout_height="26dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         android:text="わくわく"
-        app:layout_constraintBottom_toTopOf="@+id/一言日記"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
-        app:layout_constraintTop_toBottomOf="@+id/wkwkBtn"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="65dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="250dp"
         android:layout_marginBottom="8dp"
         android:text="いらいら"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/irirBtn"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="226dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editDiary"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
-        android:layout_height="18dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="しくしく"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        tools:layout_editor_absoluteY="249dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
