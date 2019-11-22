@@ -21,7 +21,6 @@ public class LogActivity extends AppCompatActivity {
         //日付の変数
         final EditText dateText;
 
-
         //ホーム画面に遷移
         ImageButton homesend = findViewById(R.id.homeBtn);
         homesend.setOnClickListener(new View.OnClickListener() {
@@ -52,11 +51,12 @@ public class LogActivity extends AppCompatActivity {
             }
         });
 
-        //日付の取得
+        /**
+         * カレンダーボタンタップ時のカレンダー表示
+         */
         dateText = (EditText) findViewById(R.id.dateText);
-
-        //EditTextにリスナーをつける
-        dateText.setOnClickListener(new View.OnClickListener() {
+        ImageButton calendarBtn = findViewById(R.id.calendarBtn);
+        calendarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Calendarインスタンスを取得
@@ -67,19 +67,17 @@ public class LogActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //setした日付を取得して表示
                         dateText.setText(String.format("%d / %02d / %02d", year,month+1, dayOfMonth));
-
                     }
-
                 },
                         date.get(Calendar.YEAR),
                         date.get(Calendar.MONTH),
                         date.get(Calendar.DATE)
                 );
-
                 //dialogを表示
                 datePickerDialog.show();
             }
         });
+
 
 
     }

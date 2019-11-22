@@ -3,6 +3,7 @@ package com.example.nyankobox;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +11,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -36,10 +39,16 @@ public class DiaryActivity extends AppCompatActivity {
     String dispDiary = "";
     String dispEmo ="";
 
+    //カーソル用の変数定義
+    EditText editDiary;
+    androidx.constraintlayout.widget.ConstraintLayout mainLayout;
+    InputMethodManager inputMethodManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
+
 
         //感情ボタン設定
         ImageButton sendButton = findViewById(R.id.sendBtn);
@@ -313,10 +322,29 @@ public class DiaryActivity extends AppCompatActivity {
                         .setPositiveButton("OK",null)
                         .show();
 */
+
+
             }
         });
+        //キーボードを閉じたいEditTextオブジェクト
+        editDiary = (EditText)findViewById(R.id.editDiary);
+        //画面全体のレイアウト
+        mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
+        //キーボード表示を制御するためのオブジェクト
+        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
+    }
 
+    /**
+     * EditText編集時に背景をタップしたらキーボードを閉じるようにするタッチイベントの処理
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //キーボードを隠す
+        inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        //背景にフォーカスを移す
+        mainLayout.requestFocus();
 
+        return false;
     }
 }

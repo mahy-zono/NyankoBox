@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            //Enterキーが押されたら
+            //Enterキーが押された時の処理
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 // goalTextViewに目標を表示
