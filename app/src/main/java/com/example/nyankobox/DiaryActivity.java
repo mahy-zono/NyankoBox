@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -295,14 +297,22 @@ public class DiaryActivity extends AppCompatActivity {
                     // dbを開いたら確実にclose
                     db.close();
                 }
+                //ダイアログカスタマイズ
+                /*TextView titleView = new TextView(DiaryActivity.this);
+                titleView.setText("にゃんこぼっくすより");
+                titleView.setTextSize(24);
+                titleView.setTextColor(Color.WHITE);
+                titleView.setIcon(R.drawable.sample);
+                titleView.setBackgroundColor(getResources().getColor(R.color.alertOrenge));
+                titleView.setPadding(20, 20, 20, 20);
+                titleView.setGravity(Gravity.CENTER);
 
                AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
-                        builder.setTitle( "にゃんこぼっくすより" )
-                                .setIcon(R.drawable.sample)
+                        builder.setCustomTitle(titleView)
                         .setMessage("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～")
                         .setPositiveButton("OK",null)
                         .show();
-
+*/
             }
         });
 
