@@ -2,6 +2,7 @@ package com.example.nyankobox;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -85,20 +85,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
     /**
      * EditText編集時に背景をタップしたらキーボードを閉じるようにするタッチイベントの処理
-    */
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+        //キーボードを隠す
+        inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        //フォーカスを背景に移す
         mainLayout.requestFocus();
 
         return false;
     }
-
 }
