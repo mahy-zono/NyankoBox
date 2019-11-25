@@ -145,16 +145,19 @@ public class MainActivity extends AppCompatActivity {
             }
             //感情ボタン表示
             if(dispEmo.equals("わくわく")){
+                mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
                 skskButton.setImageResource(R.drawable.sksk);
                 wkwkButton.setImageResource(R.drawable.wk);
                 irirButton.setImageResource(R.drawable.irir);
 
             }else if(dispEmo.equals("いらいら")){
+                mt.setText("気分転換にぼくとお話しましょ～！");
                 skskButton.setImageResource(R.drawable.sksk);
                 wkwkButton.setImageResource(R.drawable.wkwk);
                 irirButton.setImageResource(R.drawable.ir);
 
             }else if(dispEmo.equals("しくしく")){
+                mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
                 skskButton.setImageResource(R.drawable.sk);
                 wkwkButton.setImageResource(R.drawable.wkwk);
                 irirButton.setImageResource(R.drawable.irir);

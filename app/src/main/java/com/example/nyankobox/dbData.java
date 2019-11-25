@@ -36,7 +36,7 @@ public class dbData extends SQLiteOpenHelper {
                 "clear INTEGER)");
         //洋服テーブル
         db.execSQL("CREATE TABLE DRESS_TABLE (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "id INTEGER PRIMARY KEY , " +
                 "dress TEXT )");
     }
 
