@@ -43,5 +43,15 @@ public class DressActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //設定画面に遷移
+        ImageButton setsend = findViewById(R.id.settingBtn);
+        setsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

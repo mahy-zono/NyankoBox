@@ -84,6 +84,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //設定画面に遷移
+        ImageButton setsend = findViewById(R.id.settingBtn);
+        setsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //目標記入欄
         goalText = (EditText)findViewById(R.id.goalText);
         mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);

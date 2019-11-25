@@ -97,6 +97,16 @@ public class DiaryActivity extends AppCompatActivity {
             }
         });
 
+        //設定画面に遷移
+        ImageButton setsend = findViewById(R.id.settingBtn);
+        setsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //日付の取得
         SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
         nowdate = dDate.format(d);
