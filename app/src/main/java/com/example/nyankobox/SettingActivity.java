@@ -1,0 +1,47 @@
+package com.example.nyankobox;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+public class SettingActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setting);
+
+        //プロフィール画面に遷移
+        Button prosend = findViewById(R.id.proBtn);
+        prosend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //プライバシー画面に遷移
+        Button prisend = findViewById(R.id.priBtn);
+        prisend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), PrivacyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //戻るボタン押下で前画面に戻る
+        ImageButton backsend  = findViewById(R.id.backBtn);
+        backsend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+}
