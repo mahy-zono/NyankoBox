@@ -1,18 +1,30 @@
 package com.example.nyankobox;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 
 import java.util.Calendar;
 
 public class LogActivity extends AppCompatActivity {
+    // MemoOpenHelperクラスを定義
+    dbData helper = null;
+    //データ
+    String choiceDate = "";
+    String choiceDiary ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +79,41 @@ public class LogActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //setした日付を取得して表示
                         dateText.setText(String.format("%d / %02d / %02d", year,month+1, dayOfMonth));
+                        choiceDate = String.format("%d/%02d/%02d ", year,month+1, dayOfMonth);
+
+                        // データベースから値を取得する
+                        if(helper == null){
+                            helper = new dbData(LogActivity.this);
+                        }
+
+                        // データベースを取得する
+                        SQLiteDatabase db = helper.getWritableDatabase();
+
+                        try {
+                            // rawQueryというSELECT専用メソッドを使用してデータを取得する
+                            Cursor c = db.rawQuery("select * from NYANKO_TABLE where date = '"+ choiceDate +"'", null);
+
+                            // Cursorの先頭行があるかどうか確認
+                            boolean next = c.moveToFirst();
+
+
+                            // 取得した全ての行を取得
+                            while (next) {
+                                // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                                choiceDiary = c.getString(1); // 日記を取得
+                                // 次の行が存在するか確認
+                                next = c.moveToNext();
+                            }
+                            //指定書式に変換して表示
+                            EditText dt = findViewById(R.id.editDiary);
+                            //メッセージ表示
+                            dt.setText(choiceDiary);
+                        } finally {
+                            // finallyは、tryの中で例外が発生した時でも必ず実行される
+                            // dbを開いたら確実にclose
+                            db.close();
+                        }
+
                     }
                 },
                         date.get(Calendar.YEAR),
@@ -77,8 +124,84 @@ public class LogActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+        //編集
+        ImageButton editButton = findViewById(R.id.editBtn);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 入力内容を取得する
+                EditText diary = findViewById(R.id.editDiary);
+                String diaryStr = diary.getText().toString();
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+                try {
+                        // UPDATE
+                        db.execSQL("update NYANKO_TABLE set diary = '"+ diaryStr +"' where date = '"+choiceDate+"'");
+                } finally {
+                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                    // dbを開いたら確実にclose
+                    db.close();
+                }
+                // カスタムレイアウトの用意
+                LayoutInflater layoutInflater = getLayoutInflater();
+                View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);
+                builder.setView(customAlertView);
 
+                // タイトルの変更
+                TextView title = customAlertView.findViewById(R.id.title);
+                title.setText("にゃんこぼっくすより");
+
+                // メッセージの変更
+                TextView message = customAlertView.findViewById(R.id.message);
+                message.setText("日記の内容を更新したにゃ～");
+
+                final AlertDialog alertDialog = builder.create();
+
+                // ボタンの設定
+                Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                alertBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // ボタンを押した時の処理を書く
+
+                        // ダイアログを閉じる
+                        alertDialog.dismiss();
+                    }
+                });
+
+                // ダイアログ表示
+                alertDialog.show();
+            }
+        });
+        //削除
+        ImageButton deleteButton = findViewById(R.id.deleteBtn);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 入力内容を取得する
+                EditText diary = findViewById(R.id.editDiary);
+                String diaryStr = diary.getText().toString();
+                AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                builder.setTitle("タイトル")
+                        .setMessage("メッセージ")
+                        .setPositiveButton("OK", null)
+                        .setPositiveButton("No", null)
+                        .show();
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                try {
+                    // UPDATE
+                    db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
+                } finally {
+                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                    // dbを開いたら確実にclose
+                    db.close();
+                }
+            }
+        });
 
     }
 

@@ -11,9 +11,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -169,39 +171,56 @@ public class DiaryActivity extends AppCompatActivity {
         wkwkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
                 emo = "わくわく";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
 
                 //ボタンの画像変更
                 if(wk == 1){
+                    //選択→未選択
                     wk = 0;
                     wkwkButton.setImageResource(R.drawable.wkwk);
+
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+
                 }else{
-                    sk = 1;
+                    //未選択→選択
+                    sk = 0;
+                    wk = 1;
+                    ir = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
-                }
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
 
-                // DBに保存
-                SQLiteDatabase db = helper.getWritableDatabase();
-                try {
-                    if(newFlag==false){
-                        //編集の場合
-                        // UPDATE
-                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
-                    }else {
-                        // 新規作成の場合
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                        }
 
-                        // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
                     }
-
-                } finally {
-                    // finallyは、tryの中で例外が発生した時でも必ず実行される
-                    // dbを開いたら確実にclose
-                    db.close();
                 }
+
+
 
             }
         });
@@ -210,38 +229,53 @@ public class DiaryActivity extends AppCompatActivity {
         irirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
                 emo = "いらいら";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
 
                 //ボタンの画像変更
                 if(ir == 1){
+                    //選択→未選択
                     ir = 0;
                     irirButton.setImageResource(R.drawable.irir);
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
                 }else{
+                    //未選択→選択
+                    sk = 0;
+                    wk = 0;
                     ir = 1;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
-                }
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
 
-                // DBに保存
-                SQLiteDatabase db = helper.getWritableDatabase();
-                try {
-                    if(newFlag==false){
-                        //編集の場合
-                        // UPDATE
-                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
-                    }else {
-                        // 新規作成の場合
-
-                        // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                        }
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
                     }
-                } finally {
-                    // finallyは、tryの中で例外が発生した時でも必ず実行される
-                    // dbを開いたら確実にclose
-                    db.close();
                 }
+
+
 
             }
         });
@@ -250,40 +284,56 @@ public class DiaryActivity extends AppCompatActivity {
         skskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
                 emo = "しくしく";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
 
                 //ボタンの画像変更
                 if(sk == 1){
+                    //選択→未選択
                     sk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
                 }else{
+                    //未選択→選択
                     sk = 1;
+                    wk = 0;
+                    ir = 0;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
-                }
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
 
-                // DBに保存
-                SQLiteDatabase db = helper.getWritableDatabase();
-                try {
-                    if(newFlag==false){
-                        //編集の場合
-                        // UPDATE
-                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
-                    }else {
-                        // 新規作成の場合
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                        }
 
-                        // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
                     }
-
-
-                } finally {
-                    // finallyは、tryの中で例外が発生した時でも必ず実行される
-                    // dbを開いたら確実にclose
-                    db.close();
                 }
+
+
+
 
             }
         });
@@ -317,22 +367,56 @@ public class DiaryActivity extends AppCompatActivity {
                     db.close();
                 }
                 //ダイアログカスタマイズ
-                /*TextView titleView = new TextView(DiaryActivity.this);
+/*                TextView titleView = new TextView(DiaryActivity.this);
                 titleView.setText("にゃんこぼっくすより");
                 titleView.setTextSize(24);
                 titleView.setTextColor(Color.WHITE);
-                titleView.setIcon(R.drawable.sample);
                 titleView.setBackgroundColor(getResources().getColor(R.color.alertOrenge));
                 titleView.setPadding(20, 20, 20, 20);
                 titleView.setGravity(Gravity.CENTER);
 
                AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
-                        builder.setCustomTitle(titleView)
+                        builder
+                                .setCustomTitle(titleView)
+                                .setTitle("にゃんこぼっくすより")
+                                .setIcon(R.drawable.sample)
                         .setMessage("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～")
                         .setPositiveButton("OK",null)
                         .show();
-*/
 
+
+*/
+                // カスタムレイアウトの用意
+                LayoutInflater layoutInflater = getLayoutInflater();
+                View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
+                builder.setView(customAlertView);
+
+                // タイトルの変更
+                TextView title = customAlertView.findViewById(R.id.title);
+                title.setText("にゃんこぼっくすより");
+
+                // メッセージの変更
+                TextView message = customAlertView.findViewById(R.id.message);
+                message.setText("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～");
+
+                final AlertDialog alertDialog = builder.create();
+
+                // ボタンの設定
+                Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                alertBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // ボタンを押した時の処理を書く
+
+                        // ダイアログを閉じる
+                        alertDialog.dismiss();
+                    }
+                });
+
+                // ダイアログ表示
+                alertDialog.show();
 
             }
         });
