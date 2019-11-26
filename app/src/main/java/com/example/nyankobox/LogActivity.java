@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +23,8 @@ import java.util.Calendar;
 public class LogActivity extends AppCompatActivity {
     // MemoOpenHelperクラスを定義
     dbData helper = null;
+    // 新規フラグ
+    boolean newFlag = true;
     //データ
     String choiceDate = "";
     String choiceDiary ="";
@@ -103,11 +106,20 @@ public class LogActivity extends AppCompatActivity {
                                 choiceDiary = c.getString(1); // 日記を取得
                                 // 次の行が存在するか確認
                                 next = c.moveToNext();
+                                //フラグを変更
+                                newFlag = false;
                             }
-                            //指定書式に変換して表示
-                            EditText dt = findViewById(R.id.editDiary);
-                            //メッセージ表示
-                            dt.setText(choiceDiary);
+                            if(newFlag==false) {
+                                //指定書式に変換して表示
+                                EditText dt = findViewById(R.id.editDiary);
+                                //メッセージ表示
+                                dt.setText(choiceDiary);
+                            }else{
+                                //指定書式に変換して表示
+                                EditText dt = new EditText(LogActivity.this);
+                                //メッセージ表示
+                                dt.getEditableText().clear();
+                            }
                         } finally {
                             // finallyは、tryの中で例外が発生した時でも必ず実行される
                             // dbを開いたら確実にclose
@@ -134,15 +146,25 @@ public class LogActivity extends AppCompatActivity {
                 String diaryStr = diary.getText().toString();
                 // DBに保存
                 SQLiteDatabase db = helper.getWritableDatabase();
-                try {
-                        // UPDATE
-                        db.execSQL("update NYANKO_TABLE set diary = '"+ diaryStr +"' where date = '"+choiceDate+"'");
-                } finally {
-                    // finallyは、tryの中で例外が発生した時でも必ず実行される
-                    // dbを開いたら確実にclose
-                    db.close();
-                }
-                // カスタムレイアウトの用意
+                    try {
+                        if(newFlag==false) {
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
+                        }else{
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('" + choiceDate + "','" + diaryStr + "','" + "" + "','" + "" + "',' '' ')");
+                        }
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                builder.setTitle("にゃんこぼっくす")
+                        .setMessage("日記の内容を更新したにゃ～")
+                        .setPositiveButton("OK", null)
+                        .show();
+               /* // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
                 View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
 
@@ -172,7 +194,7 @@ public class LogActivity extends AppCompatActivity {
                 });
 
                 // ダイアログ表示
-                alertDialog.show();
+                alertDialog.show();*/
             }
         });
         //削除
@@ -180,26 +202,34 @@ public class LogActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 入力内容を取得する
-                EditText diary = findViewById(R.id.editDiary);
-                String diaryStr = diary.getText().toString();
                 AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
-                builder.setTitle("タイトル")
-                        .setMessage("メッセージ")
-                        .setPositiveButton("OK", null)
-                        .setPositiveButton("No", null)
-                        .show();
-                // DBに保存
-                SQLiteDatabase db = helper.getWritableDatabase();
+                builder.setTitle("にゃんこぼっくす")
+                        .setMessage("日記を削除してもよろしいですか？")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // OK button pressed
+                                String diaryStr ="";
+                                // DBに保存
+                                SQLiteDatabase db = helper.getWritableDatabase();
+                                try {
+                                    // UPDATE
+                                    db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
 
-                try {
-                    // UPDATE
-                    db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
-                } finally {
-                    // finallyは、tryの中で例外が発生した時でも必ず実行される
-                    // dbを開いたら確実にclose
-                    db.close();
-                }
+                                } finally {
+                                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                                    // dbを開いたら確実にclose
+                                    db.close();
+                                }
+                                //指定書式に変換して表示
+                                EditText dt = findViewById(R.id.editDiary);
+                                //メッセージ表示
+                                dt.getEditableText().clear();
+                            }
+                        })
+                        .setNegativeButton("キャンセル", null)
+                        .show();
+
             }
         });
 

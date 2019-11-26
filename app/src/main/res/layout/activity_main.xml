@@ -214,4 +214,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setbtn" />
 
+    <ImageButton
+        android:id="@+id/clearBtn"
+        android:layout_width="49dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="4dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/catsil" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

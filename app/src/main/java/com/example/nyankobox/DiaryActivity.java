@@ -142,21 +142,25 @@ public class DiaryActivity extends AppCompatActivity {
             //日記内容表示
             EditText dd = findViewById(R.id.editDiary);
             dd.setText(dispDiary);
-            //感情ボタン表示
-            if(dispEmo.equals("わくわく")){
-                skskButton.setImageResource(R.drawable.sksk);
-                wkwkButton.setImageResource(R.drawable.wk);
-                irirButton.setImageResource(R.drawable.irir);
+            try {
+                //感情ボタン表示
+                if (dispEmo.equals("わくわく")) {
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wk);
+                    irirButton.setImageResource(R.drawable.irir);
 
-            }else if(dispEmo.equals("いらいら")){
-                skskButton.setImageResource(R.drawable.sksk);
-                wkwkButton.setImageResource(R.drawable.wkwk);
-                irirButton.setImageResource(R.drawable.ir);
+                } else if (dispEmo.equals("いらいら")) {
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.ir);
 
-            }else if(dispEmo.equals("しくしく")){
-                skskButton.setImageResource(R.drawable.sk);
-                wkwkButton.setImageResource(R.drawable.wkwk);
-                irirButton.setImageResource(R.drawable.irir);
+                } else if (dispEmo.equals("しくしく")) {
+                    skskButton.setImageResource(R.drawable.sk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                }
+            }catch(NullPointerException e){
+
             }
 
 
@@ -186,7 +190,7 @@ public class DiaryActivity extends AppCompatActivity {
 
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -210,7 +214,7 @@ public class DiaryActivity extends AppCompatActivity {
                             // 新規作成の場合
 
                             // INSERT
-                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
                         }
 
                     } finally {
@@ -243,7 +247,7 @@ public class DiaryActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.irir);
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -266,7 +270,7 @@ public class DiaryActivity extends AppCompatActivity {
                             // 新規作成の場合
 
                             // INSERT
-                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
                         }
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
@@ -298,7 +302,7 @@ public class DiaryActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sksk);
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -321,7 +325,7 @@ public class DiaryActivity extends AppCompatActivity {
                             // 新規作成の場合
 
                             // INSERT
-                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
                         }
 
 
@@ -359,7 +363,7 @@ public class DiaryActivity extends AppCompatActivity {
                         // 新規作成の場合
 
                         // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,diary) VALUES('" + nowdate + "','" + diaryStr + "')");
+                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clea) VALUES('" + nowdate + "','" + diaryStr + "','" + "" + "','" +""+  "','')");
                     }
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
