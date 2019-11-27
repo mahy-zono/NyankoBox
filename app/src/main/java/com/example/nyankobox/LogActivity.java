@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -28,6 +29,9 @@ public class LogActivity extends AppCompatActivity {
     //データ
     String choiceDate = "";
     String choiceDiary ="";
+    String choiceGoal="";
+    String choiceClear="";
+    String choiceEmo="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class LogActivity extends AppCompatActivity {
         });
 
         //日記記入画面に遷移
-        ImageButton diarysend = findViewById(R.id.diaryBtn);
+        final ImageButton diarysend = findViewById(R.id.diaryBtn);
         diarysend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +69,14 @@ public class LogActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //感情非表示
+        findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
+        //達成非表示
+        findViewById(R.id.imageClear).setVisibility(View.INVISIBLE);
+
+        final ImageView emoView = findViewById(R.id.imageEmo);
+        final ImageView clearView = findViewById(R.id.imageClear);
 
         /**
          * カレンダーボタンタップ時のカレンダー表示
@@ -104,21 +116,55 @@ public class LogActivity extends AppCompatActivity {
                             while (next) {
                                 // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
                                 choiceDiary = c.getString(1); // 日記を取得
+                                choiceEmo = c.getString(2); // 感情を取得
+                                choiceGoal = c.getString(3); // 目標を取得
+                                choiceClear = String.valueOf(c.getInt(4)); // 達成を取得
                                 // 次の行が存在するか確認
                                 next = c.moveToNext();
                                 //フラグを変更
                                 newFlag = false;
                             }
                             if(newFlag==false) {
+                                //データがある場合
+                                //感情表示
+                                findViewById(R.id.imageEmo).setVisibility(View.VISIBLE);
+                                if (choiceEmo.equals("わくわく")) {
+                                    emoView.setImageResource(R.drawable.wk);
+                                } else if (choiceEmo.equals("いらいら")) {
+                                    emoView.setImageResource(R.drawable.ir);
+
+                                } else if (choiceEmo.equals("しくしく")) {
+                                    emoView.setImageResource(R.drawable.sk);
+                                }else {
+                                    findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
+                                }
+                                //達成表示
+                                if(choiceClear.equals("1")) {
+                                    findViewById(R.id.imageClear).setVisibility(View.VISIBLE);
+                                }else if(choiceClear.equals("0")){
+                                    findViewById(R.id.imageClear).setVisibility(View.INVISIBLE);
+                                }
+                                //目標表示
+                                //指定書式に変換して表示
+                                EditText gt = findViewById(R.id.goalText);
+                                //メッセージ表示
+                                gt.setText(choiceGoal);
+                                //日記内容表示
                                 //指定書式に変換して表示
                                 EditText dt = findViewById(R.id.editDiary);
                                 //メッセージ表示
                                 dt.setText(choiceDiary);
                             }else{
+                                //データがない場合
                                 //指定書式に変換して表示
                                 EditText dt = new EditText(LogActivity.this);
-                                //メッセージ表示
+                                //メッセージ非表示
+                                //目標の非表示
                                 dt.getEditableText().clear();
+                                //感情非表示
+                                findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
+                                //達成非表示
+                                findViewById(R.id.imageClear).setVisibility(View.INVISIBLE);
                             }
                         } finally {
                             // finallyは、tryの中で例外が発生した時でも必ず実行される
@@ -141,16 +187,20 @@ public class LogActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 入力内容を取得する
-                EditText diary = findViewById(R.id.editDiary);
-                String diaryStr = diary.getText().toString();
-                // DBに保存
-                SQLiteDatabase db = helper.getWritableDatabase();
+                //日付が選択されているか
+                EditText date = findViewById(R.id.dateText);
+                String dateStr = date.getText().toString();
+                if(!dateStr.equals("")) {
+                    // 入力内容を取得する
+                    EditText diary = findViewById(R.id.editDiary);
+                    String diaryStr = diary.getText().toString();
+                    // DBに保存
+                    SQLiteDatabase db = helper.getWritableDatabase();
                     try {
-                        if(newFlag==false) {
+                        if (newFlag == false) {
                             // UPDATE
                             db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
-                        }else{
+                        } else {
                             // INSERT
                             db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('" + choiceDate + "','" + diaryStr + "','" + "" + "','" + "" + "',' '' ')");
                         }
@@ -159,11 +209,11 @@ public class LogActivity extends AppCompatActivity {
                         // dbを開いたら確実にclose
                         db.close();
                     }
-                AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
-                builder.setTitle("にゃんこぼっくす")
-                        .setMessage("日記の内容を更新したにゃ～")
-                        .setPositiveButton("OK", null)
-                        .show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                    builder.setTitle("にゃんこぼっくすより")
+                            .setMessage("日記の内容を更新したにゃ～")
+                            .setPositiveButton("OK", null)
+                            .show();
                /* // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
                 View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
@@ -195,6 +245,13 @@ public class LogActivity extends AppCompatActivity {
 
                 // ダイアログ表示
                 alertDialog.show();*/
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                    builder.setTitle("にゃんこぼっくすより")
+                            .setMessage("日付を選択してにゃ～")
+                            .setPositiveButton("OK", null)
+                            .show();
+                }
             }
         });
         //削除
@@ -202,36 +259,48 @@ public class LogActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
-                builder.setTitle("にゃんこぼっくす")
-                        .setMessage("日記を削除してもよろしいですか？")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // OK button pressed
-                                String diaryStr ="";
-                                // DBに保存
-                                SQLiteDatabase db = helper.getWritableDatabase();
-                                try {
-                                    // UPDATE
-                                    db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
+                //日付が選択されているか
+                EditText date = findViewById(R.id.dateText);
+                String dateStr = date.getText().toString();
+                if(!dateStr.equals("")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                    builder.setTitle("にゃんこぼっくすより")
+                            .setMessage("日記を削除してもよろしいですか？")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // OK button pressed
+                                    String diaryStr = "";
+                                    // DBに保存
+                                    SQLiteDatabase db = helper.getWritableDatabase();
+                                    try {
+                                        // UPDATE
+                                        db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
 
-                                } finally {
-                                    // finallyは、tryの中で例外が発生した時でも必ず実行される
-                                    // dbを開いたら確実にclose
-                                    db.close();
+                                    } finally {
+                                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                                        // dbを開いたら確実にclose
+                                        db.close();
+                                    }
+                                    //指定書式に変換して表示
+                                    EditText dt = findViewById(R.id.editDiary);
+                                    //メッセージ表示
+                                    dt.getEditableText().clear();
                                 }
-                                //指定書式に変換して表示
-                                EditText dt = findViewById(R.id.editDiary);
-                                //メッセージ表示
-                                dt.getEditableText().clear();
-                            }
-                        })
-                        .setNegativeButton("キャンセル", null)
-                        .show();
+                            })
+                            .setNegativeButton("キャンセル", null)
+                            .show();
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                    builder.setTitle("にゃんこぼっくすより")
+                            .setMessage("日付を選択してにゃ～")
+                            .setPositiveButton("OK", null)
+                            .show();
+                }
 
             }
         });
+        //目標表示
 
     }
 

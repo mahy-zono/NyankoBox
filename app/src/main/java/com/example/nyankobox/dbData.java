@@ -38,6 +38,13 @@ public class dbData extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE DRESS_TABLE (" +
                 "id INTEGER PRIMARY KEY , " +
                 "dress TEXT )");
+        //プロフィールテーブル
+        db.execSQL("CREATE TABLE PROFILE_TABLE (" +
+                "name TEXT, " +
+                "birthday TEXT, " +
+                "pass INTEGER," +
+                "lock INTEGER," +
+                "choice TEXT )");
     }
 
     // データベースをバージョンアップした時に実行される処理

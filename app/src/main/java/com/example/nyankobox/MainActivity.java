@@ -2,6 +2,7 @@ package com.example.nyankobox;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 import android.content.Context;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         //目標記入欄
         goalText = (EditText)findViewById(R.id.goalText);
-        mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
+        mainLayout = (ConstraintLayout)findViewById(R.id.mainLayout);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             //Enterキーが押された時の処理
@@ -134,8 +135,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if(newFlag==false){
                             //編集の場合
-                            // UPDATE
-                            db.execSQL("update NYANKO_TABLE set goal = '"+ text +"' where date = '"+nowdate+"'");
+                            try {
+                                //目標がリセット
+                                if(text!="") {
+                                    // UPDATE
+                                    db.execSQL("update NYANKO_TABLE set goal = '" + text + "' where date = '" + nowdate + "'");
+                                }else{
+                                    //UPDATE
+                                    db.execSQL("update NYANKO_TABLE set goal = '" + "" + "' where date = '" + nowdate + "'");
+                                    db.execSQL("update NYANKO_TABLE set clear = '" + 0 + "' where date = '" + nowdate + "'");
+                                }
+                            }catch(NullPointerException e){
+
+                            }
                         }else{
                             // 新規作成の場合
                             // INSERT
@@ -347,6 +359,8 @@ public class MainActivity extends AppCompatActivity {
             while (next) {
                 // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
                 dispEmo = c.getString(2); // 感情を取得
+                dispGoal = c.getString(3); // 目標を取得
+                dispClear = String.valueOf(c.getInt(4)); // 目標達成を取得
                 // 次の行が存在するか確認
                 next = c.moveToNext();
                 //フラグを変更
@@ -375,6 +389,16 @@ public class MainActivity extends AppCompatActivity {
                 //目標
                 if(!dispGoal.equals("")){
                     goalText.setText(dispGoal);
+                }
+                //目標達成
+                if(dispClear.equals("1")){
+                    //クリアしているとき
+                    clearButton.setImageResource(R.drawable.sample);
+                    cl=1;
+                }else if(dispClear.equals("0")){
+                    //未達成のとき
+                    clearButton.setImageResource(R.drawable.catsil);
+                    cl=0;
                 }
             }catch(NullPointerException e){
 
