@@ -1,5 +1,6 @@
 package com.example.nyankobox;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -9,9 +10,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     // データ
     String nowdate = "";
     String emo = "";
+    String dispGoal ="";
+    String dispClear = "";
+    int cl=0;
     int sk=0;
     int ir=0;
     int wk=0;
@@ -104,12 +110,205 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 // goalTextViewに目標を表示
                 String text = goalText.getText().toString();  //目標取得
-                if(!text.equals("")){
+                if(!text.equals("")) {
                     goalText.setText(text); //目標をセット
                 }
+                    // データベースを取得する
+                    SQLiteDatabase db = helper.getWritableDatabase();
+
+                    try {
+                        // rawQueryというSELECT専用メソッドを使用してデータを取得する
+                        Cursor c = db.rawQuery("select * from NYANKO_TABLE where date = '"+nowdate+"'", null);
+
+                        // Cursorの先頭行があるかどうか確認
+                        boolean next = c.moveToFirst();
+
+                        // 取得した全ての行を取得
+                        while (next) {
+                            // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                            dispGoal = c.getString(3); // 目標を取得
+                            // 次の行が存在するか確認
+                            next = c.moveToNext();
+                            //フラグを変更
+                            newFlag = false;
+                        }
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set goal = '"+ text +"' where date = '"+nowdate+"'");
+                        }else{
+                            // 新規作成の場合
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + "" + "','"+ text +"','')");
+                        }
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
                 return false;
             }
         });
+
+        //目標達成
+        final ImageButton clearButton = findViewById(R.id.clearBtn);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // データベースを取得する
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                //ボタンの画像変更
+                if(cl == 1){
+                    //選択→未選択
+                    cl = 0;
+                    clearButton.setImageResource(R.drawable.catsil);
+
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set clear = '0' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+
+                }else {
+                    //未選択→選択
+                    try {
+                        // rawQueryというSELECT専用メソッドを使用してデータを取得する
+                        Cursor c = db.rawQuery("select * from NYANKO_TABLE where date = '"+nowdate+"'", null);
+
+                        // Cursorの先頭行があるかどうか確認
+                        boolean next = c.moveToFirst();
+
+                        // 取得した全ての行を取得
+                        while (next) {
+                            // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                            dispGoal = c.getString(3); // 目標を取得
+                            // 次の行が存在するか確認
+                            next = c.moveToNext();
+                            //フラグを変更
+                            newFlag = false;
+                        }
+
+                        if (newFlag == false) {
+                            try {
+                                if (!dispGoal.equals("")) {
+                                    //編集の場合
+                                    cl = 1;
+                                    clearButton.setImageResource(R.drawable.sample);
+                                    // UPDATE
+                                    db.execSQL("update NYANKO_TABLE set clear = ' 1 ' where date = '" + nowdate + "'");
+                                    clearButton.setImageResource(R.drawable.sample);
+
+                                    // カスタムレイアウトの用意
+                                    LayoutInflater layoutInflater = getLayoutInflater();
+                                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setView(customAlertView);
+
+                                    // タイトルの変更
+                                    TextView title = customAlertView.findViewById(R.id.title);
+                                    title.setText("にゃんこぼっくすより");
+
+                                    // メッセージの変更
+                                    TextView message = customAlertView.findViewById(R.id.message);
+                                    message.setText("目標達成おめでとにゃ～");
+
+                                    final AlertDialog alertDialog = builder.create();
+
+                                    // ボタンの設定
+                                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            // ボタンを押した時の処理を書く
+
+                                            // ダイアログを閉じる
+                                            alertDialog.dismiss();
+                                        }
+                                    });
+
+                                    // ダイアログ表示
+                                    alertDialog.show();
+                                } else {
+                                    // カスタムレイアウトの用意
+                                    LayoutInflater layoutInflater = getLayoutInflater();
+                                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setView(customAlertView);
+
+                                    // タイトルの変更
+                                    TextView title = customAlertView.findViewById(R.id.title);
+                                    title.setText("にゃんこぼっくすより");
+
+                                    // メッセージの変更
+                                    TextView message = customAlertView.findViewById(R.id.message);
+                                    message.setText("目標を入力してにゃ～");
+
+                                    final AlertDialog alertDialog = builder.create();
+
+                                    // ボタンの設定
+                                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            // ボタンを押した時の処理を書く
+
+                                            // ダイアログを閉じる
+                                            alertDialog.dismiss();
+                                        }
+                                    });
+
+                                    // ダイアログ表示
+                                    alertDialog.show();
+                                }
+                            } catch (NullPointerException e) {
+                                // カスタムレイアウトの用意
+                                LayoutInflater layoutInflater = getLayoutInflater();
+                                View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                builder.setView(customAlertView);
+
+                                // タイトルの変更
+                                TextView title = customAlertView.findViewById(R.id.title);
+                                title.setText("にゃんこぼっくすより");
+
+                                // メッセージの変更
+                                TextView message = customAlertView.findViewById(R.id.message);
+                                message.setText("目標を入力してにゃ～あ");
+
+                                final AlertDialog alertDialog = builder.create();
+
+                                // ボタンの設定
+                                Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                                alertBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        // ボタンを押した時の処理を書く
+
+                                        // ダイアログを閉じる
+                                        alertDialog.dismiss();
+                                    }
+                                });
+
+                                // ダイアログ表示
+                                alertDialog.show();
+                            }
+                        }
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }
+            }
+        });
+
         //指定書式に変換して表示
         TextView mt = (TextView) findViewById(R.id.message);
         //メッセージ表示
@@ -153,24 +352,32 @@ public class MainActivity extends AppCompatActivity {
                 //フラグを変更
                 newFlag = false;
             }
-            //感情ボタン表示
-            if(dispEmo.equals("わくわく")){
-                mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
-                skskButton.setImageResource(R.drawable.sksk);
-                wkwkButton.setImageResource(R.drawable.wk);
-                irirButton.setImageResource(R.drawable.irir);
+            try {
+                //感情ボタン表示
+                if (dispEmo.equals("わくわく")) {
+                    mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wk);
+                    irirButton.setImageResource(R.drawable.irir);
 
-            }else if(dispEmo.equals("いらいら")){
-                mt.setText("気分転換にぼくとお話しましょ～！");
-                skskButton.setImageResource(R.drawable.sksk);
-                wkwkButton.setImageResource(R.drawable.wkwk);
-                irirButton.setImageResource(R.drawable.ir);
+                } else if (dispEmo.equals("いらいら")) {
+                    mt.setText("気分転換にぼくとお話しましょ～！");
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.ir);
 
-            }else if(dispEmo.equals("しくしく")){
-                mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
-                skskButton.setImageResource(R.drawable.sk);
-                wkwkButton.setImageResource(R.drawable.wkwk);
-                irirButton.setImageResource(R.drawable.irir);
+                } else if (dispEmo.equals("しくしく")) {
+                    mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
+                    skskButton.setImageResource(R.drawable.sk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                }
+                //目標
+                if(!dispGoal.equals("")){
+                    goalText.setText(dispGoal);
+                }
+            }catch(NullPointerException e){
+
             }
 
 
@@ -202,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -228,7 +435,7 @@ public class MainActivity extends AppCompatActivity {
                             // 新規作成の場合
 
                             // INSERT
-                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
                         }
 
                     } finally {
@@ -263,7 +470,7 @@ public class MainActivity extends AppCompatActivity {
                     mt.setText("いらいらおわり？");
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -288,7 +495,7 @@ public class MainActivity extends AppCompatActivity {
                             // 新規作成の場合
 
                             // INSERT
-                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
                         }
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
@@ -322,7 +529,7 @@ public class MainActivity extends AppCompatActivity {
                     mt.setText("しくしくおわり？");
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -347,7 +554,7 @@ public class MainActivity extends AppCompatActivity {
                             // 新規作成の場合
 
                             // INSERT
-                            db.execSQL("insert into NYANKO_TABLE(date,emo) VALUES('"+ nowdate +"','" + emo + "')");
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
                         }
 
 
