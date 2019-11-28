@@ -9,7 +9,7 @@ public class dbData extends SQLiteOpenHelper {
     // データベース自体の名前(テーブル名ではない)
     static final private String DBName = "NYANKOBOX_DB";
     // データベースのバージョン(2,3と挙げていくとonUpgradeメソッドが実行される)
-    static final private int VERSION = 1;
+    static final private int VERSION = 2;
 
     // コンストラクタ　以下のように呼ぶこと
     public dbData(Context context) {
@@ -40,6 +40,7 @@ public class dbData extends SQLiteOpenHelper {
                 "dress TEXT )");
         //プロフィールテーブル
         db.execSQL("CREATE TABLE PROFILE_TABLE (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT, " +
                 "birthday TEXT, " +
                 "pass INTEGER," +
@@ -54,6 +55,8 @@ public class dbData extends SQLiteOpenHelper {
          * テーブルを削除する
          */
         db.execSQL("DROP TABLE IF EXISTS NYANKO_TABLE");
+        db.execSQL("DROP TABLE IF EXISTS DRESS_TABLE");
+        db.execSQL("DROP TABLE IF EXISTS PROFILE_TABLE");
 
         // 新しくテーブルを作成する
         onCreate(db);
