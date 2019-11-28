@@ -22,6 +22,9 @@ public class PassChangeActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(passChangeText.length() == 4) {
+                    //登録パスコードを取得
+                    String passChangeStr = passChangeText.getText().toString();
+                    int passChangeNum = Integer.parseInt(passChangeStr);
                     //パスコード確認画面に遷移
                     Intent intent = new Intent(getApplication(), PassLock2Activity.class);
                     startActivity(intent);

@@ -28,6 +28,9 @@ public class PassLock2Activity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(passRegiText2.length() == 4) {
+                    //登録パスコード(確認)を取得
+                    String passRegiStr2 = passRegiText2.getText().toString();
+                    int passRegiNum2 = Integer.parseInt(passRegiStr2);
                     //設定画面に戻る
                     Intent intent = new Intent(getApplication(), PrivacyActivity.class);
                     startActivity(intent);
