@@ -16,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PassLockActivity" />
+        <activity android:name=".PassChangeActivity" android:windowSoftInputMode="stateAlwaysVisible" ></activity>
+        <activity
+            android:name=".PassLock2Activity"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name=".PassLockActivity"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity android:name=".PrivacyActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SettingActivity" />
