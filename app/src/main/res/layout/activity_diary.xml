@@ -20,6 +20,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,23 +126,25 @@
 
     <EditText
         android:id="@+id/editDiary"
-        android:layout_width="267dp"
+        android:layout_width="271dp"
         android:layout_height="133dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#00000000"
         android:ems="10"
         android:gravity="top"
         android:hint="日記を記入してね"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textMultiLine"
         android:maxLength="140"
         app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <ImageButton
         android:id="@+id/wkwkBtn"
@@ -159,13 +162,13 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="150dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editDiary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/wkwkBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.648"
+        app:layout_constraintVertical_bias="0.116"
         app:srcCompat="@drawable/irir" />
 
     <ImageButton

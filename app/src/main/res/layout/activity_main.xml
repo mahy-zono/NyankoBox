@@ -71,12 +71,11 @@
         android:layout_width="292dp"
         android:layout_height="53dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,22 +164,26 @@
 
     <EditText
         android:id="@+id/goalText"
-        android:layout_width="199dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="211dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="124dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#00000000"
         android:ems="10"
+        android:fontFamily="sans-serif"
+        android:gravity="center|left"
         android:hint="目標を入力してね"
         android:inputType="textPersonName"
-        android:maxLength="100"
+        android:maxLength="20"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.215" />
 
     <TextView
         android:id="@+id/message"
@@ -214,14 +217,14 @@
 
     <ImageButton
         android:id="@+id/clearBtn"
-        android:layout_width="45dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="56dp"
+        android:layout_width="41dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="68dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/catsil" />
+        app:srcCompat="@drawable/clearbtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

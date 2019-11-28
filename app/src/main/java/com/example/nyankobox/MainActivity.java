@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText goalText;
     androidx.constraintlayout.widget.ConstraintLayout mainLayout;
     InputMethodManager inputMethodManager;
+
     // MemoOpenHelperクラスを定義
     dbData helper = null;
     // 新規フラグ
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 if(cl == 1){
                     //選択→未選択
                     cl = 0;
-                    clearButton.setImageResource(R.drawable.catsil);
+                    clearButton.setImageResource(R.drawable.clearbtn);
 
                     try {
                         // 空白
@@ -209,10 +210,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (!dispGoal.equals("")) {
                                     //編集の場合
                                     cl = 1;
-                                    clearButton.setImageResource(R.drawable.sample);
+                                    clearButton.setImageResource(R.drawable.clearbtn_push);
                                     // UPDATE
                                     db.execSQL("update NYANKO_TABLE set clear = ' 1 ' where date = '" + nowdate + "'");
-                                    clearButton.setImageResource(R.drawable.sample);
 
                                     // カスタムレイアウトの用意
                                     LayoutInflater layoutInflater = getLayoutInflater();
@@ -393,11 +393,11 @@ public class MainActivity extends AppCompatActivity {
                 //目標達成
                 if(dispClear.equals("1")){
                     //クリアしているとき
-                    clearButton.setImageResource(R.drawable.sample);
+                    clearButton.setImageResource(R.drawable.clearbtn_push);
                     cl=1;
                 }else if(dispClear.equals("0")){
                     //未達成のとき
-                    clearButton.setImageResource(R.drawable.catsil);
+                    clearButton.setImageResource(R.drawable.clearbtn);
                     cl=0;
                 }
             }catch(NullPointerException e){

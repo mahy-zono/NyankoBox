@@ -4,13 +4,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -32,11 +35,18 @@ public class LogActivity extends AppCompatActivity {
     String choiceGoal="";
     String choiceClear="";
     String choiceEmo="";
+    androidx.constraintlayout.widget.ConstraintLayout mainLayout;
+    InputMethodManager inputMethodManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
+
+        mainLayout = (androidx.constraintlayout.widget.ConstraintLayout) findViewById(R.id.mainLayout);
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
         //日付の変数
         final EditText dateText;
 
@@ -93,7 +103,7 @@ public class LogActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //setした日付を取得して表示
-                        dateText.setText(String.format("%d / %02d / %02d", year,month+1, dayOfMonth));
+                        dateText.setText(String.format("%d 年 %02d 月 %02d 日", year,month+1, dayOfMonth));
                         choiceDate = String.format("%d/%02d/%02d ", year,month+1, dayOfMonth);
 
                         // データベースから値を取得する
@@ -302,6 +312,18 @@ public class LogActivity extends AppCompatActivity {
         });
         //目標表示
 
+    }
+    /**
+     * EditText編集時に背景をタップしたらキーボードを閉じるようにするタッチイベントの処理
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //キーボードを隠す
+        inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        //フォーカスを背景に移す
+        mainLayout.requestFocus();
+
+        return false;
     }
 
 

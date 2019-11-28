@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_log"
@@ -89,8 +90,8 @@
 
     <EditText
         android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="229dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -98,12 +99,15 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="date"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.043" />
 
     <ImageButton
         android:id="@+id/calendarBtn"
@@ -126,6 +130,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:gravity="top"
         android:hint="今回は書いてないにゃ"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -212,6 +217,7 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
+        android:gravity="top"
         android:hint="今回の目標はおやすみにゃ～"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -219,7 +225,7 @@
         app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toEndOf="@+id/lineBtn"
         app:layout_constraintTop_toBottomOf="@+id/editDiary"
-        app:layout_constraintVertical_bias="0.192" />
+        app:layout_constraintVertical_bias="0.225" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
