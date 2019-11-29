@@ -38,7 +38,7 @@ public class PassLockActivity extends AppCompatActivity {
                     int passRegiNum = Integer.parseInt(passRegiStr);
                     //testTextに表示
                     testText.setText(String.valueOf(String.format("%1$04d",passRegiNum)));
-                    
+
                     //パスコード確認画面に遷移
                     //Intent intent = new Intent(getApplication(), PassLock2Activity.class);
                     //startActivity(intent);
