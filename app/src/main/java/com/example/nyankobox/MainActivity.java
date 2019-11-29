@@ -272,10 +272,12 @@ public class MainActivity extends AppCompatActivity {
                                     // タイトルの変更
                                     TextView title = customAlertView.findViewById(R.id.title);
                                     title.setText("にゃんこぼっくすより");
+                                    title.setTypeface(customFont);
 
                                     // メッセージの変更
                                     TextView message = customAlertView.findViewById(R.id.message);
                                     message.setText("目標を入力してにゃ～");
+                                    message.setTypeface(customFont);
 
                                     final AlertDialog alertDialog = builder.create();
 
@@ -305,10 +307,12 @@ public class MainActivity extends AppCompatActivity {
                                 // タイトルの変更
                                 TextView title = customAlertView.findViewById(R.id.title);
                                 title.setText("にゃんこぼっくすより");
+                                title.setTypeface(customFont);
 
                                 // メッセージの変更
                                 TextView message = customAlertView.findViewById(R.id.message);
                                 message.setText("目標を入力してにゃ～あ");
+                                message.setTypeface(customFont);
 
                                 final AlertDialog alertDialog = builder.create();
 
@@ -327,6 +331,40 @@ public class MainActivity extends AppCompatActivity {
                                 // ダイアログ表示
                                 alertDialog.show();
                             }
+                        }else{
+                            // カスタムレイアウトの用意
+                            LayoutInflater layoutInflater = getLayoutInflater();
+                            View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setView(customAlertView);
+
+                            // タイトルの変更
+                            TextView title = customAlertView.findViewById(R.id.title);
+                            title.setText("にゃんこぼっくすより");
+                            title.setTypeface(customFont);
+
+                            // メッセージの変更
+                            TextView message = customAlertView.findViewById(R.id.message);
+                            message.setText("目標を入力してにゃ～あ");
+                            message.setTypeface(customFont);
+
+                            final AlertDialog alertDialog = builder.create();
+
+                            // ボタンの設定
+                            Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                            alertBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // ボタンを押した時の処理を書く
+
+                                    // ダイアログを閉じる
+                                    alertDialog.dismiss();
+                                }
+                            });
+
+                            // ダイアログ表示
+                            alertDialog.show();
                         }
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
@@ -341,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
         TextView mt = (TextView) findViewById(R.id.message);
         //メッセージ表示
         mt.setText("えへへ、まってたよ～！今日もお話きかせてほしいにゃ～！");
+        mt.setTypeface(customFont);
 
 
         //感情ボタン設定

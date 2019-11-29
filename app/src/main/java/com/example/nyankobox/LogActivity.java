@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -43,6 +44,15 @@ public class LogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
+
+        //カスタムフォント
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+        //目標
+        EditText gt = findViewById(R.id.goalText);
+        gt.setTypeface(customFont);
+        //日記
+        EditText dt = findViewById(R.id.editDiary);
+        dt.setTypeface(customFont);
 
         mainLayout = (androidx.constraintlayout.widget.ConstraintLayout) findViewById(R.id.mainLayout);
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -92,6 +102,7 @@ public class LogActivity extends AppCompatActivity {
          * カレンダーボタンタップ時のカレンダー表示
          */
         dateText = (EditText) findViewById(R.id.dateText);
+        dateText.setTypeface(customFont);
         ImageButton calendarBtn = findViewById(R.id.calendarBtn);
         calendarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +114,7 @@ public class LogActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //setした日付を取得して表示
-                        dateText.setText(String.format("%d 年 %02d 月 %02d 日", year,month+1, dayOfMonth));
+                        dateText.setText(String.format("%d年 %02d月 %02d日", year,month+1, dayOfMonth));
                         choiceDate = String.format("%d/%02d/%02d ", year,month+1, dayOfMonth);
 
                         // データベースから値を取得する
@@ -113,6 +124,9 @@ public class LogActivity extends AppCompatActivity {
 
                         // データベースを取得する
                         SQLiteDatabase db = helper.getWritableDatabase();
+
+                        //カスタムフォント
+                        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
                         try {
                             // rawQueryというSELECT専用メソッドを使用してデータを取得する
@@ -157,20 +171,24 @@ public class LogActivity extends AppCompatActivity {
                                 //目標表示
                                 //指定書式に変換して表示
                                 EditText gt = findViewById(R.id.goalText);
+                                gt.setTypeface(customFont);
                                 //メッセージ表示
                                 gt.setText(choiceGoal);
                                 //日記内容表示
                                 //指定書式に変換して表示
                                 EditText dt = findViewById(R.id.editDiary);
+                                dt.setTypeface(customFont);
                                 //メッセージ表示
                                 dt.setText(choiceDiary);
                             }else{
                                 //データがない場合
                                 //指定書式に変換して表示
                                 EditText dt = new EditText(LogActivity.this);
+                                dt.setTypeface(customFont);
                                 //メッセージ非表示
                                 //目標の非表示
                                 dt.getEditableText().clear();
+                                dt.setTypeface(customFont);
                                 //感情非表示
                                 findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
                                 //達成非表示
@@ -192,6 +210,7 @@ public class LogActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
         //編集
         ImageButton editButton = findViewById(R.id.editBtn);
         editButton.setOnClickListener(new View.OnClickListener() {

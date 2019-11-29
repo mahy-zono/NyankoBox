@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 public class PrivacyActivity extends AppCompatActivity {
     String passsw = ""; //0:OFF 1:ON
+    boolean swFlag = false;
     CompoundButton sw;
     Button passChangeBtn;
     View line4;
@@ -74,20 +75,18 @@ public class PrivacyActivity extends AppCompatActivity {
                         if (newFlag == false) {
                             try {
                                 if(passsw.equals("1")) {
-                                    //指定書式に変換して表示
-                                    TextView mt = (TextView) findViewById(R.id.textView);
-                                    //メッセージ表示
-                                    mt.setText(passsw);
                                     //　パスワード未設定→設定
                                     passsw = "1";
                                     db.execSQL("update PROFILE_TABLE set lock = ' 1 ' where id = '1'");
+                                    //フラグ
+                                    swFlag=true;
                                     //パスコード設定画面表示
                                     Intent intent = new Intent(getApplication(), PassLockActivity.class);
                                     startActivity(intent);
                                     //パスコード変更ボタン表示
-                                    sw.setChecked(true);
+                                    /*sw.setChecked(true);
                                     passChangeBtn.setVisibility(View.VISIBLE);
-                                    line4.setVisibility(View.VISIBLE);
+                                    line4.setVisibility(View.VISIBLE);*/
                                 }
                             } catch (NullPointerException e) {
                             }
@@ -96,20 +95,24 @@ public class PrivacyActivity extends AppCompatActivity {
                             passsw="1";
                             // 新規作成の場合
                             db.execSQL("insert into PROFILE_TABLE(lock) VALUES(' 1 ')");
+                            //フラグ
+                            swFlag=true;
                             //パスコード設定画面表示
                             Intent intent = new Intent(getApplication(), PassLockActivity.class);
                             startActivity(intent);
                             //パスコード変更ボタン表示
-                            sw.setChecked(true);
+                            /*sw.setChecked(true);
                             passChangeBtn.setVisibility(View.VISIBLE);
-                            line4.setVisibility(View.VISIBLE);
+                            line4.setVisibility(View.VISIBLE);*/
                         }
                     }else if(!isChecked){
                         if(passsw.equals("1")) {
                             //設定→未設定
                             //switchがOFFのとき
                             passsw = "0";
-                            db.execSQL("update PROFILE_TABLE set lock = ' 1 ' where id = '1'");
+                            db.execSQL("update PROFILE_TABLE set lock = ' 0 ' where id = '1'");
+                            //フラグ
+                            swFlag=false;
                             //パスコード変更のボタン非表示
                             passChangeBtn.setVisibility(View.INVISIBLE);
                             line4.setVisibility(View.INVISIBLE);
@@ -119,6 +122,12 @@ public class PrivacyActivity extends AppCompatActivity {
             }
 
         });
+
+        if(swFlag=true){
+            sw.setChecked(true);
+            passChangeBtn.setVisibility(View.VISIBLE);
+            line4.setVisibility(View.VISIBLE);
+        }
         //指定書式に変換して表示
         //TextView mt = (TextView) findViewById(R.id.textView);
         //メッセージ表示

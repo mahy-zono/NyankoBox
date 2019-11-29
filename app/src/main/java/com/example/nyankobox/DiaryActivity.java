@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.view.Gravity;
@@ -51,6 +52,9 @@ public class DiaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
 
+        //カスタムフォント
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
 
         //感情ボタン設定
         ImageButton sendButton = findViewById(R.id.sendBtn);
@@ -66,7 +70,7 @@ public class DiaryActivity extends AppCompatActivity {
 
         //指定書式に変換して表示
         TextView dt = (TextView)findViewById(R.id.dateText);
-
+        dt.setTypeface(customFont);
         dt.setText(sdf.format(d));
 
         //ホーム画面に遷移
@@ -141,6 +145,7 @@ public class DiaryActivity extends AppCompatActivity {
             }
             //日記内容表示
             EditText dd = findViewById(R.id.editDiary);
+            dd.setTypeface(customFont);
             dd.setText(dispDiary);
             try {
                 //感情ボタン表示
@@ -390,6 +395,9 @@ public class DiaryActivity extends AppCompatActivity {
 
 
 */
+                //カスタムフォント
+                Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
                 // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
                 View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
@@ -400,10 +408,12 @@ public class DiaryActivity extends AppCompatActivity {
                 // タイトルの変更
                 TextView title = customAlertView.findViewById(R.id.title);
                 title.setText("にゃんこぼっくすより");
+                title.setTypeface(customFont);
 
                 // メッセージの変更
                 TextView message = customAlertView.findViewById(R.id.message);
                 message.setText("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～");
+                message.setTypeface(customFont);
 
                 final AlertDialog alertDialog = builder.create();
 

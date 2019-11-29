@@ -13,8 +13,8 @@
 
     <TextView
         android:id="@+id/dateText"
-        android:layout_width="263dp"
-        android:layout_height="52dp"
+        android:layout_width="327dp"
+        android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -24,18 +24,17 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <ImageButton
         android:id="@+id/diaryBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#003F51B5"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +45,10 @@
 
     <ImageButton
         android:id="@+id/homeBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,11 +59,10 @@
 
     <ImageButton
         android:id="@+id/dressBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,10 +73,10 @@
 
     <ImageButton
         android:id="@+id/logBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,11 +87,10 @@
 
     <ImageButton
         android:id="@+id/lineBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
@@ -138,6 +134,7 @@
         android:hint="日記を記入してね"
         android:inputType="textPersonName|textMultiLine"
         android:maxLength="140"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
@@ -148,8 +145,8 @@
 
     <ImageButton
         android:id="@+id/wkwkBtn"
-        android:layout_width="86dp"
-        android:layout_height="96dp"
+        android:layout_width="82dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:background="#00FFFFFF"
         android:scaleType="fitXY"

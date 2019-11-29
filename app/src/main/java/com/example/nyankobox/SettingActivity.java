@@ -27,13 +27,14 @@ public class SettingActivity extends AppCompatActivity {
 
         //プライバシー画面に遷移
         Button prisend = findViewById(R.id.priBtn);
-        prisend.setOnClickListener(new View.OnClickListener() {
+        prisend.setEnabled(false);
+        /*prisend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), PrivacyActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //戻るボタン押下で前画面に戻る
         ImageButton backsend  = findViewById(R.id.backBtn);
