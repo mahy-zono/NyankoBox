@@ -19,7 +19,7 @@ public class TitleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
 
-        p= MediaPlayer.create(getApplicationContext(), R.raw.bgm);
+        p= MediaPlayer.create(getApplicationContext(), R.raw.bgm4);
         p.setLooping(true); //    ループ設定
         p.start();
 

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,10 +48,18 @@ public class MainActivity extends AppCompatActivity {
     // 最終的に表示する文字列
     String dispEmo ="";
 
+    /*@Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //カスタムフォント
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
         //現在日時の取得
         Date d = new Date();
@@ -61,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         TextView dt = (TextView) findViewById(R.id.dateText);
 
         dt.setText(sdf.format(d));
+        dt.setTypeface(customFont);
 
         //日記記入画面に遷移
         ImageButton diarysend = findViewById(R.id.diaryBtn);
@@ -104,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         //目標記入欄
         goalText = (EditText)findViewById(R.id.goalText);
+        goalText.setTypeface(customFont);
         mainLayout = (ConstraintLayout)findViewById(R.id.mainLayout);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -205,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
                             newFlag = false;
                         }
 
+                        //カスタムフォント
+                        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
                         if (newFlag == false) {
                             try {
                                 if (!dispGoal.equals("")) {
@@ -224,10 +238,12 @@ public class MainActivity extends AppCompatActivity {
                                     // タイトルの変更
                                     TextView title = customAlertView.findViewById(R.id.title);
                                     title.setText("にゃんこぼっくすより");
+                                    title.setTypeface(customFont);
 
                                     // メッセージの変更
                                     TextView message = customAlertView.findViewById(R.id.message);
                                     message.setText("目標達成おめでとにゃ～");
+                                    message.setTypeface(customFont);
 
                                     final AlertDialog alertDialog = builder.create();
 
