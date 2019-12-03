@@ -3,10 +3,12 @@ package com.example.nyankobox;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -14,9 +16,15 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        //カスタムフォント
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+        TextView set = findViewById(R.id.textView);
+        set.setTypeface(customFont);
 
         //プロフィール画面に遷移
         Button prosend = findViewById(R.id.proBtn);
+        prosend.setTypeface(customFont);
         prosend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,6 +35,7 @@ public class SettingActivity extends AppCompatActivity {
 
         //プライバシー画面に遷移
         Button prisend = findViewById(R.id.priBtn);
+        prisend.setTypeface(customFont);
         prisend.setEnabled(false);
         /*prisend.setOnClickListener(new View.OnClickListener() {
             @Override

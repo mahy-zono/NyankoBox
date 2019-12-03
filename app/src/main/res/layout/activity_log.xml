@@ -85,11 +85,11 @@
 
     <EditText
         android:id="@+id/dateText"
-        android:layout_width="316dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:focusable="false"
@@ -100,10 +100,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <ImageButton
         android:id="@+id/calendarBtn"
@@ -120,8 +120,8 @@
 
     <EditText
         android:id="@+id/editDiary"
-        android:layout_width="293dp"
-        android:layout_height="290dp"
+        android:layout_width="280dp"
+        android:layout_height="283dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -132,10 +132,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.197" />
+        app:layout_constraintVertical_bias="0.212" />
 
     <TextView
         android:id="@+id/clearCheck"
@@ -189,21 +189,21 @@
 
     <ImageView
         android:id="@+id/imageEmo"
-        android:layout_width="71dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="148dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
-        app:layout_constraintStart_toEndOf="@+id/lineBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.921"
         app:srcCompat="@drawable/wk" />
 
     <EditText
         android:id="@+id/goalText"
-        android:layout_width="240dp"
-        android:layout_height="61dp"
+        android:layout_width="233dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -220,10 +220,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintHorizontal_bias="0.361"
         app:layout_constraintStart_toEndOf="@+id/lineBtn"
         app:layout_constraintTop_toBottomOf="@+id/editDiary"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.245" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

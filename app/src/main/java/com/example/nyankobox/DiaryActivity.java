@@ -410,10 +410,17 @@ public class DiaryActivity extends AppCompatActivity {
                 title.setText("にゃんこぼっくすより");
                 title.setTypeface(customFont);
 
-                // メッセージの変更
-                TextView message = customAlertView.findViewById(R.id.message);
-                message.setText("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～");
-                message.setTypeface(customFont);
+                if(diaryStr.equals("")){
+                    // メッセージの変更
+                    TextView message = customAlertView.findViewById(R.id.message);
+                    message.setText("まっしろな日記を受けとったにゃ！気が向いたら書いてにゃ～");
+                    message.setTypeface(customFont);
+                }else {
+                    // メッセージの変更
+                    TextView message = customAlertView.findViewById(R.id.message);
+                    message.setText("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～");
+                    message.setTypeface(customFont);
+                }
 
                 final AlertDialog alertDialog = builder.create();
 

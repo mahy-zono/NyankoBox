@@ -1,12 +1,23 @@
 package com.example.nyankobox;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
+import android.icu.text.CaseMap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TitleActivity extends AppCompatActivity {
 
@@ -14,12 +25,13 @@ public class TitleActivity extends AppCompatActivity {
     private MediaPlayer p;
 
     // MemoOpenHelperクラスを定義
-    //dbData helper = null;
+    dbData helper = null;
 
     //データ
-    /*String name = "";
+    String name = "";
     String bd = "";
-    String userBD = "";*/
+    String dispBd = "";
+    String nowDate = "";
 
 
     @Override
@@ -36,11 +48,19 @@ public class TitleActivity extends AppCompatActivity {
         // 連続再生設定
         //p.setLooping(true);
 
-        //誕生日チェック
-        /*
+        //現在日時の取得
+        Date d = new Date();
+
+        //書式の作成
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY 年 MM 月 dd 日");
+        nowDate = sdf.format(d);
+
+        SimpleDateFormat dbd = new SimpleDateFormat("MM月dd日");
+        dispBd = dbd.format(d);
+
         // データベースから値を取得する
         if(helper == null){
-            helper = new dbData(ProfileActivity.this);
+            helper = new dbData(TitleActivity.this);
         }
 
         // データベースを取得する
@@ -69,15 +89,55 @@ public class TitleActivity extends AppCompatActivity {
             // dbを開いたら確実にclose
             db.close();
         }
-         */
 
         //ホーム画面に遷移
         ImageButton touchButton = findViewById(R.id.touchBtn);
         touchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), MainActivity.class);
-                startActivity(intent);
+                //誕生日チェック
+                if(bd.equals(nowDate)) {
+                    //カスタムフォント
+                    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+                    // カスタムレイアウトの用意
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TitleActivity.this);
+                    builder.setView(customAlertView);
+
+                    // タイトルの変更
+                    TextView title = customAlertView.findViewById(R.id.title);
+                    title.setText("にゃんこぼっくすより");
+                    title.setTypeface(customFont);
+
+                    // メッセージの変更
+                    TextView message = customAlertView.findViewById(R.id.message);
+                    message.setText("今日は"+dispBd+"！！"+name+"のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
+                    message.setTypeface(customFont);
+
+                    final AlertDialog alertDialog = builder.create();
+
+                    // ボタンの設定
+                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ボタンを押した時の処理を書く
+                            Intent intent = new Intent(getApplication(), MainActivity.class);
+                            startActivity(intent);
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+
+                    // ダイアログ表示
+                    alertDialog.show();
+                }else {
+                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

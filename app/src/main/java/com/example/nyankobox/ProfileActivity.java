@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     dbData helper = null;
 
     //データ
-    String userName="君";
+    String userName="";
     String userBD = "";
     String name ="";
     String bd = "";
@@ -48,11 +48,24 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        //カスタムフォント
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
+        TextView text = findViewById(R.id.textView);
+        text.setTypeface(customFont);
 
         nameText = (EditText)findViewById(R.id.nameText);
+        nameText.setTypeface(customFont);
+        birthdayDate = findViewById(R.id.birthdayDate);
+        birthdayDate.setTypeface(customFont);
         mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        TextView nt = findViewById(R.id.textView7);
+        nt.setTypeface(customFont);
+
+        TextView bdt = findViewById(R.id.textView6);
+        bdt.setTypeface(customFont);
 
         // データベースから値を取得する
         if(helper == null){
@@ -95,16 +108,20 @@ public class ProfileActivity extends AppCompatActivity {
                             //名前なし、誕生日あり
                             nameText.setText(""); //名前をセット
                             birthdayDate.setText(bd);
+                            userBD=bd;
                         }
                     } else {
                         if (bd.equals("")) {
                             //名前あり、誕生日なし
                             nameText.setText(name); //名前をセット
+                            userName=name;
                             birthdayDate.setText("");
                         } else {
                             //名前あり、誕生日あり
                             nameText.setText(name); //名前をセット
+                            userName=name;
                             birthdayDate.setText(bd);
+                            userBD=bd;
                         }
                     }
                 }catch (NullPointerException e){
@@ -132,7 +149,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         //誕生日選択
-        birthdayDate = (EditText) findViewById(R.id.birthdayDate);
         birthdayDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -156,13 +172,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        userBD=birthdayDate.getText().toString();
-
         //保存ボタン
         Button saveButton  = findViewById(R.id.saveBtn);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userBD=birthdayDate.getText().toString();
 
                 // データベースを取得する
                 SQLiteDatabase db = helper.getWritableDatabase();

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/background_setting"
     tools:context=".SettingActivity">
 
     <View
@@ -70,7 +70,7 @@
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
         android:text="設定"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.528"
@@ -109,6 +109,7 @@
         android:background="#00FFFFFF"
         android:gravity="center|left"
         android:text="プロフィール　　　　　　＞"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />

@@ -5,6 +5,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_setting"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     tools:context=".ProfileActivity">
@@ -16,7 +17,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="136dp"
         android:text="名前"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -97,7 +98,7 @@
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
         android:text="プロフィール"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.528"
@@ -122,7 +123,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="192dp"
         android:text="誕生日"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -130,14 +131,15 @@
 
     <EditText
         android:id="@+id/birthdayDate"
-        android:layout_width="233dp"
-        android:layout_height="49dp"
+        android:layout_width="270dp"
+        android:layout_height="47dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="192dp"
         android:ems="10"
-        android:focusableInTouchMode="true"
         android:focusable="false"
+        android:focusableInTouchMode="true"
         android:inputType="date"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent" />
@@ -151,6 +153,7 @@
         android:ems="10"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="parent" />

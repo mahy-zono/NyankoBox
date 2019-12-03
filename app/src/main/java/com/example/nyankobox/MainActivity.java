@@ -153,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
                                 if(text!="") {
                                     // UPDATE
                                     db.execSQL("update NYANKO_TABLE set goal = '" + text + "' where date = '" + nowdate + "'");
+                                    db.execSQL("update NYANKO_TABLE set clear = '0' where date = '"+nowdate+"'");
+                                    cl = 0;
+                                    final ImageButton clearButton = findViewById(R.id.clearBtn);
+                                    clearButton.setImageResource(R.drawable.clearbtn);
                                 }else{
                                     //UPDATE
                                     db.execSQL("update NYANKO_TABLE set goal = '" + "" + "' where date = '" + nowdate + "'");
