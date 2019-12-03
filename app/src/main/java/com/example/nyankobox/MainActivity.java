@@ -253,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     // ボタンの設定
                                     Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                                    alertBtn.setTypeface(customFont);
                                     alertBtn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {

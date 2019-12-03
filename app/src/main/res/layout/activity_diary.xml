@@ -134,7 +134,7 @@
         android:hint="日記を記入してね"
         android:inputType="textPersonName|textMultiLine"
         android:maxLength="140"
-        android:textColor="#FFFFFF"
+        android:textColor="#665a5a"
         app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.235"

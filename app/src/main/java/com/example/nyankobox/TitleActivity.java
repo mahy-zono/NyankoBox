@@ -95,48 +95,56 @@ public class TitleActivity extends AppCompatActivity {
         touchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //誕生日チェック
-                if(bd.equals(nowDate)) {
-                    //カスタムフォント
-                    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+              try {
+                    //誕生日チェック
+                    if (bd.equals(nowDate)) {
+                        //カスタムフォント
+                        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
-                    // カスタムレイアウトの用意
-                    LayoutInflater layoutInflater = getLayoutInflater();
-                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                        // カスタムレイアウトの用意
+                        LayoutInflater layoutInflater = getLayoutInflater();
+                        View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(TitleActivity.this);
-                    builder.setView(customAlertView);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(TitleActivity.this);
+                        builder.setView(customAlertView);
 
-                    // タイトルの変更
-                    TextView title = customAlertView.findViewById(R.id.title);
-                    title.setText("にゃんこぼっくすより");
-                    title.setTypeface(customFont);
+                        // タイトルの変更
+                        TextView title = customAlertView.findViewById(R.id.title);
+                        title.setText("にゃんこぼっくすより");
+                        title.setTypeface(customFont);
 
-                    // メッセージの変更
-                    TextView message = customAlertView.findViewById(R.id.message);
-                    message.setText("今日は"+dispBd+"！！"+name+"のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
-                    message.setTypeface(customFont);
+                        // メッセージの変更
+                        TextView message = customAlertView.findViewById(R.id.message);
+                        message.setText("今日は" + dispBd + "！！" + name + "のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
+                        message.setTypeface(customFont);
 
-                    final AlertDialog alertDialog = builder.create();
+                        final AlertDialog alertDialog = builder.create();
 
-                    // ボタンの設定
-                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
-                    alertBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // ボタンを押した時の処理を書く
+                        // ボタンの設定
+                        Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                        alertBtn.setTypeface(customFont);
+                        alertBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // ボタンを押した時の処理を書く
+                                Intent intent = new Intent(getApplication(), MainActivity.class);
+                                startActivity(intent);
+                                // ダイアログを閉じる
+                                alertDialog.dismiss();
+                            }
+                        });
+
+                        // ダイアログ表示
+                        alertDialog.show();
+                    } else if(bd.equals("")) {
+                        Intent intent = new Intent(getApplication(), MainActivity.class);
+                        startActivity(intent);
+                    }else{
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivity(intent);
-                            // ダイアログを閉じる
-                            alertDialog.dismiss();
                         }
-                    });
+                }catch(NullPointerException e){
 
-                    // ダイアログ表示
-                    alertDialog.show();
-                }else {
-                    Intent intent = new Intent(getApplication(), MainActivity.class);
-                    startActivity(intent);
                 }
             }
         });

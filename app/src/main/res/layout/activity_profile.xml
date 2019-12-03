@@ -113,6 +113,8 @@
         android:layout_marginEnd="2dp"
         android:text="保存"
         android:textSize="20sp"
+        android:textColor="#bc8f8f"
+        android:radius="60dp"
         android:background="@drawable/button_custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

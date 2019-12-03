@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
@@ -167,6 +168,12 @@ public class ProfileActivity extends AppCompatActivity {
                         date.get(Calendar.MONTH),
                         date.get(Calendar.DATE)
                 );
+                datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        birthdayDate.setText("");
+                    }
+                });
                 //dialogを表示
                 datePickerDialog.show();
             }
@@ -174,6 +181,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         //保存ボタン
         Button saveButton  = findViewById(R.id.saveBtn);
+        saveButton.setTypeface(customFont);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,6 +224,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 // ボタンの設定
                 Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                alertBtn.setTypeface(customFont);
                 alertBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
