@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     androidx.constraintlayout.widget.ConstraintLayout mainLayout;
     InputMethodManager inputMethodManager;
 
+    //表情差分
+    ImageView mel;
+
     // MemoOpenHelperクラスを定義
     dbData helper = null;
     // 新規フラグ
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     String emo = "";
     String dispGoal ="";
     String dispClear = "";
+    String dressNo="";
     int cl=0;
     int sk=0;
     int ir=0;
@@ -380,6 +385,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //表情差分
+        //mel.setImageResource(R.drawable.);
+
         //指定書式に変換して表示
         TextView mt = (TextView) findViewById(R.id.message);
         //メッセージ表示
@@ -405,8 +413,47 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // データベースを取得する
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase dressdb = helper.getWritableDatabase();
+        try {
+            // rawQueryというSELECT専用メソッドを使用してデータを取得する
+            Cursor cdb = dressdb.rawQuery("select * from PROFILE_TABLE where id = '1'", null);
 
+            // Cursorの先頭行があるかどうか確認
+            boolean next = cdb.moveToFirst();
+
+            // 取得した全ての行を取得
+            while (next) {
+                // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                dressNo = String.valueOf(cdb.getInt(5)); // 衣装番号を取得
+                // 次の行が存在するか確認
+                next = cdb.moveToNext();
+                //フラグを変更
+                newFlag = false;
+            }
+            try{
+                //衣装
+                if(dressNo.equals("")){
+                    //衣装きてない
+                    mel.setImageResource(R.drawable.sample);
+                }else if(dressNo.equals("1")){
+
+                }else if(dressNo.equals("2")){
+
+                }else if(dressNo.equals("3")){
+
+                }
+            }catch(NullPointerException e){
+
+            }
+        } finally {
+            // finallyは、tryの中で例外が発生した時でも必ず実行される
+            // dbを開いたら確実にclose
+            dressdb.close();
+        }
+         mel= findViewById(R.id.imageView);
+
+        // データベースを取得する
+        SQLiteDatabase db = helper.getWritableDatabase();
         try {
             // rawQueryというSELECT専用メソッドを使用してデータを取得する
             Cursor c = db.rawQuery("select * from NYANKO_TABLE where date = '"+nowdate+"'", null);
@@ -430,18 +477,24 @@ public class MainActivity extends AppCompatActivity {
                 //感情ボタン表示
                 if (dispEmo.equals("わくわく")) {
                     mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
+                    //表情差分
+                    mel.setImageResource(R.drawable.wkcat);
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
 
                 } else if (dispEmo.equals("いらいら")) {
                     mt.setText("気分転換にぼくとお話しましょ～！");
+                    //表情差分
+                    mel.setImageResource(R.drawable.ircat);
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
 
                 } else if (dispEmo.equals("しくしく")) {
                     mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
+                    //表情差分
+                    mel.setImageResource(R.drawable.skcat);
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
@@ -488,12 +541,14 @@ public class MainActivity extends AppCompatActivity {
                     //選択→未選択
                     wk = 0;
                     wkwkButton.setImageResource(R.drawable.wkwk);
+                    //表情差分
+                    mel.setImageResource(R.drawable.sample);
                     //メッセージ表示
                     mt.setText("わくわくおわり？");
 
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -508,6 +563,8 @@ public class MainActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
+                    //表情差分
+                    mel.setImageResource(R.drawable.wkcat);
                     //メッセージ表示
                     mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
                     try {
@@ -552,9 +609,11 @@ public class MainActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.irir);
                     //メッセージ表示
                     mt.setText("いらいらおわり？");
+                    //表情差分
+                    mel.setImageResource(R.drawable.sample);
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -570,6 +629,8 @@ public class MainActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.ir);
                     //メッセージ表示
                     mt.setText("気分転換にぼくとお話しましょ～！");
+                    //表情差分
+                    mel.setImageResource(R.drawable.ircat);
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -611,9 +672,11 @@ public class MainActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sksk);
                     //メッセージ表示
                     mt.setText("しくしくおわり？");
+                    //表情差分
+                    mel.setImageResource(R.drawable.sample);
                     try {
                         // 空白
-                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        db.execSQL("update NYANKO_TABLE set emo = '' where date = '"+nowdate+"'");
                     } finally {
                         // finallyは、tryの中で例外が発生した時でも必ず実行される
                         // dbを開いたら確実にclose
@@ -629,6 +692,8 @@ public class MainActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.irir);
                     //メッセージ表示
                     mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
+                    //表情差分
+                    mel.setImageResource(R.drawable.skcat);
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -648,12 +713,42 @@ public class MainActivity extends AppCompatActivity {
                         db.close();
                     }
                 }
-
-
-
-
             }
         });
+
+
+      /*  try {
+            // rawQueryというSELECT専用メソッドを使用してデータを取得する
+            Cursor c = dressdb.rawQuery("select * from DRESS_TABLE where date = '"+nowdate+"'", null);
+
+            // Cursorの先頭行があるかどうか確認
+            boolean next = c.moveToFirst();
+
+
+            // 取得した全ての行を取得
+            while (next) {
+                // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                dispEmo = c.getString(2); // 感情を取得
+                dispGoal = c.getString(3); // 目標を取得
+                dispClear = String.valueOf(c.getInt(4)); // 目標達成を取得
+                // 次の行が存在するか確認
+                next = c.moveToNext();
+                //フラグを変更
+                newFlag = false;
+            }
+            try {
+                //衣装変更
+
+            }catch(NullPointerException e){
+
+            }
+
+
+        } finally {
+            // finallyは、tryの中で例外が発生した時でも必ず実行される
+            // dbを開いたら確実にclose
+            dressdb.close();
+        }*/
 
     }
 

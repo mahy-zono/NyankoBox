@@ -153,12 +153,12 @@ public class LogActivity extends AppCompatActivity {
                                 //感情表示
                                 findViewById(R.id.imageEmo).setVisibility(View.VISIBLE);
                                 if (choiceEmo.equals("わくわく")) {
-                                    emoView.setImageResource(R.drawable.wk);
+                                    emoView.setImageResource(R.drawable.wkwk);
                                 } else if (choiceEmo.equals("いらいら")) {
-                                    emoView.setImageResource(R.drawable.ir);
+                                    emoView.setImageResource(R.drawable.irir);
 
                                 } else if (choiceEmo.equals("しくしく")) {
-                                    emoView.setImageResource(R.drawable.sk);
+                                    emoView.setImageResource(R.drawable.sksk);
                                 }else {
                                     findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
                                 }

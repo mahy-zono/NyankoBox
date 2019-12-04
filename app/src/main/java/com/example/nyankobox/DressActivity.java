@@ -53,5 +53,8 @@ public class DressActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        /*
+
+         */
     }
 }

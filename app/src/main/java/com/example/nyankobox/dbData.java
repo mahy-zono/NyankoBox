@@ -46,6 +46,10 @@ public class dbData extends SQLiteOpenHelper {
                 "pass INTEGER," +
                 "lock INTEGER," +
                 "choice TEXT )");
+        //洋服格納
+        //db.execSQL("INSERT INTO DRESS_TABLE(id,dress) VALUES(1, '')");
+        //db.execSQL("INSERT INTO DRESS_TABLE(id,dress) VALUES(2, '')");
+        //db.execSQL("INSERT INTO DRESS_TABLE(id,dress) VALUES(3, '')");
     }
 
     // データベースをバージョンアップした時に実行される処理
