@@ -238,12 +238,17 @@ public class LogActivity extends AppCompatActivity {
                         // dbを開いたら確実にclose
                         db.close();
                     }
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+
+                   /* AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
                     builder.setTitle("にゃんこぼっくすより")
                             .setMessage("日記の内容を更新したにゃ～")
                             .setPositiveButton("OK", null)
                             .show();
-               /* // カスタムレイアウトの用意
+                     */
+                   //カスタムフォント
+                    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+                // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
                 View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
 
@@ -253,15 +258,18 @@ public class LogActivity extends AppCompatActivity {
                 // タイトルの変更
                 TextView title = customAlertView.findViewById(R.id.title);
                 title.setText("にゃんこぼっくすより");
+                title.setTypeface(customFont);
 
                 // メッセージの変更
                 TextView message = customAlertView.findViewById(R.id.message);
                 message.setText("日記の内容を更新したにゃ～");
+                //message.setTypeface(customFont);
 
                 final AlertDialog alertDialog = builder.create();
 
                 // ボタンの設定
                 Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                alertBtn.setTypeface(customFont);
                 alertBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -273,13 +281,50 @@ public class LogActivity extends AppCompatActivity {
                 });
 
                 // ダイアログ表示
-                alertDialog.show();*/
+                alertDialog.show();
                 }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
                     builder.setTitle("にゃんこぼっくすより")
                             .setMessage("日付を選択してにゃ～")
                             .setPositiveButton("OK", null)
-                            .show();
+                            .show();*/
+                    //カスタムフォント
+                    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+                    // カスタムレイアウトの用意
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);
+                    builder.setView(customAlertView);
+
+                    // タイトルの変更
+                    TextView title = customAlertView.findViewById(R.id.title);
+                    title.setText("にゃんこぼっくすより");
+                    title.setTypeface(customFont);
+
+                    // メッセージの変更
+                    TextView message = customAlertView.findViewById(R.id.message);
+                    message.setText("日付を選択してにゃ～");
+                    message.setTypeface(customFont);
+
+                    final AlertDialog alertDialog = builder.create();
+
+                    // ボタンの設定
+                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                    alertBtn.setTypeface(customFont);
+                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ボタンを押した時の処理を書く
+
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+
+                    // ダイアログ表示
+                    alertDialog.show();
                 }
             }
         });
@@ -292,7 +337,7 @@ public class LogActivity extends AppCompatActivity {
                 EditText date = findViewById(R.id.dateText);
                 String dateStr = date.getText().toString();
                 if(!dateStr.equals("")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                   /* AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
                     builder.setTitle("にゃんこぼっくすより")
                             .setMessage("日記を削除してもよろしいですか？")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -318,15 +363,114 @@ public class LogActivity extends AppCompatActivity {
                                 }
                             })
                             .setNegativeButton("キャンセル", null)
-                            .show();
-                }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
+                            .show();*/
+                    //カスタムフォント
+                    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+                    // カスタムレイアウトの用意
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog2, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);
+                    builder.setView(customAlertView);
+
+                    // タイトルの変更
+                    TextView title = customAlertView.findViewById(R.id.title);
+                    title.setText("にゃんこぼっくすより");
+                    title.setTypeface(customFont);
+
+                    // メッセージの変更
+                    TextView message = customAlertView.findViewById(R.id.message);
+                    message.setText("日記を削除してもよろしいですか？");
+                    message.setTypeface(customFont);
+
+                    final AlertDialog alertDialog = builder.create();
+
+                    // ボタンの設定
+                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                    alertBtn.setTypeface(customFont);
+                    Button alertBtn2 = customAlertView.findViewById(R.id.btnPositive2);
+                    alertBtn2.setTypeface(customFont);
+                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ボタンを押した時の処理を書く
+                            // OK button pressed
+                            String diaryStr = "";
+                            // DBに保存
+                            SQLiteDatabase db = helper.getWritableDatabase();
+                            try {
+                                // UPDATE
+                                db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
+
+                            } finally {
+                                // finallyは、tryの中で例外が発生した時でも必ず実行される
+                                // dbを開いたら確実にclose
+                                db.close();
+                            }
+                            //指定書式に変換して表示
+                            EditText dt = findViewById(R.id.editDiary);
+                            //メッセージ表示
+                            dt.getEditableText().clear();
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+                    //キャンセルボタン押したとき
+                    alertBtn2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+                    // ダイアログ表示
+                    alertDialog.show();
+                }else {
+                   /* AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);// FragmentではActivityを取得して生成
                     builder.setTitle("にゃんこぼっくすより")
                             .setMessage("日付を選択してにゃ～")
-                            .setPositiveButton("OK", null)
-                            .show();
-                }
+                            .setPositiveButton("OK", null);*/
 
+                    //カスタムフォント
+                    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+                    // カスタムレイアウトの用意
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);
+                    builder.setView(customAlertView);
+
+                    // タイトルの変更
+                    TextView title = customAlertView.findViewById(R.id.title);
+                    title.setText("にゃんこぼっくすより");
+                    title.setTypeface(customFont);
+
+
+                    // メッセージの変更
+                    TextView message = customAlertView.findViewById(R.id.message);
+                    message.setText("日付を選択してにゃ～");
+                    message.setTypeface(customFont);
+
+                    final AlertDialog alertDialog = builder.create();
+
+                    // ボタンの設定
+                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                    alertBtn.setTypeface(customFont);
+                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ボタンを押した時の処理を書く
+
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+
+                    // ダイアログ表示
+                    alertDialog.show();
+                }
             }
         });
         //目標表示
