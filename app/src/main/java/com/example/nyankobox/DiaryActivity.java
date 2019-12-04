@@ -368,7 +368,7 @@ public class DiaryActivity extends AppCompatActivity {
                         // 新規作成の場合
 
                         // INSERT
-                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clea) VALUES('" + nowdate + "','" + diaryStr + "','" + "" + "','" +""+  "','')");
+                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('" + nowdate + "','" + diaryStr + "','" + "" + "','" +""+  "','')");
                     }
                 } finally {
                     // finallyは、tryの中で例外が発生した時でも必ず実行される
