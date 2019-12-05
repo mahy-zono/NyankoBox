@@ -47,10 +47,16 @@ public class DiaryActivity extends AppCompatActivity {
     androidx.constraintlayout.widget.ConstraintLayout mainLayout;
     InputMethodManager inputMethodManager;
 
+    // Sound
+    private SoundPlayer soundPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
+
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         //カスタムフォント
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
@@ -150,16 +156,19 @@ public class DiaryActivity extends AppCompatActivity {
             try {
                 //感情ボタン表示
                 if (dispEmo.equals("わくわく")) {
+                    wk=1;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
 
                 } else if (dispEmo.equals("いらいら")) {
+                    ir=1;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
 
                 } else if (dispEmo.equals("しくしく")) {
+                    sk=1;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
@@ -180,6 +189,8 @@ public class DiaryActivity extends AppCompatActivity {
         wkwkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //指定書式に変換して表示
                 TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
@@ -238,6 +249,8 @@ public class DiaryActivity extends AppCompatActivity {
         irirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //指定書式に変換して表示
                 TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
@@ -293,6 +306,8 @@ public class DiaryActivity extends AppCompatActivity {
         skskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //指定書式に変換して表示
                 TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する

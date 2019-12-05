@@ -487,7 +487,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 //感情ボタン表示
                 if (dispEmo.equals("わくわく")) {
-                    mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
+                    wk=1;
+                    mt.setText("わくわく！君がわくわくだとめるもうれしいにゃあ");
                     //表情差分
                     mel.setImageResource(R.drawable.wkcat);
                     skskButton.setImageResource(R.drawable.sksk);
@@ -495,7 +496,8 @@ public class MainActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.irir);
 
                 } else if (dispEmo.equals("いらいら")) {
-                    mt.setText("気分転換にぼくとお話しましょ～！");
+                    ir=1;
+                    mt.setText("ぷんぷん！\nめるも少しおこなのにゃ！！");
                     //表情差分
                     mel.setImageResource(R.drawable.ircat);
                     skskButton.setImageResource(R.drawable.sksk);
@@ -503,7 +505,8 @@ public class MainActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.ir);
 
                 } else if (dispEmo.equals("しくしく")) {
-                    mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
+                    sk=1;
+                    mt.setText("そっかぁ...。めるがよしよししてあげるにゃ～！いいこいいこ～♪");
                     //表情差分
                     mel.setImageResource(R.drawable.skcat);
                     skskButton.setImageResource(R.drawable.sk);
@@ -557,7 +560,7 @@ public class MainActivity extends AppCompatActivity {
                     //表情差分
                     mel.setImageResource(R.drawable.sample);
                     //メッセージ表示
-                    mt.setText("わくわくおわり？");
+                    mt.setText("わくわくおわちゃったにゃ...？\n");
 
                     try {
                         // 空白
@@ -579,7 +582,7 @@ public class MainActivity extends AppCompatActivity {
                     //表情差分
                     mel.setImageResource(R.drawable.wkcat);
                     //メッセージ表示
-                    mt.setText("わくわく！君がわくわくだとぼくもうれしいにゃあ");
+                    mt.setText("わくわく！君がわくわくだとめるもうれしいにゃあ");
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -623,7 +626,7 @@ public class MainActivity extends AppCompatActivity {
                     ir = 0;
                     irirButton.setImageResource(R.drawable.irir);
                     //メッセージ表示
-                    mt.setText("いらいらおわり？");
+                    mt.setText("いらいらはもう大丈夫にゃ？\n甘いものを食べて一緒にしあわせになるにゃ！！");
                     //表情差分
                     mel.setImageResource(R.drawable.sample);
                     try {
@@ -643,7 +646,7 @@ public class MainActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
                     //メッセージ表示
-                    mt.setText("気分転換にぼくとお話しましょ～！");
+                    mt.setText("ぷんぷん！\nめるも少しおこなのにゃ！！");
                     //表情差分
                     mel.setImageResource(R.drawable.ircat);
                     try {
@@ -688,7 +691,7 @@ public class MainActivity extends AppCompatActivity {
                     sk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     //メッセージ表示
-                    mt.setText("しくしくおわり？");
+                    mt.setText("少しでもお役に立ててたら\nうれしいにゃ！\nまたいつでもめるを頼ってにゃあ");
                     //表情差分
                     mel.setImageResource(R.drawable.sample);
                     try {
@@ -708,7 +711,7 @@ public class MainActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     //メッセージ表示
-                    mt.setText("そっかぁ...。ぼくがよしよししてあげるにゃ～！いいこいいこ～～♪");
+                    mt.setText("そっかぁ...。めるがよしよししてあげるにゃ～！いいこいいこ～♪");
                     //表情差分
                     mel.setImageResource(R.drawable.skcat);
                     try {
