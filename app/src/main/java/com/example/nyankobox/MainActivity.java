@@ -432,21 +432,8 @@ public class MainActivity extends AppCompatActivity {
                 //フラグを変更
                 newFlag = false;
             }
-            try{
-                //衣装
-                if(dressNo.equals("")){
-                    //衣装きてない
-                    mel.setImageResource(R.drawable.sample);
-                }else if(dressNo.equals("1")){
 
-                }else if(dressNo.equals("2")){
 
-                }else if(dressNo.equals("3")){
-
-                }
-            }catch(NullPointerException e){
-
-            }
         } finally {
             // finallyは、tryの中で例外が発生した時でも必ず実行される
             // dbを開いたら確実にclose

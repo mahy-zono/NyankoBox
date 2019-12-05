@@ -144,7 +144,8 @@ public class TitleActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                 }catch(NullPointerException e){
-
+                  Intent intent = new Intent(getApplication(), MainActivity.class);
+                  startActivity(intent);
                 }
             }
         });
