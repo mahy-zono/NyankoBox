@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_dress"
     tools:context=".DressActivity">
 
     <ImageButton
@@ -99,75 +100,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="220.5dp"
+        android:layout_height="262.5dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.697"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447"
+        app:srcCompat="@drawable/sample" />
 
-        <ImageView
-            android:layout_width="275dp"
-            android:layout_height="312dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.337"
-            app:srcCompat="@drawable/sample" />
-
-        <ImageView
-            android:id="@+id/dressView"
-            android:layout_width="275dp"
-            android:layout_height="353dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="5dp"
-            app:srcCompat="@drawable/dress1"
-            tools:layout_editor_absoluteX="123dp"
-            tools:layout_editor_absoluteY="117dp" />
-
-    </FrameLayout>
 
     <ImageButton
         android:id="@+id/dress1Btn"
-        android:layout_width="100dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="75.95dp"
+        android:layout_height="90.3dp"
+        android:layout_marginStart="120dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/catsil" />
+        app:layout_constraintTop_toTopOf="@+id/dress2Btn"
+        app:srcCompat="@drawable/dress1btn" />
 
     <ImageButton
         android:id="@+id/dress2Btn"
-        android:layout_width="100dp"
-        android:layout_height="93dp"
+        android:layout_width="75.95dp"
+        android:layout_height="90.3dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="68dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dress1Btn"
-        app:srcCompat="@drawable/catsil" />
+        app:srcCompat="@drawable/dress2btn" />
 
     <ImageButton
         android:id="@+id/dress3Btn"
-        android:layout_width="100dp"
-        android:layout_height="93dp"
+        android:layout_width="75.95dp"
+        android:layout_height="90.3dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="44dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dress2Btn"
-        app:srcCompat="@drawable/catsil" />
+        app:layout_constraintTop_toTopOf="@+id/dress2Btn"
+        app:srcCompat="@drawable/dress3btn" />
 
     <ImageButton
         android:id="@+id/settingBtn"
@@ -181,5 +163,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setbtn" />
+
+    <ImageView
+        android:id="@+id/dressView"
+        android:layout_width="245dp"
+        android:layout_height="297.5dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        app:srcCompat="@drawable/dress3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

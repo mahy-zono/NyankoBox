@@ -114,20 +114,19 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toEndOf="@+id/lineBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848"
+        app:layout_constraintVertical_bias="0.835"
         app:srcCompat="@drawable/sendbtn" />
 
     <EditText
         android:id="@+id/editDiary"
-        android:layout_width="271dp"
-        android:layout_height="133dp"
+        android:layout_width="268dp"
+        android:layout_height="371dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="#00000000"
         android:ems="10"
         android:gravity="top"
@@ -135,22 +134,19 @@
         android:inputType="textPersonName|textMultiLine"
         android:maxLength="140"
         android:textColor="#665a5a"
-        app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.383" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageButton
         android:id="@+id/wkwkBtn"
-        android:layout_width="51dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="144dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="#00FFFFFF"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toEndOf="@+id/lineBtn"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/irirBtn"
         app:layout_constraintTop_toTopOf="@+id/irirBtn"
         app:srcCompat="@drawable/wkwk" />
 
@@ -163,18 +159,19 @@
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/wkwkBtn"
+        app:layout_constraintEnd_toStartOf="@+id/skskBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98"
+        app:layout_constraintVertical_bias="0.984"
         app:srcCompat="@drawable/irir" />
 
     <ImageButton
         android:id="@+id/skskBtn"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/irirBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/irirBtn"
         app:srcCompat="@drawable/sksk" />
 

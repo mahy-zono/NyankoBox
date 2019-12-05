@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     // 新規フラグ
     boolean newFlag = true;
     // データ
+    String select="";
     String nowdate = "";
     String emo = "";
     String dispGoal ="";
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     // 最終的に表示する文字列
     String dispEmo ="";
 
+    // Sound
+    private SoundPlayer soundPlayer;
+
     /*@Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         //カスタムフォント
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
@@ -389,6 +395,9 @@ public class MainActivity extends AppCompatActivity {
 
         //表情差分
         //mel.setImageResource(R.drawable.);
+        //衣装非表示
+        findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
+        final ImageView dressView = findViewById(R.id.dressView);
 
         //指定書式に変換して表示
         TextView mt = (TextView) findViewById(R.id.message);
@@ -426,19 +435,32 @@ public class MainActivity extends AppCompatActivity {
             // 取得した全ての行を取得
             while (next) {
                 // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
-                dressNo = String.valueOf(cdb.getInt(5)); // 衣装番号を取得
+                select = cdb.getString(5); // 衣装を取得
                 // 次の行が存在するか確認
                 next = cdb.moveToNext();
-                //フラグを変更
-                newFlag = false;
             }
-
 
         } finally {
             // finallyは、tryの中で例外が発生した時でも必ず実行される
             // dbを開いたら確実にclose
             dressdb.close();
         }
+
+        switch(select){
+            case "dress1":
+                findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                dressView.setImageResource(R.drawable.dress1);
+                break;
+            case "dress2":
+                findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                dressView.setImageResource(R.drawable.dress2);
+                break;
+            case "dress3":
+                findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                dressView.setImageResource(R.drawable.dress3);
+                break;
+        }
+
          mel= findViewById(R.id.imageView);
 
         // データベースを取得する
@@ -518,6 +540,8 @@ public class MainActivity extends AppCompatActivity {
         wkwkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //指定書式に変換して表示
                 TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
@@ -584,6 +608,8 @@ public class MainActivity extends AppCompatActivity {
         irirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //指定書式に変換して表示
                 TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
@@ -647,6 +673,8 @@ public class MainActivity extends AppCompatActivity {
         skskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //指定書式に変換して表示
                 TextView mt = (TextView) findViewById(R.id.message);
                 // 入力内容を取得する
