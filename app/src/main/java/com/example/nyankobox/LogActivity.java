@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -263,7 +264,7 @@ public class LogActivity extends AppCompatActivity {
                 // メッセージの変更
                 TextView message = customAlertView.findViewById(R.id.message);
                 message.setText("日記の内容を更新したにゃ～");
-                //message.setTypeface(customFont);
+                message.setTypeface(customFont);
 
                 final AlertDialog alertDialog = builder.create();
 

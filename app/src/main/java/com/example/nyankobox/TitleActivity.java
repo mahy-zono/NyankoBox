@@ -9,15 +9,21 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.icu.text.CaseMap;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class TitleActivity extends AppCompatActivity {
 
@@ -33,11 +39,23 @@ public class TitleActivity extends AppCompatActivity {
     String dispBd = "";
     String nowDate = "";
 
+    private void blinkText(ImageButton touchButton, long duration, long offset){
+        Animation anm = new AlphaAnimation(0.0f, 1.0f);
+        anm.setDuration(duration);
+        anm.setStartOffset(offset);
+        anm.setRepeatMode(Animation.REVERSE);
+        anm.setRepeatCount(Animation.INFINITE);
+        touchButton.startAnimation(anm);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
+
+        final Handler mHandler = new Handler();
+        ScheduledExecutorService mScheduledExecutor;
 
         p= MediaPlayer.create(getApplicationContext(), R.raw.bgm4);
         p.setLooping(true); //    ループ設定
@@ -91,7 +109,8 @@ public class TitleActivity extends AppCompatActivity {
         }
 
         //ホーム画面に遷移
-        ImageButton touchButton = findViewById(R.id.touchBtn);
+        final ImageButton touchButton = findViewById(R.id.touchBtn);
+        blinkText(touchButton, 300,400);
         touchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
