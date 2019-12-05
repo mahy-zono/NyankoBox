@@ -9,11 +9,10 @@
 
     <ImageButton
         android:id="@+id/lineBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
@@ -27,11 +26,10 @@
 
     <ImageButton
         android:id="@+id/dressBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,11 +40,10 @@
 
     <ImageButton
         android:id="@+id/logBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,11 +54,10 @@
 
     <ImageButton
         android:id="@+id/diaryBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#003F51B5"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,28 +66,13 @@
         app:layout_constraintTop_toBottomOf="@+id/homeBtn"
         app:srcCompat="@drawable/diary" />
 
-    <ImageButton
-        android:id="@+id/homeBtn3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home" />
 
     <ImageButton
         android:id="@+id/homeBtn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,40 +97,56 @@
         app:layout_constraintVertical_bias="0.447"
         app:srcCompat="@drawable/sample" />
 
+    <HorizontalScrollView
+        android:layout_width="271dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="504dp"
+        android:layout_marginEnd="24dp"
+        android:scrollbarSize="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/dress1Btn"
-        android:layout_width="75.95dp"
-        android:layout_height="90.3dp"
-        android:layout_marginStart="120dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/dress2Btn"
-        app:srcCompat="@drawable/dress1btn" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="2dp">
 
-    <ImageButton
-        android:id="@+id/dress2Btn"
-        android:layout_width="75.95dp"
-        android:layout_height="90.3dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="68dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dress1Btn"
-        app:srcCompat="@drawable/dress2btn" />
+            <ImageButton
+                android:id="@+id/dress1Btn"
+                android:layout_width="75.95dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="5dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dress2Btn"
+                app:srcCompat="@drawable/dress1btn" />
 
-    <ImageButton
-        android:id="@+id/dress3Btn"
-        android:layout_width="75.95dp"
-        android:layout_height="90.3dp"
-        android:layout_marginStart="8dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/dress2Btn"
-        app:layout_constraintTop_toTopOf="@+id/dress2Btn"
-        app:srcCompat="@drawable/dress3btn" />
+            <ImageButton
+                android:id="@+id/dress2Btn"
+                android:layout_width="75.95dp"
+                android:layout_height="90.3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="68dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dress1Btn"
+                app:srcCompat="@drawable/dress2btn" />
+
+            <ImageButton
+                android:id="@+id/dress3Btn"
+                android:layout_width="75.95dp"
+                android:layout_height="90.3dp"
+                android:layout_marginStart="8dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toEndOf="@+id/dress2Btn"
+                app:layout_constraintTop_toTopOf="@+id/dress2Btn"
+                app:srcCompat="@drawable/dress3btn" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <ImageButton
         android:id="@+id/settingBtn"
