@@ -115,23 +115,24 @@ public class DressActivity extends AppCompatActivity {
                     // dbを開いたら確実にclose
                     db.close();
                 }
+
                 switch(select){
                     case "dress1":
                         findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                         dressView.setImageResource(R.drawable.dress1);
-                        dress1Button.setImageResource(R.drawable.sample);
+                        dress1Button.setImageResource(R.drawable.dress1ch);
                         dress1=1;
                         break;
                     case "dress2":
                         findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                         dressView.setImageResource(R.drawable.dress2);
-                        dress2Button.setImageResource(R.drawable.sample);
+                        dress2Button.setImageResource(R.drawable.dress2ch);
                         dress2=1;
                         break;
                     case "dress3":
                         findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                         dressView.setImageResource(R.drawable.dress3);
-                        dress3Button.setImageResource(R.drawable.sample);
+                        dress3Button.setImageResource(R.drawable.dress3ch);
                         dress3=1;
                         break;
                 }
@@ -145,9 +146,9 @@ public class DressActivity extends AppCompatActivity {
                     dress3=0;
                     findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                     dressView.setImageResource(R.drawable.dress1);
-                    dress1Button.setImageResource(R.drawable.sample);
-                    dress2Button.setImageResource(R.drawable.catsil);
-                    dress3Button.setImageResource(R.drawable.catsil);
+                    dress1Button.setImageResource(R.drawable.dress1ch);
+                    dress2Button.setImageResource(R.drawable.dress2btn);
+                    dress3Button.setImageResource(R.drawable.dress3btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     //新規作成
@@ -161,7 +162,7 @@ public class DressActivity extends AppCompatActivity {
                 }else{
                     dress1=0;
                     findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
-                    dress1Button.setImageResource(R.drawable.catsil);
+                    dress1Button.setImageResource(R.drawable.dress1btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     db.execSQL("update PROFILE_TABLE set choice = '" + "" + "'");
@@ -180,9 +181,9 @@ public class DressActivity extends AppCompatActivity {
                     dress3=0;
                     findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                     dressView.setImageResource(R.drawable.dress2);
-                    dress1Button.setImageResource(R.drawable.catsil);
-                    dress2Button.setImageResource(R.drawable.sample);
-                    dress3Button.setImageResource(R.drawable.catsil);
+                    dress1Button.setImageResource(R.drawable.dress1btn);
+                    dress2Button.setImageResource(R.drawable.dress2ch);
+                    dress3Button.setImageResource(R.drawable.dress3btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     //新規作成
@@ -196,7 +197,7 @@ public class DressActivity extends AppCompatActivity {
                 }else{
                     dress2=0;
                     findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
-                    dress2Button.setImageResource(R.drawable.catsil);
+                    dress2Button.setImageResource(R.drawable.dress2btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     db.execSQL("update PROFILE_TABLE set choice = '" + "" + "'");
@@ -215,9 +216,9 @@ public class DressActivity extends AppCompatActivity {
                     dress1=0;
                     findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                     dressView.setImageResource(R.drawable.dress3);
-                    dress3Button.setImageResource(R.drawable.sample);
-                    dress2Button.setImageResource(R.drawable.catsil);
-                    dress1Button.setImageResource(R.drawable.catsil);
+                    dress3Button.setImageResource(R.drawable.dress3ch);
+                    dress2Button.setImageResource(R.drawable.dress2btn);
+                    dress1Button.setImageResource(R.drawable.dress1btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     //新規作成
@@ -231,7 +232,7 @@ public class DressActivity extends AppCompatActivity {
                 }else{
                     dress3=0;
                     findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
-                    dress3Button.setImageResource(R.drawable.catsil);
+                    dress3Button.setImageResource(R.drawable.dress3btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     db.execSQL("update PROFILE_TABLE set choice = '" + "" + "'");
