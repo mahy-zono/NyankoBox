@@ -45,6 +45,17 @@ public class SettingActivity extends AppCompatActivity {
             }
         });*/
 
+        //使い方画面に遷移
+        Button howtosend = findViewById(R.id.howtoBtn);
+        howtosend.setTypeface(customFont);
+        howtosend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), HowtoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //戻るボタン押下で前画面に戻る
         ImageButton backsend  = findViewById(R.id.backBtn);
         backsend.setOnClickListener(new View.OnClickListener() {
