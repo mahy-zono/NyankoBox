@@ -26,12 +26,18 @@ public class DressActivity extends AppCompatActivity {
     // 新規フラグ
     boolean newFlag = true;
 
+    // Sound
+    private SoundPlayer soundPlayer;
+
     String dress="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dress);
+
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         //ホーム画面に遷移
         ImageButton homesend = findViewById(R.id.homeBtn);
@@ -140,6 +146,8 @@ public class DressActivity extends AppCompatActivity {
         dress1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 if(dress1==0) {
                     dress1=1;
                     dress2=0;
@@ -175,6 +183,8 @@ public class DressActivity extends AppCompatActivity {
         dress2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 if(dress2==0) {
                     dress2=1;
                     dress1=0;
@@ -210,6 +220,8 @@ public class DressActivity extends AppCompatActivity {
         dress3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 if(dress3==0) {
                     dress3=1;
                     dress2=0;
