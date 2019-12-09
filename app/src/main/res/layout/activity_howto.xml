@@ -6,4 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".HowtoActivity">
 
+    <LinearLayout
+        android:layout_width="299dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- `■`を45度回転させて`◆`にしている -->
+        <!-- rotationするとwidthが変わるので注意。正方形なので8dp * √2になる -->
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@android:color/white"
+            android:rotation="45" />
+
+        <!-- marginLeft="-6dp"することで`◆`に角丸のTextViewを重ねている。 -->
+        <TextView
+            android:layout_width="276dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-6dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_setting"
+            android:padding="8dp"
+            android:text="おなか減った…。"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
