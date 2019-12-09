@@ -30,6 +30,8 @@ public class TitleActivity extends AppCompatActivity {
 
     // 再生の準備
     private MediaPlayer p;
+    // Sound
+    private SoundPlayer soundPlayer;
 
     // MemoOpenHelperクラスを定義
     dbData helper = null;
@@ -54,6 +56,9 @@ public class TitleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
+
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         //ナビゲーションバー非表示
         findViewById(R.id.titleLayer).setSystemUiVisibility(
@@ -123,6 +128,8 @@ public class TitleActivity extends AppCompatActivity {
         touchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.enter();
               try {
                     //誕生日チェック
                     if (bd.equals(nowDate)) {

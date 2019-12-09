@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -376,6 +377,8 @@ public class DiaryActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.send();
                 // 入力内容を取得する
                 EditText diary = findViewById(R.id.editDiary);
                 String diaryStr = diary.getText().toString();
@@ -423,7 +426,7 @@ public class DiaryActivity extends AppCompatActivity {
 
                 // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
-                View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                View customAlertView = layoutInflater.inflate(R.layout.diary_dialog, null);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
                 builder.setView(customAlertView);

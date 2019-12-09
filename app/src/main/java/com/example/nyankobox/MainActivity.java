@@ -224,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
                     //未選択→選択
+                    //Sound
+                    soundPlayer.send();
                     try {
                         // rawQueryというSELECT専用メソッドを使用してデータを取得する
                         Cursor c = db.rawQuery("select * from NYANKO_TABLE where date = '"+nowdate+"'", null);
