@@ -84,6 +84,8 @@ public class DiaryActivity extends AppCompatActivity {
         homesend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), MainActivity.class);
                 startActivity(intent);
             }
@@ -94,6 +96,8 @@ public class DiaryActivity extends AppCompatActivity {
         logsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), LogActivity.class);
                 startActivity(intent);
             }
@@ -104,6 +108,8 @@ public class DiaryActivity extends AppCompatActivity {
         dresssend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), DressActivity.class);
                 startActivity(intent);
             }
@@ -114,6 +120,8 @@ public class DiaryActivity extends AppCompatActivity {
         setsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), SettingActivity.class);
                 startActivity(intent);
             }

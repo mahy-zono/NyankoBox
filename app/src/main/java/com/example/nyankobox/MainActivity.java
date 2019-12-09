@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //サウンド
         soundPlayer = new SoundPlayer(this);
 
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         diarysend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), DiaryActivity.class);
                 startActivity(intent);
             }
@@ -99,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         logsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), LogActivity.class);
                 startActivity(intent);
             }
@@ -109,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         dresssend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), DressActivity.class);
                 startActivity(intent);
             }
@@ -119,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         setsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), SettingActivity.class);
                 startActivity(intent);
             }

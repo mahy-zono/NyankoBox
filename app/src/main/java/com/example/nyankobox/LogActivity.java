@@ -40,11 +40,16 @@ public class LogActivity extends AppCompatActivity {
     androidx.constraintlayout.widget.ConstraintLayout mainLayout;
     InputMethodManager inputMethodManager;
 
+    // Sound
+    private SoundPlayer soundPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
+
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         //カスタムフォント
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
@@ -66,6 +71,8 @@ public class LogActivity extends AppCompatActivity {
         homesend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), MainActivity.class);
                 startActivity(intent);
             }
@@ -76,6 +83,8 @@ public class LogActivity extends AppCompatActivity {
         diarysend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), DiaryActivity.class);
                 startActivity(intent);
             }
@@ -86,6 +95,8 @@ public class LogActivity extends AppCompatActivity {
         dresssend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), DressActivity.class);
                 startActivity(intent);
             }

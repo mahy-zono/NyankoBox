@@ -18,6 +18,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -53,6 +54,13 @@ public class TitleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title);
+
+        //ナビゲーションバー非表示
+        findViewById(R.id.titleLayer).setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        );
 
         final Handler mHandler = new Handler();
         ScheduledExecutorService mScheduledExecutor;
@@ -108,6 +116,7 @@ public class TitleActivity extends AppCompatActivity {
             db.close();
         }
 
+
         //ホーム画面に遷移
         final ImageButton touchButton = findViewById(R.id.touchBtn);
         blinkText(touchButton, 300,400);
@@ -122,7 +131,7 @@ public class TitleActivity extends AppCompatActivity {
 
                         // カスタムレイアウトの用意
                         LayoutInflater layoutInflater = getLayoutInflater();
-                        View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                        View customAlertView = layoutInflater.inflate(R.layout.happybirthday_dialog, null);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(TitleActivity.this);
                         builder.setView(customAlertView);
@@ -132,9 +141,16 @@ public class TitleActivity extends AppCompatActivity {
                         title.setText("にゃんこぼっくすより");
                         title.setTypeface(customFont);
 
+                        //ImageView imageView = findViewById(R.id.ImageView);
+                        //imageView.setImageResource(R.drawable.hbd);
+
                         // メッセージの変更
                         TextView message = customAlertView.findViewById(R.id.message);
-                        message.setText("今日は" + dispBd + "！！" + name + "のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
+                        if(name.equals("")){
+                            message.setText("今日は" + dispBd + "！！お誕生日にゃ！！！めるがたくさんお祝いするにゃ～！");
+                        }else {
+                            message.setText("今日は" + dispBd + "！！" + name + "のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
+                        }
                         message.setTypeface(customFont);
 
                         final AlertDialog alertDialog = builder.create();
