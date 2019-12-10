@@ -262,7 +262,7 @@ public class LogActivity extends AppCompatActivity {
 
                 // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
-                View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                View customAlertView = layoutInflater.inflate(R.layout.diary_dialog, null);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);
                 builder.setView(customAlertView);
