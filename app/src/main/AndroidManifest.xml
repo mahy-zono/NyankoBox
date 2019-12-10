@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".HowtoActivity"></activity>
+
+        <activity android:name=".HowtoActivity" />
         <activity android:name=".TitleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +34,7 @@
         <activity android:name=".DressActivity" />
         <activity android:name=".LogActivity" />
         <activity android:name=".DiaryActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

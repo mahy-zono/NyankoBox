@@ -79,6 +79,7 @@ public class TitleActivity extends AppCompatActivity {
         // 連続再生設定
         //p.setLooping(true);
 
+
         //現在日時の取得
         Date d = new Date();
 
@@ -192,6 +193,15 @@ public class TitleActivity extends AppCompatActivity {
             }
         });
     }
+    // 画面が非表示に実行
+    /*@Override
+    protected void onPause() {
+        super.onPause();
+        p.pause(); // 一時停止
+    }*/
+
+
+
     // アプリ終了時に実行
     @Override
     protected void onDestroy() {

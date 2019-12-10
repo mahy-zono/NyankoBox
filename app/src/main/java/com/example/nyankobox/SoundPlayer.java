@@ -10,6 +10,7 @@ public class SoundPlayer {
     private static int pushSound;
     private static int enterSound;
     private static int sendSound;
+    private static int dressSound;
 
     private AudioAttributes audioAttributes;
 
@@ -20,6 +21,7 @@ public class SoundPlayer {
         pushSound = soundPool.load(context, R.raw.pom, 1);
         enterSound = soundPool.load(context, R.raw.enter, 1);
         sendSound = soundPool.load(context, R.raw.send, 1);
+        dressSound = soundPool.load(context, R.raw.chenge, 1);
     }
 
     public void pompom() {
@@ -32,5 +34,8 @@ public class SoundPlayer {
 
     public void send() {
         soundPool.play(sendSound, 1.0f, 1.0f, 1, 0, 1.0f);
+    }
+    public void dress() {
+        soundPool.play(dressSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }
 }

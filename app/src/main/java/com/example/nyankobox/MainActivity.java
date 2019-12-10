@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     // 最終的に表示する文字列
     String dispEmo ="";
 
+    // 再生の準備
+    MediaPlayer p;
     // Sound
     private SoundPlayer soundPlayer;
 
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //サウンド
         soundPlayer = new SoundPlayer(this);
@@ -130,6 +135,19 @@ public class MainActivity extends AppCompatActivity {
                 soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), SettingActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //トーク画面に遷移
+        ImageButton linesend = findViewById(R.id.lineBtn);
+        linesend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                Uri uri = Uri.parse("http://line.me/ti/p/%40ffg0778p");
+                Intent i = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
             }
         });
 
@@ -256,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     // カスタムレイアウトの用意
                                     LayoutInflater layoutInflater = getLayoutInflater();
-                                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                                    View customAlertView = layoutInflater.inflate(R.layout.clear_dialog, null);
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                     builder.setView(customAlertView);

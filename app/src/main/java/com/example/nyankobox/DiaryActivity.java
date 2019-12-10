@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.Gravity;
@@ -125,6 +126,19 @@ public class DiaryActivity extends AppCompatActivity {
                 soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), SettingActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //トーク画面に遷移
+        ImageButton linesend = findViewById(R.id.lineBtn);
+        linesend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                Uri uri = Uri.parse("http://line.me/ti/p/%40ffg0778p");
+                Intent i = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
             }
         });
 
@@ -424,47 +438,72 @@ public class DiaryActivity extends AppCompatActivity {
                 //カスタムフォント
                 Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
-                // カスタムレイアウトの用意
-                LayoutInflater layoutInflater = getLayoutInflater();
-                View customAlertView = layoutInflater.inflate(R.layout.diary_dialog, null);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
-                builder.setView(customAlertView);
-
-                // タイトルの変更
-                TextView title = customAlertView.findViewById(R.id.title);
-                title.setText("にゃんこぼっくすより");
-                title.setTypeface(customFont);
 
                 if(diaryStr.equals("")){
+                    // カスタムレイアウトの用意
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View customAlertView = layoutInflater.inflate(R.layout.diary_dialog2, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
+                    builder.setView(customAlertView);
+
+                    // タイトルの変更
+                    TextView title = customAlertView.findViewById(R.id.title);
+                    title.setText("にゃんこぼっくすより");
+                    title.setTypeface(customFont);
                     // メッセージの変更
                     TextView message = customAlertView.findViewById(R.id.message);
-                    message.setText("まっしろな日記を受けとったにゃ！気が向いたら書いてにゃ～");
+                    message.setText("まっしろな日記にゃ...もし気が向いたら今度は日記を書いて送信してにゃ～");
                     message.setTypeface(customFont);
+                    final AlertDialog alertDialog = builder.create();
+
+                    // ボタンの設定
+                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                    alertBtn.setTypeface(customFont);
+                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ボタンを押した時の処理を書く
+
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+                    // ダイアログ表示
+                    alertDialog.show();
                 }else {
+                    // カスタムレイアウトの用意
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View customAlertView = layoutInflater.inflate(R.layout.diary_dialog, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DiaryActivity.this);
+                    builder.setView(customAlertView);
+
+                    // タイトルの変更
+                    TextView title = customAlertView.findViewById(R.id.title);
+                    title.setText("にゃんこぼっくすより");
+                    title.setTypeface(customFont);
                     // メッセージの変更
                     TextView message = customAlertView.findViewById(R.id.message);
                     message.setText("日記を受け取ったにゃ！今日も日記を書いてくれてありがとにゃ～");
                     message.setTypeface(customFont);
+                    final AlertDialog alertDialog = builder.create();
+
+                    // ボタンの設定
+                    Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                    alertBtn.setTypeface(customFont);
+                    alertBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // ボタンを押した時の処理を書く
+
+                            // ダイアログを閉じる
+                            alertDialog.dismiss();
+                        }
+                    });
+                    // ダイアログ表示
+                    alertDialog.show();
                 }
-
-                final AlertDialog alertDialog = builder.create();
-
-                // ボタンの設定
-                Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
-                alertBtn.setTypeface(customFont);
-                alertBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // ボタンを押した時の処理を書く
-
-                        // ダイアログを閉じる
-                        alertDialog.dismiss();
-                    }
-                });
-
-                // ダイアログ表示
-                alertDialog.show();
 
             }
         });

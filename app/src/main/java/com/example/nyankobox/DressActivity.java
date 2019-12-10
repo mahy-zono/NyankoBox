@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -87,6 +88,19 @@ public class DressActivity extends AppCompatActivity {
             }
         });
 
+        //トーク画面に遷移
+        ImageButton linesend = findViewById(R.id.lineBtn);
+        linesend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                Uri uri = Uri.parse("http://line.me/ti/p/%40ffg0778p");
+                Intent i = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
+            }
+        });
+
         //衣装非表示
         findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
 
@@ -155,7 +169,7 @@ public class DressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Sound
-                soundPlayer.pompom();
+                soundPlayer.dress();
                 if(dress1==0) {
                     dress1=1;
                     dress2=0;
@@ -192,7 +206,7 @@ public class DressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Sound
-                soundPlayer.pompom();
+                soundPlayer.dress();
                 if(dress2==0) {
                     dress2=1;
                     dress1=0;
@@ -229,7 +243,7 @@ public class DressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Sound
-                soundPlayer.pompom();
+                soundPlayer.dress();
                 if(dress3==0) {
                     dress3=1;
                     dress2=0;
