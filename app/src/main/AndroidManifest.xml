@@ -10,8 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".HowtoActivity" />
-        <activity android:name=".TitleActivity">
+        <activity android:name=".HowtoActivity"
+                   android:screenOrientation="portrait"/>
+        <activity android:name=".TitleActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,13 +29,18 @@
             android:name=".PassLockActivity"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity android:name=".PrivacyActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".LogRefeActivity" />
-        <activity android:name=".DressActivity" />
-        <activity android:name=".LogActivity" />
-        <activity android:name=".DiaryActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DressActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LogActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DiaryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
