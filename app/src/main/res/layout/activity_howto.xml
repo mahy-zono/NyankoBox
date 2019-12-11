@@ -11,7 +11,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="使い方"
@@ -61,7 +61,7 @@
                     android:background="@color/alertOrenge"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="感情を選択！！"
+                    android:text="感情を選ぶだけ！！"
                     android:textColor="@android:color/white"
                     android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,13 +86,12 @@
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="340dp"
-                    android:layout_height="483dp"
+                    android:layout_height="500dp"
                     android:layout_gravity="center|top"
                     android:layout_marginTop="90dp"
                     android:background="@drawable/frame_style"
                     android:gravity="center|top"
-                    android:text="\n\nあなたの今の感情をタップしよう！\n日記記入画面からも変更できるよ！"
-                    android:textColor="#FFFFFF"
+                    android:text="\n\nあなたの今の感情をタップしよう！\n感情によってめるくんの表情が...！\n日記記入画面からも変更できるよ！"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.692"
@@ -104,7 +103,7 @@
                     android:layout_width="200dp"
                     android:layout_height="355dp"
                     android:layout_marginStart="100dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginTop="220dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/home_ss" />
@@ -146,13 +145,12 @@
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="340dp"
-                    android:layout_height="490dp"
+                    android:layout_height="500dp"
                     android:layout_gravity="center|top"
                     android:layout_marginTop="100dp"
                     android:background="@drawable/frame_style"
                     android:gravity="center|top"
                     android:text="\n\n１日の目標を設定しよう！\n達成できたら👍をタップ！\n達成目指して頑張ってね！\n"
-                    android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.692"
@@ -199,7 +197,7 @@
                     android:background="@color/alertOrenge"
                     android:rotation="45"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView3" />
+                    app:layout_constraintTop_toTopOf="@+id/textView5" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -210,7 +208,6 @@
                     android:background="@drawable/frame_style"
                     android:gravity="center|top"
                     android:text="\n\n今日の出来事を記入してね！記入が終わったら｢送信ボタン｣をタップ！\n日記は必須じゃないから空白でもOK!\nこの画面で感情の変更もできるよ！"
-                    android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.692"
@@ -257,7 +254,7 @@
                     android:background="@color/alertOrenge"
                     android:rotation="45"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView3" />
+                    app:layout_constraintTop_toTopOf="@+id/textView7" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -267,8 +264,7 @@
                     android:layout_marginTop="100dp"
                     android:background="@drawable/frame_style"
                     android:gravity="center|top"
-                    android:text="\n\nカレンダーボタンをタップして、　日付を選択してね！\nこの画面で直接日記を記入したり書き換えたりもできるよ！\n記入が終わったら｢編集ボタン｣をタップ！\日記を削除したいときは｢削除ボタン｣をタップしてね！"
-                    android:textColor="#FFFFFF"
+                    android:text="\n\nカレンダーボタンをタップして、\n日付を選択！\nこの画面で直接日記を記入したり、\n書き換えたりもできるよ！\n記入が終わったら｢編集ボタン｣を\nタップ！日記を削除したいときは\n｢削除ボタン｣をタップしてね！"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.692"
@@ -283,6 +279,121 @@
                     app:srcCompat="@drawable/log_ss" />
 
             </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="342dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:background="@color/alertOrenge"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="かわいく着せ替え！"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="100dp"
+                    android:background="@color/alertOrenge"
+                    android:rotation="45"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="340dp"
+                    android:layout_height="550dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/frame_style"
+                    android:gravity="center|top"
+                    android:text="\n\n赤枠の中からお洋服を選んでね！\nめるくんをかわいくコーディネートしてあげよう!"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.692"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="200dp"
+                    android:layout_height="355dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="250dp"
+                    app:srcCompat="@drawable/dress_ss" />
+
+            </FrameLayout>
+
+           <!-- LINEのところ
+                <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="342dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:background="@color/alertOrenge"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="めるくんとおはなししよう！"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="100dp"
+                    android:background="@color/alertOrenge"
+                    android:rotation="45"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="340dp"
+                    android:layout_height="600dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/frame_style"
+                    android:gravity="center|top"
+                    android:text="\n\n"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.692"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="200dp"
+                    android:layout_height="355dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="330dp"
+                    app:srcCompat="@drawable/dress_ss" />
+
+            </FrameLayout> -->
 
 
         </LinearLayout>
