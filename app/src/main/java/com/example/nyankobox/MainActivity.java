@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // カスタムレイアウトの用意
                                     LayoutInflater layoutInflater = getLayoutInflater();
-                                    View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                                    View customAlertView = layoutInflater.inflate(R.layout.clear2_dialog, null);
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                     builder.setView(customAlertView);
@@ -321,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     // メッセージの変更
                                     TextView message = customAlertView.findViewById(R.id.message);
-                                    message.setText("目標を入力してにゃ～");
+                                    message.setText("目標が入力されてないにゃ...");
                                     message.setTypeface(customFont);
 
                                     final AlertDialog alertDialog = builder.create();

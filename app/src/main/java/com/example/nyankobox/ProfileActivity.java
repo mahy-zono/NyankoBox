@@ -32,6 +32,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     // MemoOpenHelperクラスを定義
     dbData helper = null;
+    // Sound
+    private SoundPlayer soundPlayer;
 
     //データ
     String userName="";
@@ -48,6 +50,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         //カスタムフォント
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
@@ -185,6 +189,8 @@ public class ProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.send();
                 userBD=birthdayDate.getText().toString();
 
                 // データベースを取得する
@@ -245,6 +251,8 @@ public class ProfileActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.back();
                 finish();
             }
         });

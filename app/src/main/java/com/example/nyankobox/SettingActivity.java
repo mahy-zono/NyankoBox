@@ -11,11 +11,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
+    // Sound
+    private SoundPlayer soundPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
         //カスタムフォント
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
@@ -28,6 +32,8 @@ public class SettingActivity extends AppCompatActivity {
         prosend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), ProfileActivity.class);
                 startActivity(intent);
             }
@@ -51,6 +57,8 @@ public class SettingActivity extends AppCompatActivity {
         howtosend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), HowtoActivity.class);
                 startActivity(intent);
             }
@@ -61,6 +69,8 @@ public class SettingActivity extends AppCompatActivity {
         backsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.back();
                 finish();
             }
         });

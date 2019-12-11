@@ -132,6 +132,8 @@ public class LogActivity extends AppCompatActivity {
         calendarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
                 //Calendarインスタンスを取得
                 final Calendar date = Calendar.getInstance();
                 //DatePickerDialogインスタンスを取得
@@ -241,6 +243,8 @@ public class LogActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.send();
                 //日付が選択されているか
                 EditText date = findViewById(R.id.dateText);
                 String dateStr = date.getText().toString();
@@ -358,6 +362,8 @@ public class LogActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Sound
+                soundPlayer.send();
                 //日付が選択されているか
                 EditText date = findViewById(R.id.dateText);
                 String dateStr = date.getText().toString();

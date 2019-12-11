@@ -134,6 +134,8 @@ public class TitleActivity extends AppCompatActivity {
               try {
                     //誕生日チェック
                     if (bd.equals(nowDate)) {
+                        //Sound
+                        soundPlayer.hbd();
                         //カスタムフォント
                         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
