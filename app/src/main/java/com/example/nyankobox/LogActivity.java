@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -99,6 +100,18 @@ public class LogActivity extends AppCompatActivity {
                 soundPlayer.pompom();
                 Intent intent = new Intent(getApplication(), DressActivity.class);
                 startActivity(intent);
+            }
+        });
+        //トーク画面に遷移
+        ImageButton linesend = findViewById(R.id.lineBtn);
+        linesend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                Uri uri = Uri.parse("http://line.me/ti/p/%40ffg0778p");
+                Intent i = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
             }
         });
 
