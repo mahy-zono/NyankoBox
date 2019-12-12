@@ -211,7 +211,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 // カスタムレイアウトの用意
                 LayoutInflater layoutInflater = getLayoutInflater();
-                View customAlertView = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+                View customAlertView = layoutInflater.inflate(R.layout.profile_dialog, null);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setView(customAlertView);

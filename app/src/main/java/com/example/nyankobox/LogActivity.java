@@ -212,7 +212,11 @@ public class LogActivity extends AppCompatActivity {
                                 //指定書式に変換して表示
                                 EditText dt = new EditText(LogActivity.this);
                                 dt.setTypeface(customFont);
+                                //指定書式に変換して表示
+                                EditText gt = findViewById(R.id.editDiary);
+                                gt.setTypeface(customFont);
                                 //メッセージ非表示
+                                gt.getEditableText().clear();
                                 //目標の非表示
                                 dt.getEditableText().clear();
                                 dt.setTypeface(customFont);
