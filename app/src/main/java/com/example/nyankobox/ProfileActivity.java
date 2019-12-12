@@ -139,7 +139,7 @@ public class ProfileActivity extends AppCompatActivity {
             db.close();
         }
 
-        nameText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+      /*  nameText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             //Enterキーが押された時の処理
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -152,6 +152,7 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
+        */
 
         //誕生日選択
         birthdayDate.setOnClickListener(new View.OnClickListener(){
@@ -267,6 +268,12 @@ public class ProfileActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(mainLayout.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         //背景にフォーカスを移す
         mainLayout.requestFocus();
+        // nameTextに名前を表示
+        String text = nameText.getText().toString();  //名前取得
+        userName = text;
+        if(!text.equals("")){
+            nameText.setText(text); //名前をセット
+        }
         return false;
     }
 }

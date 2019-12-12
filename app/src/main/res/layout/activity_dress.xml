@@ -100,11 +100,12 @@
     <HorizontalScrollView
         android:layout_width="271dp"
         android:layout_height="118dp"
-        android:layout_marginTop="504dp"
+        android:layout_marginTop="600dp"
         android:layout_marginEnd="24dp"
         android:scrollbarSize="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <!-- android:layout_marginTop="504dp" -->
 
         <LinearLayout
             android:layout_width="wrap_content"

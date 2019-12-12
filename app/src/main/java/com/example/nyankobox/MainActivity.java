@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         goalText.setTypeface(customFont);
         mainLayout = (ConstraintLayout)findViewById(R.id.mainLayout);
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        /*goalText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             //Enterキーが押された時の処理
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 return false;
             }
-        });
+        }); */
 
         //目標達成
         final ImageButton clearButton = findViewById(R.id.clearBtn);
@@ -801,8 +801,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     /**
-     * EditText編集時に背景をタップしたらキーボードを閉じるようにするタッチイベントの処理
+     * EditText編集時に背景をタップしたらキーボードを閉じる,目標を保存するタッチイベントの処理
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -811,6 +813,62 @@ public class MainActivity extends AppCompatActivity {
         //フォーカスを背景に移す
         mainLayout.requestFocus();
 
-        return false;
+                // goalTextViewに目標を表示
+                String text = goalText.getText().toString();  //目標取得
+                if(!text.equals("")) {
+                    goalText.setText(text); //目標をセット
+                }
+                // データベースを取得する
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                try {
+                    // rawQueryというSELECT専用メソッドを使用してデータを取得する
+                    Cursor c = db.rawQuery("select * from NYANKO_TABLE where date = '"+nowdate+"'", null);
+
+                    // Cursorの先頭行があるかどうか確認
+                    boolean next = c.moveToFirst();
+
+                    // 取得した全ての行を取得
+                    while (next) {
+                        // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
+                        dispGoal = c.getString(3); // 目標を取得
+                        // 次の行が存在するか確認
+                        next = c.moveToNext();
+                        //フラグを変更
+                        newFlag = false;
+                    }
+                    if(newFlag==false){
+                        //編集の場合
+                        try {
+                            //目標がリセット
+                            if(text!="") {
+                                // UPDATE
+                                db.execSQL("update NYANKO_TABLE set goal = '" + text + "' where date = '" + nowdate + "'");
+                                db.execSQL("update NYANKO_TABLE set clear = '0' where date = '"+nowdate+"'");
+                                cl = 0;
+                                final ImageButton clearButton = findViewById(R.id.clearBtn);
+                                clearButton.setImageResource(R.drawable.clearbtn);
+                            }else{
+                                //UPDATE
+                                db.execSQL("update NYANKO_TABLE set goal = '" + "" + "' where date = '" + nowdate + "'");
+                                db.execSQL("update NYANKO_TABLE set clear = '" + 0 + "' where date = '" + nowdate + "'");
+                            }
+                        }catch(NullPointerException e){
+
+                        }
+                    }else{
+                        // 新規作成の場合
+                        // INSERT
+                        db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + "" + "','"+ text +"','')");
+                    }
+                } finally {
+                    // finallyは、tryの中で例外が発生した時でも必ず実行される
+                    // dbを開いたら確実にclose
+                    db.close();
+                }
+                return false;
+
+
     }
+
 }
