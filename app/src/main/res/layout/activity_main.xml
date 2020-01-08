@@ -10,40 +10,57 @@
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/wkwkBtn"
-        android:layout_width="@android:dimen/notification_large_icon_height"
-        android:layout_height="@android:dimen/notification_large_icon_height"
-        android:layout_marginStart="60dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/irirBtn"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/lineBtn"
-        app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:srcCompat="@drawable/wkwk" />
-
-    <ImageButton
-        android:id="@+id/irirBtn"
-        android:layout_width="@android:dimen/notification_large_icon_height"
-        android:layout_height="@android:dimen/notification_large_icon_height"
-        android:layout_marginBottom="60dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/skskBtn"
-        app:srcCompat="@drawable/irir" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageButton
-        android:id="@+id/skskBtn"
-        android:layout_width="@android:dimen/notification_large_icon_height"
-        android:layout_height="@android:dimen/notification_large_icon_width"
-        android:layout_marginEnd="60dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:srcCompat="@drawable/sksk" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/wkwkBtn"
+                android:layout_width="@android:dimen/notification_large_icon_height"
+                android:layout_height="@android:dimen/notification_large_icon_height"
+                android:layout_marginStart="60dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toStartOf="@+id/irirBtn"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/lineBtn"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/wkwk" />
+
+            <ImageButton
+                android:id="@+id/irirBtn"
+                android:layout_width="@android:dimen/notification_large_icon_height"
+                android:layout_height="@android:dimen/notification_large_icon_height"
+                android:layout_marginBottom="60dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/skskBtn"
+                app:srcCompat="@drawable/irir" />
+
+            <ImageButton
+                android:id="@+id/skskBtn"
+                android:layout_width="@android:dimen/notification_large_icon_height"
+                android:layout_height="@android:dimen/notification_large_icon_width"
+                android:layout_marginEnd="60dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/sksk" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -182,18 +199,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="8dp"
         android:ems="18"
         android:gravity="center_horizontal"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/irirBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toEndOf="@+id/lineBtn"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageButton
         android:id="@+id/settingBtn"

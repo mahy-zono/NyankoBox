@@ -5,7 +5,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_setting"
+    android:background="@drawable/background_diary"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     tools:context=".DiaryActivity">
@@ -16,15 +16,18 @@
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.016" />
 
     <ImageButton
         android:id="@+id/diaryBtn"
@@ -106,34 +109,21 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/irirBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toEndOf="@+id/lineBtn"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.107"
-        app:srcCompat="@drawable/sendbtn" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="268dp"
-        android:layout_height="418dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.675"
-        app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/diary1" />
+        app:layout_constraintVertical_bias="0.835"
+        app:srcCompat="@drawable/sendbtn" />
 
     <EditText
         android:id="@+id/editDiary"
-        android:layout_width="246dp"
-        android:layout_height="360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="130dp"
         android:layout_marginEnd="16dp"
@@ -146,11 +136,12 @@
         android:maxLength="140"
         android:textColor="#665a5a"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026" />
     <!-- android:layout_marginTop="148dp" -->
 
 
@@ -168,11 +159,14 @@
         android:id="@+id/irirBtn"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/skskBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.953"
         app:srcCompat="@drawable/irir" />
 
     <ImageButton
@@ -198,18 +192,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setbtn" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="94dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/wkwkBtn"
-        app:layout_constraintStart_toEndOf="@+id/lineBtn"
-        app:srcCompat="@drawable/nowemo" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
