@@ -144,41 +144,52 @@
         app:layout_constraintVertical_bias="0.026" />
     <!-- android:layout_marginTop="148dp" -->
 
-
-    <ImageButton
-        android:id="@+id/wkwkBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/irirBtn"
-        app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:srcCompat="@drawable/wkwk" />
-
-    <ImageButton
-        android:id="@+id/irirBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="8dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/skskBtn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953"
-        app:srcCompat="@drawable/irir" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageButton
-        android:id="@+id/skskBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="4dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:srcCompat="@drawable/sksk" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/wkwkBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toStartOf="@+id/irirBtn"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/wkwk" />
+
+            <ImageButton
+                android:id="@+id/irirBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="8dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/skskBtn"
+                app:srcCompat="@drawable/irir" />
+
+            <ImageButton
+                android:id="@+id/skskBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="4dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/sksk" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <ImageButton
         android:id="@+id/settingBtn"
