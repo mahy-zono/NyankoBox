@@ -40,6 +40,7 @@ public class TitleActivity extends AppCompatActivity {
     String name = "";
     String bd = "";
     String dispBd = "";
+    String checkBd = "";
     String nowDate = "";
 
     private void blinkText(ImageButton touchButton, long duration, long offset){
@@ -90,6 +91,9 @@ public class TitleActivity extends AppCompatActivity {
         SimpleDateFormat dbd = new SimpleDateFormat("MM月dd日");
         dispBd = dbd.format(d);
 
+        SimpleDateFormat cbd = new SimpleDateFormat("MM 月 dd 日");
+        checkBd = cbd.format(d);
+
         // データベースから値を取得する
         if(helper == null){
             helper = new dbData(TitleActivity.this);
@@ -133,7 +137,7 @@ public class TitleActivity extends AppCompatActivity {
                 soundPlayer.enter();
               try {
                     //誕生日チェック
-                    if (bd.equals(nowDate)) {
+                    if (bd.equals(checkBd)) {
                         //Sound
                         soundPlayer.hbd();
                         //カスタムフォント

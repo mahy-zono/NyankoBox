@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class DressActivity extends AppCompatActivity {
     // MemoOpenHelperクラスを定義
@@ -39,6 +41,14 @@ public class DressActivity extends AppCompatActivity {
 
         //サウンド
         soundPlayer = new SoundPlayer(this);
+
+        //カスタムフォント
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+        //指定書式に変換して表示
+        TextView dressText = (TextView) findViewById(R.id.dressText);
+
+        dressText.setTypeface(customFont);
 
         //ホーム画面に遷移
         ImageButton homesend = findViewById(R.id.homeBtn);

@@ -5,18 +5,21 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_home"
+    android:background="@drawable/background_setting"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
     <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="253dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toEndOf="@+id/lineBtn">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,21 +27,18 @@
 
             <ImageButton
                 android:id="@+id/wkwkBtn"
-                android:layout_width="@android:dimen/notification_large_icon_height"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginStart="60dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toStartOf="@+id/irirBtn"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/lineBtn"
                 app:layout_constraintTop_toTopOf="@+id/irirBtn"
                 app:srcCompat="@drawable/wkwk" />
 
             <ImageButton
                 android:id="@+id/irirBtn"
-                android:layout_width="@android:dimen/notification_large_icon_height"
-                android:layout_height="@android:dimen/notification_large_icon_height"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginBottom="60dp"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
@@ -48,18 +48,14 @@
 
             <ImageButton
                 android:id="@+id/skskBtn"
-                android:layout_width="@android:dimen/notification_large_icon_height"
-                android:layout_height="@android:dimen/notification_large_icon_width"
-                android:layout_marginEnd="60dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/irirBtn"
                 app:srcCompat="@drawable/sksk" />
 
         </LinearLayout>
     </HorizontalScrollView>
-
 
 
     <ImageView
@@ -67,14 +63,11 @@
         android:layout_width="189dp"
         android:layout_height="225dp"
         android:layout_gravity="center"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.528"
         app:srcCompat="@drawable/sample" />
@@ -171,41 +164,58 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/line" />
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="269dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toEndOf="@+id/dressBtn"
+        app:layout_constraintTop_toBottomOf="@+id/dressView"
+        app:srcCompat="@drawable/messagemel" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="269dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toEndOf="@+id/homeBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/goaledit" />
+
     <EditText
         android:id="@+id/goalText"
-        android:layout_width="211dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="215dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="128dp"
         android:background="#00000000"
-        android:ems="10"
+        android:ems="12"
         android:fontFamily="sans-serif"
         android:gravity="center|left"
         android:hint="目標を入力してね"
         android:inputType="textPersonName"
         android:maxLength="20"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.215" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/homeBtn"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="50dp"
-        android:ems="18"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:ems="12"
         android:gravity="center_horizontal"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toEndOf="@+id/lineBtn"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -224,13 +234,13 @@
 
     <ImageButton
         android:id="@+id/clearBtn"
-        android:layout_width="@android:dimen/app_icon_size"
-        android:layout_height="@android:dimen/app_icon_size"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="100dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="75dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/clearbtn" />
     <!--android:layout_marginTop="80dp"-->
@@ -239,16 +249,14 @@
         android:id="@+id/dressView"
         android:layout_width="210dp"
         android:layout_height="255dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.496"
         app:srcCompat="@drawable/dress3" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

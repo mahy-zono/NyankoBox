@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_dress"
+    android:background="@drawable/background_setting"
     tools:context=".DressActivity">
 
     <ImageButton
@@ -86,30 +86,36 @@
         android:layout_width="220.5dp"
         android:layout_height="262.5dp"
         android:layout_gravity="center"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447"
         app:srcCompat="@drawable/sample" />
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="268dp"
+        android:layout_height="167dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/lineBtn"
+        app:srcCompat="@drawable/dresslist" />
+
     <HorizontalScrollView
-        android:layout_width="267dp"
-        android:layout_height="114dp"
+        android:layout_width="242dp"
+        android:layout_height="93dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="550dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="85dp"
         android:scrollbarSize="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lineBtn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405">
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toEndOf="@+id/lineBtn">
         <!-- android:layout_marginTop="504dp" -->
 
         <LinearLayout
@@ -119,8 +125,8 @@
 
             <ImageButton
                 android:id="@+id/dress1Btn"
-                android:layout_width="75.95dp"
-                android:layout_height="87dp"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="5dp"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
@@ -130,8 +136,8 @@
 
             <ImageButton
                 android:id="@+id/dress2Btn"
-                android:layout_width="75.95dp"
-                android:layout_height="90.3dp"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="68dp"
                 android:background="#00FFFFFF"
@@ -142,8 +148,8 @@
 
             <ImageButton
                 android:id="@+id/dress3Btn"
-                android:layout_width="75.95dp"
-                android:layout_height="90.3dp"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="8dp"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
@@ -171,15 +177,25 @@
         android:id="@+id/dressView"
         android:layout_width="245dp"
         android:layout_height="297.5dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413"
         app:srcCompat="@drawable/dress3" />
+
+    <TextView
+        android:id="@+id/dressText"
+        android:layout_width="246dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="おきがえ中・・・"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/dressView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

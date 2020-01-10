@@ -10,6 +10,14 @@
     android:focusableInTouchMode="true"
     tools:context=".DiaryActivity">
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="96dp"
+        android:layout_height="82dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintStart_toEndOf="@+id/lineBtn"
+        app:srcCompat="@drawable/nowemo" />
+
 
     <TextView
         android:id="@+id/dateText"
@@ -86,6 +94,17 @@
         app:srcCompat="@drawable/log" />
 
     <ImageButton
+        android:id="@+id/sendBtn"
+        android:layout_width="90dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:srcCompat="@drawable/sendbtn" />
+
+    <ImageButton
         android:id="@+id/lineBtn"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -102,83 +121,89 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/line" />
 
-    <ImageButton
-        android:id="@+id/sendBtn"
-        android:layout_width="97dp"
-        android:layout_height="69dp"
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="273dp"
+        android:layout_height="406dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toEndOf="@+id/lineBtn"
+        app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"
-        app:srcCompat="@drawable/sendbtn" />
+        app:srcCompat="@drawable/diary1" />
 
     <EditText
         android:id="@+id/editDiary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="253dp"
+        android:layout_height="355dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="#00000000"
-        android:ems="10"
+        android:ems="14"
         android:gravity="top"
         android:hint="日記を記入してね"
         android:inputType="textPersonName|textMultiLine"
         android:maxLength="140"
         android:textColor="#665a5a"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toEndOf="@+id/diaryBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.0" />
     <!-- android:layout_marginTop="148dp" -->
 
-
-    <ImageButton
-        android:id="@+id/wkwkBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/irirBtn"
-        app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:srcCompat="@drawable/wkwk" />
-
-    <ImageButton
-        android:id="@+id/irirBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="8dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/skskBtn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953"
-        app:srcCompat="@drawable/irir" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageButton
-        android:id="@+id/skskBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="4dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/irirBtn"
-        app:srcCompat="@drawable/sksk" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/wkwkBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                android:scrollbarDefaultDelayBeforeFade="400"
+                app:layout_constraintEnd_toStartOf="@+id/irirBtn"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/wkwk" />
+
+            <ImageButton
+                android:id="@+id/irirBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="8dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/skskBtn"
+                app:srcCompat="@drawable/irir" />
+
+            <ImageButton
+                android:id="@+id/skskBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/sksk" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <ImageButton
         android:id="@+id/settingBtn"
@@ -192,5 +217,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setbtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

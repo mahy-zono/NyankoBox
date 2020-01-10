@@ -2,6 +2,7 @@ package com.example.nyankobox;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +13,13 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +55,7 @@ public class DiaryActivity extends AppCompatActivity {
 
     // Sound
     private SoundPlayer soundPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -510,7 +515,7 @@ public class DiaryActivity extends AppCompatActivity {
         //キーボードを閉じたいEditTextオブジェクト
         editDiary = (EditText)findViewById(R.id.editDiary);
         //画面全体のレイアウト
-        mainLayout = (androidx.constraintlayout.widget.ConstraintLayout)findViewById(R.id.mainLayout);
+        mainLayout = (ConstraintLayout)findViewById(R.id.mainLayout);
         //キーボード表示を制御するためのオブジェクト
         inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
