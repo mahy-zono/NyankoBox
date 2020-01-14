@@ -37,11 +37,11 @@ public class PassLockActivity extends AppCompatActivity {
                     String passRegiStr = passRegiText.getText().toString();
                     int passRegiNum = Integer.parseInt(passRegiStr);
                     //testTextに表示
-                    testText.setText(String.valueOf(String.format("%1$04d",passRegiNum)));
+                    //testText.setText(String.valueOf(String.format("%1$04d",passRegiNum)));
 
                     //パスコード確認画面に遷移
-                    //Intent intent = new Intent(getApplication(), PassLock2Activity.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(getApplication(), PassLock2Activity.class);
+                    startActivity(intent);
                 }
                 return false;
             }
