@@ -24,6 +24,7 @@ public class PrivacyActivity extends AppCompatActivity {
     dbData helper = null;
     // 新規フラグ
     boolean newFlag = true;
+    TextView testText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class PrivacyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_privacy);
 
         //スイッチのインスタンス生成
-        sw = (CompoundButton) findViewById(R.id.passSw);
+        sw = (Switch) findViewById(R.id.passSw);
         passChangeBtn = (Button) findViewById(R.id.passChangeBtn);
         line4 =  (View) findViewById(R.id.line4);
 
@@ -64,6 +65,25 @@ public class PrivacyActivity extends AppCompatActivity {
             // dbを開いたら確実にclose
             db.close();
         }
+        if (newFlag == false) {
+            try {
+                if(swFlag==true) {
+                    sw.setChecked(true);
+                    passChangeBtn.setVisibility(View.VISIBLE);
+                    line4.setVisibility(View.VISIBLE);
+                    //パスワード仮表示する用
+                    testText = (TextView)findViewById(R.id.textView);
+                    testText.setText(passsw);
+                }else {
+                    sw.setChecked(false);
+                    passChangeBtn.setVisibility(View.INVISIBLE);
+                    line4.setVisibility(View.INVISIBLE);
+                }
+            }catch (NullPointerException e) {
+
+            }
+        }
+
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -74,49 +94,47 @@ public class PrivacyActivity extends AppCompatActivity {
                     if(isChecked == true) {
                         if (newFlag == false) {
                             try {
-                                if(passsw.equals("1")) {
                                     //　パスワード未設定→設定
                                     passsw = "1";
-                                    db.execSQL("update PROFILE_TABLE set lock = ' 1 ' where id = '1'");
+                                    db.execSQL("update PROFILE_TABLE set lock = '1' where id = '1'");
                                     //フラグ
                                     swFlag=true;
                                     //パスコード設定画面表示
-                                    Intent intent = new Intent(getApplication(), PassLockActivity.class);
-                                    startActivity(intent);
+                                    //Intent intent = new Intent(getApplication(), PassLockActivity.class);
+                                    //startActivity(intent);
                                     //パスコード変更ボタン表示
-                                    /*sw.setChecked(true);
+                                    sw.setChecked(true);
                                     passChangeBtn.setVisibility(View.VISIBLE);
-                                    line4.setVisibility(View.VISIBLE);*/
-                                }
+                                    line4.setVisibility(View.VISIBLE);
+                                testText.setText(passsw);
                             } catch (NullPointerException e) {
                             }
                         } else {
                             // 未設定→設定
                             passsw="1";
                             // 新規作成の場合
-                            db.execSQL("insert into PROFILE_TABLE(lock) VALUES(' 1 ')");
+                            db.execSQL("insert into PROFILE_TABLE(lock) VALUES('1')");
                             //フラグ
                             swFlag=true;
                             //パスコード設定画面表示
-                            Intent intent = new Intent(getApplication(), PassLockActivity.class);
-                            startActivity(intent);
+                            //Intent intent = new Intent(getApplication(), PassLockActivity.class);
+                            //startActivity(intent);
                             //パスコード変更ボタン表示
-                            /*sw.setChecked(true);
+                            sw.setChecked(true);
                             passChangeBtn.setVisibility(View.VISIBLE);
-                            line4.setVisibility(View.VISIBLE);*/
+                            line4.setVisibility(View.VISIBLE);
+                            testText.setText(passsw);
                         }
-                    }else if(!isChecked){
-                        if(passsw.equals("1")) {
+                    }else if(isChecked == false){
                             //設定→未設定
                             //switchがOFFのとき
                             passsw = "0";
-                            db.execSQL("update PROFILE_TABLE set lock = ' 0 ' where id = '1'");
+                            db.execSQL("update PROFILE_TABLE set lock = '0' where id = '1'");
                             //フラグ
                             swFlag=false;
                             //パスコード変更のボタン非表示
                             passChangeBtn.setVisibility(View.INVISIBLE);
                             line4.setVisibility(View.INVISIBLE);
-                        }
                     }
 
             }

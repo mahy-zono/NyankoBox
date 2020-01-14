@@ -145,6 +145,7 @@
         android:background="#00FFFFFF"
         android:gravity="center|left"
         android:text="プライバシー設定　　　　＞"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
