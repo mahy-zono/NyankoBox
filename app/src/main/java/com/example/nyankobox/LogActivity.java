@@ -207,6 +207,8 @@ public class LogActivity extends AppCompatActivity {
                                 dt.setTypeface(customFont);
                                 //メッセージ表示
                                 dt.setText(choiceDiary);
+                                //フラグを変更
+                                newFlag = true;
                             }else{
                                 //データがない場合
                                 //指定書式に変換して表示
@@ -218,8 +220,9 @@ public class LogActivity extends AppCompatActivity {
                                 //メッセージ非表示
                                 gt.getEditableText().clear();
                                 //目標の非表示
-                                dt.getEditableText().clear();
-                                dt.setTypeface(customFont);
+                                EditText goalT = findViewById(R.id.goalText);
+                                goalT.getEditableText().clear();
+                                goalT.setTypeface(customFont);
                                 //感情非表示
                                 findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
                                 //達成非表示

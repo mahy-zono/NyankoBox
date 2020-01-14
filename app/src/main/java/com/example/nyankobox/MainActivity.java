@@ -840,18 +840,22 @@ public class MainActivity extends AppCompatActivity {
                     if(newFlag==false){
                         //編集の場合
                         try {
-                            //目標がリセット
-                            if(text!="") {
-                                // UPDATE
-                                db.execSQL("update NYANKO_TABLE set goal = '" + text + "' where date = '" + nowdate + "'");
-                                db.execSQL("update NYANKO_TABLE set clear = '0' where date = '"+nowdate+"'");
-                                cl = 0;
-                                final ImageButton clearButton = findViewById(R.id.clearBtn);
-                                clearButton.setImageResource(R.drawable.clearbtn);
-                            }else{
-                                //UPDATE
-                                db.execSQL("update NYANKO_TABLE set goal = '" + "" + "' where date = '" + nowdate + "'");
-                                db.execSQL("update NYANKO_TABLE set clear = '" + 0 + "' where date = '" + nowdate + "'");
+                            if(dispGoal.equals(text)){
+
+                            }else {
+                                //目標がリセット
+                                if (text != "") {
+                                    // UPDATE
+                                    db.execSQL("update NYANKO_TABLE set goal = '" + text + "' where date = '" + nowdate + "'");
+                                    db.execSQL("update NYANKO_TABLE set clear = '0' where date = '" + nowdate + "'");
+                                    cl = 0;
+                                    final ImageButton clearButton = findViewById(R.id.clearBtn);
+                                    clearButton.setImageResource(R.drawable.clearbtn);
+                                } else {
+                                    //UPDATE
+                                    db.execSQL("update NYANKO_TABLE set goal = '" + "" + "' where date = '" + nowdate + "'");
+                                    db.execSQL("update NYANKO_TABLE set clear = '" + 0 + "' where date = '" + nowdate + "'");
+                                }
                             }
                         }catch(NullPointerException e){
 
