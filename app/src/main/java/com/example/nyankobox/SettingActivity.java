@@ -42,14 +42,14 @@ public class SettingActivity extends AppCompatActivity {
         //プライバシー画面に遷移
         Button prisend = findViewById(R.id.priBtn);
         prisend.setTypeface(customFont);
-        prisend.setEnabled(false);
-        /*prisend.setOnClickListener(new View.OnClickListener() {
+        prisend.setEnabled(true);
+        prisend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), PrivacyActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         //使い方画面に遷移
         Button howtosend = findViewById(R.id.howtoBtn);
