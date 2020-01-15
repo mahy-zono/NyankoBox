@@ -220,7 +220,7 @@
         android:focusableInTouchMode="false"
         android:gravity="top"
         android:hint="今回の目標はおやすみにゃ～"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textMultiLine"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
