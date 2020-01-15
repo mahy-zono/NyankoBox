@@ -202,7 +202,7 @@
         android:fontFamily="sans-serif"
         android:gravity="center|left"
         android:hint="目標を入力してね"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textMultiLine"
         android:maxLength="20"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
