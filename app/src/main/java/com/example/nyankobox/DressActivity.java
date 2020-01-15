@@ -25,6 +25,8 @@ public class DressActivity extends AppCompatActivity {
     int dress1=0;
     int dress2=0;
     int dress3=0;
+    int dress4=0;
+    int dress5=0;
 
     // 新規フラグ
     boolean newFlag = true;
@@ -122,6 +124,8 @@ public class DressActivity extends AppCompatActivity {
         final ImageButton dress1Button = findViewById(R.id.dress1Btn);
         final ImageButton dress2Button = findViewById(R.id.dress2Btn);
         final ImageButton dress3Button = findViewById(R.id.dress3Btn);
+        final ImageButton dress4Button = findViewById(R.id.dress4Btn);
+        final ImageButton dress5Button = findViewById(R.id.dress5Btn);
 
                 // データベースから値を取得する
                 if (helper == null) {
@@ -173,6 +177,18 @@ public class DressActivity extends AppCompatActivity {
                         dress3Button.setImageResource(R.drawable.dress3ch);
                         dress3=1;
                         break;
+                    case "dress4":
+                        findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                        dressView.setImageResource(R.drawable.dress4);
+                        dress4Button.setImageResource(R.drawable.dress4ch);
+                        dress4=1;
+                        break;
+                    case "dress5":
+                        findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                        dressView.setImageResource(R.drawable.dress5);
+                        dress5Button.setImageResource(R.drawable.dress5ch);
+                        dress5=1;
+                        break;
                 }
                 //dress1
         dress1Button.setOnClickListener(new View.OnClickListener() {
@@ -184,11 +200,15 @@ public class DressActivity extends AppCompatActivity {
                     dress1=1;
                     dress2=0;
                     dress3=0;
+                    dress4=0;
+                    dress5=0;
                     findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                     dressView.setImageResource(R.drawable.dress1);
                     dress1Button.setImageResource(R.drawable.dress1ch);
                     dress2Button.setImageResource(R.drawable.dress2btn);
                     dress3Button.setImageResource(R.drawable.dress3btn);
+                    dress4Button.setImageResource(R.drawable.dress4btn);
+                    dress5Button.setImageResource(R.drawable.dress5btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     //新規作成
@@ -221,11 +241,15 @@ public class DressActivity extends AppCompatActivity {
                     dress2=1;
                     dress1=0;
                     dress3=0;
+                    dress4=0;
+                    dress5=0;
                     findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                     dressView.setImageResource(R.drawable.dress2);
                     dress1Button.setImageResource(R.drawable.dress1btn);
                     dress2Button.setImageResource(R.drawable.dress2ch);
                     dress3Button.setImageResource(R.drawable.dress3btn);
+                    dress4Button.setImageResource(R.drawable.dress4btn);
+                    dress5Button.setImageResource(R.drawable.dress5btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     //新規作成
@@ -258,11 +282,15 @@ public class DressActivity extends AppCompatActivity {
                     dress3=1;
                     dress2=0;
                     dress1=0;
+                    dress4=0;
+                    dress5=0;
                     findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                     dressView.setImageResource(R.drawable.dress3);
                     dress3Button.setImageResource(R.drawable.dress3ch);
                     dress2Button.setImageResource(R.drawable.dress2btn);
                     dress1Button.setImageResource(R.drawable.dress1btn);
+                    dress4Button.setImageResource(R.drawable.dress4btn);
+                    dress5Button.setImageResource(R.drawable.dress5btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     //新規作成
@@ -277,6 +305,89 @@ public class DressActivity extends AppCompatActivity {
                     dress3=0;
                     findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
                     dress3Button.setImageResource(R.drawable.dress3btn);
+                    // データベースを取得する
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    db.execSQL("update PROFILE_TABLE set choice = '" + "" + "'");
+
+                }
+                //CA.dressSave("dress1");
+            }
+        });
+        //dress4
+        dress4Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.dress();
+                if(dress4==0) {
+                    dress4=1;
+                    dress3=0;
+                    dress2=0;
+                    dress1=0;
+                    dress5=0;
+                    findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                    dressView.setImageResource(R.drawable.dress4);
+                    dress3Button.setImageResource(R.drawable.dress3btn);
+                    dress2Button.setImageResource(R.drawable.dress2btn);
+                    dress1Button.setImageResource(R.drawable.dress1btn);
+                    dress4Button.setImageResource(R.drawable.dress4ch);
+                    dress5Button.setImageResource(R.drawable.dress5btn);
+                    // データベースを取得する
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    //新規作成
+                    if (newFlag == true) {
+                        // INSERT
+                        db.execSQL("insert into PROFILE_TABLE(id,choice) VALUES('1','" + "dress4" + "')");
+                    } else {
+                        //UPDATE
+                        db.execSQL("update PROFILE_TABLE set choice = '" + "dress4" + "'");
+                    }
+                }else{
+                    dress4=0;
+                    findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
+                    dress4Button.setImageResource(R.drawable.dress4btn);
+                    // データベースを取得する
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    db.execSQL("update PROFILE_TABLE set choice = '" + "" + "'");
+
+                }
+                //CA.dressSave("dress1");
+            }
+        });
+
+        //dress5
+        dress5Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.dress();
+                if(dress5==0) {
+                    dress4=0;
+                    dress3=0;
+                    dress2=0;
+                    dress1=0;
+                    dress5=1;
+                    findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                    dressView.setImageResource(R.drawable.dress5);
+                    dress3Button.setImageResource(R.drawable.dress3btn);
+                    dress2Button.setImageResource(R.drawable.dress2btn);
+                    dress1Button.setImageResource(R.drawable.dress1btn);
+                    dress4Button.setImageResource(R.drawable.dress4btn);
+                    dress5Button.setImageResource(R.drawable.dress5ch);
+                    // データベースを取得する
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    //新規作成
+                    if (newFlag == true) {
+                        // INSERT
+                        db.execSQL("insert into PROFILE_TABLE(id,choice) VALUES('1','" + "dress5" + "')");
+                    } else {
+                        //UPDATE
+                        db.execSQL("update PROFILE_TABLE set choice = '" + "dress5" + "'");
+                    }
+                }else{
+                    dress5=0;
+                    findViewById(R.id.dressView).setVisibility(View.INVISIBLE);
+                    dress5Button.setImageResource(R.drawable.dress5btn);
                     // データベースを取得する
                     SQLiteDatabase db = helper.getWritableDatabase();
                     db.execSQL("update PROFILE_TABLE set choice = '" + "" + "'");

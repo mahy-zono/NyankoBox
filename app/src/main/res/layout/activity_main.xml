@@ -54,6 +54,14 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/sksk" />
 
+            <ImageButton
+                android:id="@+id/ututBtn"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/utut" />
+
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -63,13 +71,10 @@
         android:layout_width="189dp"
         android:layout_height="225dp"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="210dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528"
         app:srcCompat="@drawable/sample" />
 
 
@@ -249,13 +254,10 @@
         android:id="@+id/dressView"
         android:layout_width="210dp"
         android:layout_height="255dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="210dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496"
         app:srcCompat="@drawable/dress3" />
 
 
