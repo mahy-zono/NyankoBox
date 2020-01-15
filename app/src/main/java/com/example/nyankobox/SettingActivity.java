@@ -46,7 +46,7 @@ public class SettingActivity extends AppCompatActivity {
         prisend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), PrivacyActivity.class);
+                Intent intent = new Intent(getApplication(), Privacy2Activity.class);
                 startActivity(intent);
             }
         });
