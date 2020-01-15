@@ -186,6 +186,8 @@ public class LogActivity extends AppCompatActivity {
 
                                 } else if (choiceEmo.equals("しくしく")) {
                                     emoView.setImageResource(R.drawable.sksk);
+                                } else if (choiceEmo.equals("うとうと")) {
+                                    emoView.setImageResource(R.drawable.utut);
                                 }else {
                                     findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
                                 }

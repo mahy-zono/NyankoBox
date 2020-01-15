@@ -43,6 +43,7 @@ public class DiaryActivity extends AppCompatActivity {
     int sk=0;
     int ir=0;
     int wk=0;
+    int ut=0;
 
     // 最終的に表示する文字列
     String dispDiary = "";
@@ -74,6 +75,7 @@ public class DiaryActivity extends AppCompatActivity {
         final ImageButton wkwkButton = findViewById(R.id.wkwkBtn);
         final ImageButton irirButton = findViewById(R.id.irirBtn);
         final ImageButton skskButton = findViewById(R.id.skskBtn);
+        final ImageButton ututButton = findViewById(R.id.ututBtn);
 
         //現在日時の取得
         Date d = new Date();
@@ -188,18 +190,27 @@ public class DiaryActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
 
                 } else if (dispEmo.equals("いらいら")) {
                     ir=1;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
+                    ututButton.setImageResource(R.drawable.utut);
 
                 } else if (dispEmo.equals("しくしく")) {
                     sk=1;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                } else if (dispEmo.equals("うとうと")){
+                    ut=1;
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.ut);
                 }
             }catch(NullPointerException e){
 
@@ -246,9 +257,12 @@ public class DiaryActivity extends AppCompatActivity {
                     sk = 0;
                     wk = 1;
                     ir = 0;
+                    ut = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -304,9 +318,11 @@ public class DiaryActivity extends AppCompatActivity {
                     sk = 0;
                     wk = 0;
                     ir = 1;
+                    ut = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
+                    ututButton.setImageResource(R.drawable.utut);
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -361,9 +377,73 @@ public class DiaryActivity extends AppCompatActivity {
                     sk = 1;
                     wk = 0;
                     ir = 0;
+                    ut = 0;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
+
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
+                        }
+
+
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }
+
+
+
+
+            }
+        });
+
+        // うとうとclick
+        ututButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
+                // 入力内容を取得する
+                emo = "うとうと";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                //ボタンの画像変更
+                if(ut == 1){
+                    //選択→未選択
+                    ut = 0;
+                    ututButton.setImageResource(R.drawable.utut);
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }else{
+                    //未選択→選択
+                    sk = 0;
+                    wk = 0;
+                    ir = 0;
+                    ut = 1;
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.ut);
                     try {
                         if(newFlag==false){
                             //編集の場合

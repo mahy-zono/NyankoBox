@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     int sk=0;
     int ir=0;
     int wk=0;
+    int ut=0;
     // 最終的に表示する文字列
     String dispEmo ="";
 
@@ -440,6 +441,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton wkwkButton = findViewById(R.id.wkwkBtn);
         final ImageButton irirButton = findViewById(R.id.irirBtn);
         final ImageButton skskButton = findViewById(R.id.skskBtn);
+        final ImageButton ututButton = findViewById(R.id.ututBtn);
 
         //日付の取得
         SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
@@ -488,6 +490,14 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                 dressView.setImageResource(R.drawable.dress3);
                 break;
+            case "dress4":
+                findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                dressView.setImageResource(R.drawable.dress4);
+                break;
+            case "dress5":
+                findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                dressView.setImageResource(R.drawable.dress5);
+                break;
         }
 
          mel= findViewById(R.id.imageView);
@@ -523,6 +533,7 @@ public class MainActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
 
                 } else if (dispEmo.equals("いらいら")) {
                     ir=1;
@@ -532,6 +543,7 @@ public class MainActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
+                    ututButton.setImageResource(R.drawable.utut);
 
                 } else if (dispEmo.equals("しくしく")) {
                     sk=1;
@@ -541,6 +553,16 @@ public class MainActivity extends AppCompatActivity {
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                } else if (dispEmo.equals("うとうと")) {
+                    ut=1;
+                    mt.setText("めると一緒におやすみするにゃ～");
+                    //表情差分
+                    mel.setImageResource(R.drawable.utcat);
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.ut);
                 }
                 //目標
                 if(!dispGoal.equals("")){
@@ -605,9 +627,11 @@ public class MainActivity extends AppCompatActivity {
                     sk = 0;
                     wk = 1;
                     ir = 0;
+                    ut = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
                     //表情差分
                     mel.setImageResource(R.drawable.wkcat);
                     //メッセージ表示
@@ -671,9 +695,11 @@ public class MainActivity extends AppCompatActivity {
                     sk = 0;
                     wk = 0;
                     ir = 1;
+                    ut = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
+                    ututButton.setImageResource(R.drawable.utut);
                     //メッセージ表示
                     mt.setText("ぷんぷん！\nめるも少しおこなのにゃ！！");
                     //表情差分
@@ -736,9 +762,11 @@ public class MainActivity extends AppCompatActivity {
                     sk = 1;
                     wk = 0;
                     ir = 0;
+                    ut = 0;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
                     //メッセージ表示
                     mt.setText("そっかぁ...。めるがよしよししてあげるにゃ～！いいこいいこ～♪");
                     //表情差分
@@ -764,6 +792,74 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // うとうとclick
+        ututButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
+                // 入力内容を取得する
+                emo = "うとうと";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                //ボタンの画像変更
+                if(ut == 1){
+                    //選択→未選択
+                    ut = 0;
+                    ututButton.setImageResource(R.drawable.utut);
+                    //メッセージ表示
+                    mt.setText("おはようにゃ～！\nもう目は覚めたかにゃ？");
+                    //表情差分
+                    mel.setImageResource(R.drawable.sample);
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }else{
+                    //未選択→選択
+                    sk = 0;
+                    wk = 0;
+                    ir = 0;
+                    ut = 1;
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.ut);
+                    //メッセージ表示
+                    mt.setText("めると一緒におやすみするにゃ～");
+                    //表情差分
+                    mel.setImageResource(R.drawable.utcat);
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
+
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
+                        }
+
+
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }
+            }
+        });
+
+
 
 
       /*  try {
