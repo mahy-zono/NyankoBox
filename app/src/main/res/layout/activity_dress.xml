@@ -106,9 +106,9 @@
         app:srcCompat="@drawable/dresslist" />
 
     <HorizontalScrollView
-        android:layout_width="242dp"
+        android:layout_width="250dp"
         android:layout_height="93dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="85dp"
         android:scrollbarSize="4dp"

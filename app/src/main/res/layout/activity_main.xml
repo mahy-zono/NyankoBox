@@ -216,7 +216,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:ems="12"
+        android:ems="15"
         android:gravity="center_horizontal"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"

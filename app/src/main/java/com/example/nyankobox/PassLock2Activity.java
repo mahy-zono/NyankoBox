@@ -6,8 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +28,24 @@ public class PassLock2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pass_lock2);
+
+        //Toastインフレータ
+        LayoutInflater inflater  =getLayoutInflater();
+
+        //カスタムToast用のViewを取得する
+        final View layout = inflater.inflate(R.layout.costom_toast, null);
+
+        //カスタムフォント
+        final Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
+        TextView textView = findViewById(R.id.textView);
+        textView.setTypeface(customFont);
+
+        TextView textView2 = findViewById(R.id.textView2);
+        textView2.setTypeface(customFont);
+
+        EditText passcRegiText2 = (EditText)findViewById(R.id.passcRegiText2);
+        passcRegiText2.setTypeface(customFont);
 
         final EditText passRegiText2;
         //キーボード表示
@@ -70,7 +92,13 @@ public class PassLock2Activity extends AppCompatActivity {
                         if(pass == passRegiNum2){
                             try {
                                 db.execSQL("update PROFILE_TABLE set lock = '1' where id = '1'");
-                                Toast.makeText(context, "パスコードを設定しました。", Toast.LENGTH_LONG).show();
+                                TextView toastText = layout.findViewById(R.id.toastText);
+                                toastText.setText("パスコードを設定しました。");
+                                toastText.setTypeface(customFont);
+                                Toast toast = new Toast(context);
+                                toast.setView(layout);
+                                toast.show();
+                                //Toast.makeText(context, "パスコードを設定しました。", Toast.LENGTH_LONG).show();
                             }catch (NullPointerException e){
 
                             }
@@ -79,7 +107,13 @@ public class PassLock2Activity extends AppCompatActivity {
                             try {
                                 db.execSQL("update PROFILE_TABLE set lock = '0' where id = '1'");
                                 db.execSQL("update PROFILE_TABLE set pass = '' where id = '1'");
-                                Toast.makeText(context, "パスコードを設定出来ませんでした。", Toast.LENGTH_LONG).show();
+                                TextView toastText = layout.findViewById(R.id.toastText);
+                                toastText.setText("パスコードを設定出来ませんでした。");
+                                toastText.setTypeface(customFont);
+                                Toast toast = new Toast(context);
+                                toast.setView(layout);
+                                toast.show();
+                                //Toast.makeText(context, "パスコードを設定出来ませんでした。", Toast.LENGTH_LONG).show();
                             }catch (NullPointerException e){
 
                             }

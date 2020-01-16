@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,11 +31,16 @@ public class Privacy2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy2);
 
+        //Toastインフレータ
+        LayoutInflater inflater  =getLayoutInflater();
+
+        //カスタムToast用のViewを取得する
+        final View layout = inflater.inflate(R.layout.costom_toast, null);
 
         //サウンド
         soundPlayer = new SoundPlayer(this);
         //カスタムフォント
-        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+        final Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
         TextView set = findViewById(R.id.textView);
         set.setTypeface(customFont);
@@ -106,17 +113,35 @@ public class Privacy2Activity extends AppCompatActivity {
 
                     if(newFlag==true){
                         // 新規作成の場合
-                        Toast.makeText(context, "パスコードが設定されていません。", Toast.LENGTH_LONG).show();
+                        TextView toastText = layout.findViewById(R.id.toastText);
+                        toastText.setText("パスコードが設定されていません。");
+                        toastText.setTypeface(customFont);
+                        Toast toast = new Toast(context);
+                        toast.setView(layout);
+                        toast.show();
+                        //Toast.makeText(context, "パスコードが設定されていません。", Toast.LENGTH_LONG).show();
                     }else if(newFlag==false) {
                         try {
                             if(lock==1) {
                                 db.execSQL("update PROFILE_TABLE set lock = '0' where id = '1'");
                                 db.execSQL("update PROFILE_TABLE set pass = '' where id = '1'");
-                                Toast.makeText(context, "パスコードが削除されました。", Toast.LENGTH_LONG).show();
+                                TextView toastText = layout.findViewById(R.id.toastText);
+                                toastText.setText("パスコードが削除されました。");
+                                toastText.setTypeface(customFont);
+                                Toast toast = new Toast(context);
+                                toast.setView(layout);
+                                toast.show();
+                               // Toast.makeText(context, "パスコードが削除されました。", Toast.LENGTH_LONG).show();
                             }else if(lock == 0){
                                 db.execSQL("update PROFILE_TABLE set lock = '0' where id = '1'");
                                 db.execSQL("update PROFILE_TABLE set pass = '' where id = '1'");
-                                Toast.makeText(context, "パスコードが設定されていません。", Toast.LENGTH_LONG).show();
+                                TextView toastText = layout.findViewById(R.id.toastText);
+                                toastText.setText("パスコードが設定されていません。");
+                                toastText.setTypeface(customFont);
+                                Toast toast = new Toast(context);
+                                toast.setView(layout);
+                                toast.show();
+                                //Toast.makeText(context, "パスコードが設定されていません。", Toast.LENGTH_LONG).show();
                             }
                         }catch (NullPointerException e){
 

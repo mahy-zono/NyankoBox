@@ -43,6 +43,9 @@ public class PassLockActivity extends AppCompatActivity {
         textView2 = (TextView)findViewById(R.id.textView2);
         textView2.setTypeface(customFont);
 
+        EditText passcRegiText2 = (EditText)findViewById(R.id.passcRegiText2);
+        passcRegiText2.setTypeface(customFont);
+
 
         //キーボード表示
         InputMethodManager manager =
