@@ -5,15 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class HowtoActivity extends AppCompatActivity {
 
+    // Sound
+    private SoundPlayer soundPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_howto);
+
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
+
+
 
         //最前面に持ってくる
         TextView textView2 = (TextView)findViewById(R.id.textView2);
@@ -87,8 +96,10 @@ public class HowtoActivity extends AppCompatActivity {
         backsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPlayer.back();
                 finish();
             }
         });
+
     }
 }

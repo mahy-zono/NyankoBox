@@ -556,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
                     ututButton.setImageResource(R.drawable.utut);
                 } else if (dispEmo.equals("うとうと")) {
                     ut=1;
-                    mt.setText("めると一緒におやすみするにゃ～");
+                    mt.setText("お疲れさまにゃ～\nめると一緒におやすみするにゃ～むにゃあ.｡o〇");
                     //表情差分
                     mel.setImageResource(R.drawable.utcat);
                     skskButton.setImageResource(R.drawable.sksk);
@@ -834,7 +834,7 @@ public class MainActivity extends AppCompatActivity {
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.ut);
                     //メッセージ表示
-                    mt.setText("めると一緒におやすみするにゃ～");
+                    mt.setText("お疲れさまにゃ～\nめると一緒におやすみするにゃ～むにゃあ.｡o〇");
                     //表情差分
                     mel.setImageResource(R.drawable.utcat);
                     try {
