@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".PassUnlockActivity"></activity>
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".PassUnlockActivity" />
         <activity android:name=".Privacy2Activity" />
         <activity
             android:name=".HowtoActivity"
