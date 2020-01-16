@@ -192,7 +192,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Sound
                 soundPlayer.send();
-                userBD=birthdayDate.getText().toString().substring(7);
+                userBD=birthdayDate.getText().toString();
 
                 // データベースを取得する
                 SQLiteDatabase db = helper.getWritableDatabase();

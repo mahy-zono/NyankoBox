@@ -62,7 +62,7 @@ public class PassLock2Activity extends AppCompatActivity {
                         // 取得した全ての行を取得
                         while (next) {
                             // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
-                            pass = c.getInt(1); // パスコードを取得
+                            pass = c.getInt(3); // パスコードを取得
                             // 次の行が存在するか確認
                             next = c.moveToNext();
 

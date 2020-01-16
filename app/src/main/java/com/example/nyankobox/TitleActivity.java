@@ -42,6 +42,8 @@ public class TitleActivity extends AppCompatActivity {
     String dispBd = "";
     String checkBd = "";
     String nowDate = "";
+    int lock;
+    int pass;
 
     private void blinkText(ImageButton touchButton, long duration, long offset){
         Animation anm = new AlphaAnimation(0.0f, 1.0f);
@@ -115,6 +117,9 @@ public class TitleActivity extends AppCompatActivity {
                 // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
                 name = c.getString(1); // 名前を取得
                 bd = c.getString(2); // 誕生日を取得
+                pass = c.getInt(3);//パスワード取得
+                lock = c.getInt(4);//ロックの有無
+
                 // 次の行が存在するか確認
                 next = c.moveToNext();
             }
@@ -126,78 +131,83 @@ public class TitleActivity extends AppCompatActivity {
             db.close();
         }
 
+            //ホーム画面に遷移
+            final ImageButton touchButton = findViewById(R.id.touchBtn);
+            blinkText(touchButton, 300, 400);
+            touchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Sound
+                    soundPlayer.enter();
+                    if(lock==1){
+                        //パスコード画面へ遷移
+                        Intent intent = new Intent(getApplication(), PassUnlockActivity.class);
+                        startActivity(intent);
+                    }else if(lock==0) {
+                        try {
+                            //誕生日チェック
+                            if (bd.substring(7).equals(checkBd)) {
+                                //Sound
+                                soundPlayer.hbd();
+                                //カスタムフォント
+                                Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
 
-        //ホーム画面に遷移
-        final ImageButton touchButton = findViewById(R.id.touchBtn);
-        blinkText(touchButton, 300,400);
-        touchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Sound
-                soundPlayer.enter();
-              try {
-                    //誕生日チェック
-                    if (bd.equals(checkBd)) {
-                        //Sound
-                        soundPlayer.hbd();
-                        //カスタムフォント
-                        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+                                // カスタムレイアウトの用意
+                                LayoutInflater layoutInflater = getLayoutInflater();
+                                View customAlertView = layoutInflater.inflate(R.layout.happybirthday_dialog, null);
 
-                        // カスタムレイアウトの用意
-                        LayoutInflater layoutInflater = getLayoutInflater();
-                        View customAlertView = layoutInflater.inflate(R.layout.happybirthday_dialog, null);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(TitleActivity.this);
+                                builder.setView(customAlertView);
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(TitleActivity.this);
-                        builder.setView(customAlertView);
+                                // タイトルの変更
+                                TextView title = customAlertView.findViewById(R.id.title);
+                                title.setText("にゃんこぼっくすより");
+                                title.setTypeface(customFont);
 
-                        // タイトルの変更
-                        TextView title = customAlertView.findViewById(R.id.title);
-                        title.setText("にゃんこぼっくすより");
-                        title.setTypeface(customFont);
+                                //ImageView imageView = findViewById(R.id.ImageView);
+                                //imageView.setImageResource(R.drawable.hbd);
 
-                        //ImageView imageView = findViewById(R.id.ImageView);
-                        //imageView.setImageResource(R.drawable.hbd);
+                                // メッセージの変更
+                                TextView message = customAlertView.findViewById(R.id.message);
+                                if (name.equals("")) {
+                                    message.setText("今日は" + dispBd + "！！お誕生日にゃ！！！めるがたくさんお祝いするにゃ～！");
+                                } else {
+                                    message.setText("今日は" + dispBd + "！！" + name + "のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
+                                }
+                                message.setTypeface(customFont);
 
-                        // メッセージの変更
-                        TextView message = customAlertView.findViewById(R.id.message);
-                        if(name.equals("")){
-                            message.setText("今日は" + dispBd + "！！お誕生日にゃ！！！めるがたくさんお祝いするにゃ～！");
-                        }else {
-                            message.setText("今日は" + dispBd + "！！" + name + "のお誕生日にゃ！！めるがたくさんお祝いするにゃ～！");
-                        }
-                        message.setTypeface(customFont);
+                                final AlertDialog alertDialog = builder.create();
 
-                        final AlertDialog alertDialog = builder.create();
+                                // ボタンの設定
+                                Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
+                                alertBtn.setTypeface(customFont);
+                                alertBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        // ボタンを押した時の処理を書く
+                                        Intent intent = new Intent(getApplication(), MainActivity.class);
+                                        startActivity(intent);
+                                        // ダイアログを閉じる
+                                        alertDialog.dismiss();
+                                    }
+                                });
 
-                        // ボタンの設定
-                        Button alertBtn = customAlertView.findViewById(R.id.btnPositive);
-                        alertBtn.setTypeface(customFont);
-                        alertBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // ボタンを押した時の処理を書く
+                                // ダイアログ表示
+                                alertDialog.show();
+                            } else if (bd.substring(7).equals("")) {
                                 Intent intent = new Intent(getApplication(), MainActivity.class);
                                 startActivity(intent);
-                                // ダイアログを閉じる
-                                alertDialog.dismiss();
+                            } else {
+                                Intent intent = new Intent(getApplication(), MainActivity.class);
+                                startActivity(intent);
                             }
-                        });
-
-                        // ダイアログ表示
-                        alertDialog.show();
-                    } else if(bd.equals("")) {
-                        Intent intent = new Intent(getApplication(), MainActivity.class);
-                        startActivity(intent);
-                    }else{
+                        } catch (NullPointerException e) {
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivity(intent);
                         }
-                }catch(NullPointerException e){
-                  Intent intent = new Intent(getApplication(), MainActivity.class);
-                  startActivity(intent);
+                    }
                 }
-            }
-        });
+            });
     }
     // 画面が非表示に実行
     /*@Override
