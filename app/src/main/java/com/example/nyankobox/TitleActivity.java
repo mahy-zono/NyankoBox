@@ -73,14 +73,17 @@ public class TitleActivity extends AppCompatActivity {
         final Handler mHandler = new Handler();
         ScheduledExecutorService mScheduledExecutor;
 
-        p= MediaPlayer.create(getApplicationContext(), R.raw.bgm4);
-        p.setLooping(true); //    ループ設定
-        p.start();
+        //p= MediaPlayer.create(getApplicationContext(), R.raw.bgm4);
+        //p.setLooping(true); //    ループ設定
 
         // 音楽の読み込み
         //p = MediaPlayer.create(getApplicationContext(), R.raw.bgm);
         // 連続再生設定
         //p.setLooping(true);
+        Intent intent = new Intent(getApplication(), MyService.class);
+        intent.putExtra("REQUEST_CODE", 1);
+        // Serviceの開始
+        startService(intent);
 
 
         //現在日時の取得
@@ -209,9 +212,19 @@ public class TitleActivity extends AppCompatActivity {
                 }
             });
     }
-    // 画面が非表示に実行
+
+    // 画面が表示されるたびに実行
     /*@Override
+    protected void onResume() {
+        super.onResume();
+        p.start(); // 再生
+    }
+
+    // 画面が非表示に実行
+    @Override
     protected void onPause() {
+        //int position = p.getCurrentPosition();
+        //p.seekTo(position);
         super.onPause();
         p.pause(); // 一時停止
     }*/
@@ -222,7 +235,10 @@ public class TitleActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        p.release();// メモリの解放
-        p = null; // 音楽プレーヤーを破棄
+        Intent intent = new Intent(getApplication(), MyService.class);
+        // Serviceの停止
+        stopService(intent);
+        //p.release();// メモリの解放
+        //p = null; // 音楽プレーヤーを破棄
     }
 }

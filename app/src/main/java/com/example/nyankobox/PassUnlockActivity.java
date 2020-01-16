@@ -45,6 +45,8 @@ public class PassUnlockActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pass_unlock);
+        //サウンド
+        soundPlayer = new SoundPlayer(this);
 
         final EditText passRegiText;
         final TextView testText;
@@ -73,6 +75,8 @@ public class PassUnlockActivity extends AppCompatActivity {
         textView2 = (TextView)findViewById(R.id.textView2);
         textView2.setTypeface(customFont);
 
+        EditText passcode = (EditText)findViewById(R.id.passcode);
+        passcode.setTypeface(customFont);
 
         //キーボード表示
         InputMethodManager manager =
