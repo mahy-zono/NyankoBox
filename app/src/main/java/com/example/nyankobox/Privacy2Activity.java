@@ -161,6 +161,7 @@ public class Privacy2Activity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPlayer.back();
                 Intent intent = new Intent(getApplication(), SettingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
