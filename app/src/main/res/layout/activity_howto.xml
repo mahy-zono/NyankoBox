@@ -379,7 +379,7 @@
                     android:layout_marginTop="100dp"
                     android:background="@drawable/frame_style"
                     android:gravity="center|top"
-                    android:text="\n\n"
+                    android:text="メッセージアイコンをタップするとめるくんのLINEを追加することができるよ！\n特定のキーワードに反応してくれるから、たくさん話しかけてみよう！"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.692"
