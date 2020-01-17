@@ -110,7 +110,7 @@
         android:layout_marginTop="136dp"
         android:background="#00FFFFFF"
         android:gravity="left"
-        android:text="パスコード登録　　　  　　"
+        android:text="パスコード設定　　　  　　"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"

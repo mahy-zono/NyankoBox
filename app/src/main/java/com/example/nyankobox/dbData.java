@@ -43,7 +43,7 @@ public class dbData extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT, " +
                 "birthday TEXT, " +
-                "pass INTEGER," +
+                "pass TEXT," +
                 "lock INTEGER," +
                 "choice TEXT )");
         //洋服格納

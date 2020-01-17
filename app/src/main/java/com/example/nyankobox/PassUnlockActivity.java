@@ -33,13 +33,14 @@ public class PassUnlockActivity extends AppCompatActivity {
     dbData helper = null;
 
     //データ
-    int pass;
+    String pass="";
     String name = "";
     String bd = "";
     int passRegiNum;
     String dispBd = "";
     String checkBd = "";
     String nowDate = "";
+    String passcodeStr="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class PassUnlockActivity extends AppCompatActivity {
         textView2 = (TextView)findViewById(R.id.textView2);
         textView2.setTypeface(customFont);
 
-        EditText passcode = (EditText)findViewById(R.id.passcode);
+        final EditText passcode = (EditText)findViewById(R.id.passcode);
         passcode.setTypeface(customFont);
 
         //キーボード表示
@@ -126,13 +127,15 @@ public class PassUnlockActivity extends AppCompatActivity {
                             // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
                             name = c.getString(1); // 名前を取得
                             bd = c.getString(2); // 誕生日を取得
-                            pass = c.getInt(3);//パスワード取得
+                            pass = c.getString(3);//パスワード取得
                             // 次の行が存在するか確認
                             next = c.moveToNext();
 
                         }
 
-                        if(pass==passRegiNum){
+                        passcodeStr = String.valueOf(passRegiNum);
+
+                        if(pass.equals(passcodeStr)){
                             try {
                                 //誕生日チェック
                                 if (bd.substring(7).equals(checkBd)) {

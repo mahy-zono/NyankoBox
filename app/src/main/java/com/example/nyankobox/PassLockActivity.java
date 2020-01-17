@@ -23,9 +23,10 @@ public class PassLockActivity extends AppCompatActivity {
     // Sound
     private SoundPlayer soundPlayer;
     //データ
-    int pass;
+    String pass="";
     int passRegiNum2;
     int passRegiNum;
+    String passcodeRegi="";
     //新規フラグ
     boolean newFlag = true;
 
@@ -128,19 +129,21 @@ public class PassLockActivity extends AppCompatActivity {
                                     // 取得した全ての行を取得
                                     while (next) {
                                         // 取得したカラムの順番(0から始まる)と型を指定してデータを取得する
-                                        pass = c.getInt(3); // パスコードを取得
+                                        pass = c.getString(3); // パスコードを取得
                                         // 次の行が存在するか確認
                                         next = c.moveToNext();
                                         //新規フラグ
                                         newFlag = false;
 
                                     }
+
                                     if(passRegiNum == passRegiNum2) {
+                                        passcodeRegi = String.valueOf(passRegiNum);
                                         if (newFlag == true) {
                                             // 新規作成の場合
                                             // INSERT
                                             try {
-                                                db.execSQL("insert into PROFILE_TABLE(pass,lock) VALUES('passRegiNum','1')");
+                                                db.execSQL("insert into PROFILE_TABLE(pass,lock) VALUES('"+passcodeRegi+"','1')");
                                                 TextView toastText = layout.findViewById(R.id.toastText);
                                                 toastText.setText("パスコードを設定しました。");
                                                 toastText.setTypeface(customFont);
@@ -153,7 +156,7 @@ public class PassLockActivity extends AppCompatActivity {
 
                                         } else if (newFlag == false) {
                                             try {
-                                                db.execSQL("update PROFILE_TABLE set pass = 'passRegiNum' where id = '1'");
+                                                db.execSQL("update PROFILE_TABLE set pass = '"+passcodeRegi+"' where id = '1'");
                                                 db.execSQL("update PROFILE_TABLE set lock = '1' where id = '1'");
                                                 TextView toastText = layout.findViewById(R.id.toastText);
                                                 toastText.setText("パスコードを設定しました。");
