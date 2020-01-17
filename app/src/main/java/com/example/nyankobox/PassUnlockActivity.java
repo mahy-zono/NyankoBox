@@ -48,6 +48,15 @@ public class PassUnlockActivity extends AppCompatActivity {
         //サウンド
         soundPlayer = new SoundPlayer(this);
 
+        //Toastインフレータ
+        LayoutInflater inflater  =getLayoutInflater();
+
+        //カスタムToast用のViewを取得する
+        final View layout = inflater.inflate(R.layout.costom_toast, null);
+
+        //カスタムフォント
+        final Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
         final EditText passRegiText;
         final TextView testText;
         final TextView textView;
@@ -66,8 +75,7 @@ public class PassUnlockActivity extends AppCompatActivity {
         SimpleDateFormat cbd = new SimpleDateFormat("MM 月 dd 日");
         checkBd = cbd.format(d);
 
-        //カスタムフォント
-        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/nikumaru.ttf");
+
 
         textView = (TextView)findViewById(R.id.textView);
         textView.setTypeface(customFont);
@@ -188,8 +196,13 @@ public class PassUnlockActivity extends AppCompatActivity {
                             }
                         }else {
                             //タイトル画面に遷移
-
-                            Toast.makeText(context, "パスコードが間違っています。", Toast.LENGTH_LONG).show();
+                            TextView toastText = layout.findViewById(R.id.toastText);
+                            toastText.setText("パスコードが間違っています。");
+                            toastText.setTypeface(customFont);
+                            Toast toast = new Toast(context);
+                            toast.setView(layout);
+                            toast.show();
+                           // Toast.makeText(context, "パスコードが間違っています。", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getApplication(), TitleActivity.class);
                             startActivity(intent);
                         }
