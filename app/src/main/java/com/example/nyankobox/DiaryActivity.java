@@ -143,7 +143,7 @@ public class DiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Sound
                 soundPlayer.pompom();
-                Uri uri = Uri.parse("http://line.me/ti/p/%40ffg0778p");
+                Uri uri = Uri.parse("http://line.me/ti/p/%40812lgphv");
                 Intent i = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(i);
             }
