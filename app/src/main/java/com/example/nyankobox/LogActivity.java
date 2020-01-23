@@ -209,8 +209,6 @@ public class LogActivity extends AppCompatActivity {
                                 dt.setTypeface(customFont);
                                 //メッセージ表示
                                 dt.setText(choiceDiary);
-                                //フラグを変更
-                                newFlag = true;
                             }else{
                                 //データがない場合
                                 //指定書式に変換して表示
@@ -229,6 +227,8 @@ public class LogActivity extends AppCompatActivity {
                                 findViewById(R.id.imageEmo).setVisibility(View.INVISIBLE);
                                 //達成非表示
                                 findViewById(R.id.imageClear).setVisibility(View.INVISIBLE);
+                                //フラグを変更
+                                newFlag = true;
                             }
                         } finally {
                             // finallyは、tryの中で例外が発生した時でも必ず実行される

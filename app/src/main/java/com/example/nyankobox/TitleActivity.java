@@ -149,6 +149,10 @@ public class TitleActivity extends AppCompatActivity {
                     }else if(lock==0) {
                         try {
                             //誕生日チェック
+                            if (bd.equals("")) {
+                                Intent intent = new Intent(getApplication(), MainActivity.class);
+                                startActivity(intent);
+                            }else{
                             if (bd.substring(7).equals(checkBd)) {
                                 //Sound
                                 soundPlayer.hbd();
@@ -204,6 +208,7 @@ public class TitleActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplication(), MainActivity.class);
                                 startActivity(intent);
                             }
+                        }
                         } catch (NullPointerException e) {
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivity(intent);
