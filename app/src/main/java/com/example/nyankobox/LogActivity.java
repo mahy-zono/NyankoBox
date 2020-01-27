@@ -32,6 +32,7 @@ public class LogActivity extends AppCompatActivity {
     dbData helper = null;
     // 新規フラグ
     boolean newFlag = true;
+    boolean checkFlag = true;
     //データ
     String choiceDate = "";
     String choiceDiary ="";
@@ -174,6 +175,12 @@ public class LogActivity extends AppCompatActivity {
                                 next = c.moveToNext();
                                 //フラグを変更
                                 newFlag = false;
+                                checkFlag = false;
+                            }
+                            if(choiceDiary.equals("") && choiceEmo.equals("") && choiceGoal.equals("")){
+
+                            }else{
+
                             }
                             if(newFlag==false) {
                                 //データがある場合
@@ -209,6 +216,8 @@ public class LogActivity extends AppCompatActivity {
                                 dt.setTypeface(customFont);
                                 //メッセージ表示
                                 dt.setText(choiceDiary);
+                                //フラグを変更
+                                newFlag = true;
                             }else{
                                 //データがない場合
                                 //指定書式に変換して表示
@@ -264,7 +273,7 @@ public class LogActivity extends AppCompatActivity {
                     // DBに保存
                     SQLiteDatabase db = helper.getWritableDatabase();
                     try {
-                        if (newFlag == false) {
+                        if (checkFlag == false) {
                             // UPDATE
                             db.execSQL("update NYANKO_TABLE set diary = '" + diaryStr + "' where date = '" + choiceDate + "'");
                         } else {
