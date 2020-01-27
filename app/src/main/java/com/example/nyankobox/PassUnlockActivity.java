@@ -138,6 +138,10 @@ public class PassUnlockActivity extends AppCompatActivity {
                         if(pass.equals(passcodeStr)){
                             try {
                                 //誕生日チェック
+                                if (bd.equals("")) {
+                                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                                    startActivity(intent);
+                                }else{
                                 if (bd.substring(7).equals(checkBd)) {
                                     //Sound
                                     soundPlayer.hbd();
@@ -186,6 +190,7 @@ public class PassUnlockActivity extends AppCompatActivity {
 
                                     // ダイアログ表示
                                     alertDialog.show();
+
                                 } else if (bd.substring(7).equals("")) {
                                     Intent intent = new Intent(getApplication(), MainActivity.class);
                                     startActivity(intent);
@@ -193,6 +198,7 @@ public class PassUnlockActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplication(), MainActivity.class);
                                     startActivity(intent);
                                 }
+                            }
                             } catch (NullPointerException e) {
                                 Intent intent = new Intent(getApplication(), MainActivity.class);
                                 startActivity(intent);
