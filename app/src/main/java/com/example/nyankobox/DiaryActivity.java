@@ -44,6 +44,7 @@ public class DiaryActivity extends AppCompatActivity {
     int ir=0;
     int wk=0;
     int ut=0;
+    int dk=0;
 
     // 最終的に表示する文字列
     String dispDiary = "";
@@ -76,6 +77,7 @@ public class DiaryActivity extends AppCompatActivity {
         final ImageButton irirButton = findViewById(R.id.irirBtn);
         final ImageButton skskButton = findViewById(R.id.skskBtn);
         final ImageButton ututButton = findViewById(R.id.ututBtn);
+        final ImageButton dkdkButton = findViewById(R.id.dkdkBtn);
 
         //現在日時の取得
         Date d = new Date();
@@ -191,6 +193,7 @@ public class DiaryActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
 
                 } else if (dispEmo.equals("いらいら")) {
                     ir=1;
@@ -198,6 +201,7 @@ public class DiaryActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
 
                 } else if (dispEmo.equals("しくしく")) {
                     sk=1;
@@ -205,12 +209,21 @@ public class DiaryActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                 } else if (dispEmo.equals("うとうと")){
                     ut=1;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.ut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
+                }else if (dispEmo.equals("どきどき")){
+                    dk=1;
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dk);
                 }
             }catch(NullPointerException e){
 
@@ -258,10 +271,12 @@ public class DiaryActivity extends AppCompatActivity {
                     wk = 1;
                     ir = 0;
                     ut = 0;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
 
                     try {
                         if(newFlag==false){
@@ -319,10 +334,12 @@ public class DiaryActivity extends AppCompatActivity {
                     wk = 0;
                     ir = 1;
                     ut = 0;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -378,10 +395,12 @@ public class DiaryActivity extends AppCompatActivity {
                     wk = 0;
                     ir = 0;
                     ut = 0;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -401,9 +420,6 @@ public class DiaryActivity extends AppCompatActivity {
                         db.close();
                     }
                 }
-
-
-
 
             }
         });
@@ -440,10 +456,12 @@ public class DiaryActivity extends AppCompatActivity {
                     wk = 0;
                     ir = 0;
                     ut = 1;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.ut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     try {
                         if(newFlag==false){
                             //編集の場合
@@ -464,8 +482,66 @@ public class DiaryActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        // どきどきclick
+        dkdkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
+                // 入力内容を取得する
+                emo = "どきどき";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                //ボタンの画像変更
+                if(dk == 1){
+                    //選択→未選択
+                    dk = 0;
+                    dkdkButton.setImageResource(R.drawable.dkdk);
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }else{
+                    //未選択→選択
+                    sk = 0;
+                    wk = 0;
+                    ir = 0;
+                    ut = 0;
+                    dk = 1;
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dk);
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
+
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
+                        }
 
 
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }
 
             }
         });

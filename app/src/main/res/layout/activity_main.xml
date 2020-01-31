@@ -63,6 +63,14 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/utut" />
 
+            <ImageButton
+                android:id="@+id/dkdkBtn"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/dkdk" />
+
         </LinearLayout>
     </HorizontalScrollView>
 

@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     int ir=0;
     int wk=0;
     int ut=0;
+    int dk=0;
     // 最終的に表示する文字列
     String dispEmo ="";
 
@@ -442,6 +443,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton irirButton = findViewById(R.id.irirBtn);
         final ImageButton skskButton = findViewById(R.id.skskBtn);
         final ImageButton ututButton = findViewById(R.id.ututBtn);
+        final ImageButton dkdkButton = findViewById(R.id.dkdkBtn);
 
         //日付の取得
         SimpleDateFormat dDate = new SimpleDateFormat("YYYY/MM/dd ");
@@ -498,6 +500,10 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.dressView).setVisibility(View.VISIBLE);
                 dressView.setImageResource(R.drawable.dress5);
                 break;
+            case "dress6":
+                findViewById(R.id.dressView).setVisibility(View.VISIBLE);
+                dressView.setImageResource(R.drawable.dress6);
+                break;
         }
 
          mel= findViewById(R.id.imageView);
@@ -534,6 +540,7 @@ public class MainActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
 
                 } else if (dispEmo.equals("いらいら")) {
                     ir=1;
@@ -544,6 +551,7 @@ public class MainActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
 
                 } else if (dispEmo.equals("しくしく")) {
                     sk=1;
@@ -554,6 +562,8 @@ public class MainActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
+
                 } else if (dispEmo.equals("うとうと")) {
                     ut=1;
                     mt.setText("お疲れさまにゃ～\nめると一緒におやすみするにゃ～むにゃあ.｡o〇");
@@ -563,6 +573,17 @@ public class MainActivity extends AppCompatActivity {
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.ut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
+                } else if (dispEmo.equals("どきどき")) {
+                    dk=1;
+                    mt.setText("はにゃにゃにゃっっ！！！");
+                    //表情差分
+                    mel.setImageResource(R.drawable.dkcat);
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dk);
                 }
                 //目標
                 if(!dispGoal.equals("")){
@@ -628,10 +649,12 @@ public class MainActivity extends AppCompatActivity {
                     wk = 1;
                     ir = 0;
                     ut = 0;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     //表情差分
                     mel.setImageResource(R.drawable.wkcat);
                     //メッセージ表示
@@ -696,10 +719,12 @@ public class MainActivity extends AppCompatActivity {
                     wk = 0;
                     ir = 1;
                     ut = 0;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.ir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     //メッセージ表示
                     mt.setText("ぷんぷん！\nめるも少しおこなのにゃ！！");
                     //表情差分
@@ -763,10 +788,12 @@ public class MainActivity extends AppCompatActivity {
                     wk = 0;
                     ir = 0;
                     ut = 0;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     //メッセージ表示
                     mt.setText("そっかぁ...。めるがよしよししてあげるにゃ～！いいこいいこ～♪");
                     //表情差分
@@ -829,14 +856,84 @@ public class MainActivity extends AppCompatActivity {
                     wk = 0;
                     ir = 0;
                     ut = 1;
+                    dk = 0;
                     skskButton.setImageResource(R.drawable.sksk);
                     wkwkButton.setImageResource(R.drawable.wkwk);
                     irirButton.setImageResource(R.drawable.irir);
                     ututButton.setImageResource(R.drawable.ut);
+                    dkdkButton.setImageResource(R.drawable.dkdk);
                     //メッセージ表示
                     mt.setText("お疲れさまにゃ～\nめると一緒におやすみするにゃ～むにゃあ.｡o〇");
                     //表情差分
                     mel.setImageResource(R.drawable.utcat);
+                    try {
+                        if(newFlag==false){
+                            //編集の場合
+                            // UPDATE
+                            db.execSQL("update NYANKO_TABLE set emo = '"+ emo +"' where date = '"+nowdate+"'");
+                        }else {
+                            // 新規作成の場合
+
+                            // INSERT
+                            db.execSQL("insert into NYANKO_TABLE(date,diary,emo,goal,clear) VALUES('"+ nowdate +"','"+ "" +"','" + emo + "','"+ "" +"','')");
+                        }
+
+
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }
+            }
+        });
+
+        // どきどきclick
+        dkdkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Sound
+                soundPlayer.pompom();
+                //指定書式に変換して表示
+                TextView mt = (TextView) findViewById(R.id.message);
+                // 入力内容を取得する
+                emo = "どきどき";
+                // DBに保存
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                //ボタンの画像変更
+                if(dk == 1){
+                    //選択→未選択
+                    dk = 0;
+                    dkdkButton.setImageResource(R.drawable.dkdk);
+                    //メッセージ表示
+                    mt.setText("もう心は落ち着いたかにゃ？？");
+                    //表情差分
+                    mel.setImageResource(R.drawable.sample);
+                    try {
+                        // 空白
+                        db.execSQL("update NYANKO_TABLE set emo = '' where date = '"+nowdate+"'");
+                    } finally {
+                        // finallyは、tryの中で例外が発生した時でも必ず実行される
+                        // dbを開いたら確実にclose
+                        db.close();
+                    }
+                }else{
+                    //未選択→選択
+                    sk = 0;
+                    wk = 0;
+                    ir = 0;
+                    ut = 0;
+                    dk = 1;
+                    skskButton.setImageResource(R.drawable.sksk);
+                    wkwkButton.setImageResource(R.drawable.wkwk);
+                    irirButton.setImageResource(R.drawable.irir);
+                    ututButton.setImageResource(R.drawable.utut);
+                    dkdkButton.setImageResource(R.drawable.dk);
+                    //メッセージ表示
+                    mt.setText("はにゃにゃにゃっっ！！！");
+                    //表情差分
+                    mel.setImageResource(R.drawable.dkcat);
                     try {
                         if(newFlag==false){
                             //編集の場合

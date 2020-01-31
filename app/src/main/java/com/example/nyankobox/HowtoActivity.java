@@ -50,12 +50,12 @@ public class HowtoActivity extends AppCompatActivity {
         textView9.bringToFront();
         view5.bringToFront();
 
-        /* LINEのところ
+
         TextView textView11 = (TextView)findViewById(R.id.textView11);
         View view6 = (View)findViewById(R.id.view);
         textView11.bringToFront();
         view6.bringToFront();
-        */
+
 
 
 
@@ -90,12 +90,12 @@ public class HowtoActivity extends AppCompatActivity {
         TextView textView10 = (TextView)findViewById(R.id.textView10);
         textView10.setTypeface(customFont);
 
-        /* LINEのところ
+
         textView11.setTypeface(customFont);
 
         TextView textView12 = (TextView)findViewById(R.id.textView12);
         textView12.setTypeface(customFont);
-        */
+
 
 
         //戻るボタン押下で前画面に戻る

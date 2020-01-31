@@ -180,6 +180,17 @@
                 app:layout_constraintStart_toEndOf="@+id/dress2Btn"
                 app:layout_constraintTop_toTopOf="@+id/dress2Btn"
                 app:srcCompat="@drawable/dress5btn" />
+
+            <ImageButton
+                android:id="@+id/dress6Btn"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toEndOf="@+id/dress6Btn"
+                app:layout_constraintTop_toTopOf="@+id/dress6Btn"
+                app:srcCompat="@drawable/dress6btn" />
         </LinearLayout>
 
     </HorizontalScrollView>

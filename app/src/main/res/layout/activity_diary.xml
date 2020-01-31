@@ -212,6 +212,16 @@
                 app:layout_constraintTop_toTopOf="@+id/irirBtn"
                 app:srcCompat="@drawable/utut" />
 
+            <ImageButton
+                android:id="@+id/dkdkBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/irirBtn"
+                app:srcCompat="@drawable/dkdk" />
+
         </LinearLayout>
     </HorizontalScrollView>
 
